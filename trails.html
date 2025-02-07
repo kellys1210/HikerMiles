@@ -11,12 +11,13 @@
     <nav class="pageLinks">
       <ul>
         <li><a href="index.html">Home</a></li>
-        <li><a href="patrons.html">Hiker Miles Members</a></li>
+        <li><a href="patrons.html">Patron Directory</a></li>
+        <li><a href="rewards_points.html">Rewards</a></li>
         <li><a href="parks.html">Park Directory</a></li>
         <li><a href="trails.html">Trail Directory</a></li>
         <li><a href="brain_implants.html">Brain Implant Directory</a></li>
-        <li><a href="patron_parks.html">Member Park Visit History</a></li>
-        <li><a href="patron_trails.html">Member Trail Visit History</a></li>
+        <li><a href="patron_parks.html">Patron Park Visit History</a></li>
+        <li><a href="patron_trails.html">Patron Trail Visit History</a></li>
       </ul>
     </nav>
 
@@ -43,23 +44,22 @@
 
     <!-- Insert Form -->
     <div class="formContainer">
-      <form>
-        <label for="trail_id">Trail ID:</label>
-        <input type="text" />
-        <label for="park_id">Park ID:</label>
-        <input type="text" />
-        <label for="name">Name:</label>
-        <input type="text" />
-        <label for="trail_head">Trail Head Coordinates:</label>
-        <input type="text" />
-        <label for="length">Length:</label>
-        <input type="text" />
-        <input type="submit" value="Insert" />
+      <form action="" method="post">
+        <label for="park_id">Park Name:*</label>
+        <input type="text" required placeholder="Grand Canyon National Park" />
+        <label for="name">Trail Name:*</label>
+        <input type="text" required placeholder="Bright Angel Trail" />
+        <label for="trail_head">Trail Head Coordinates:*</label>
+        <input type="text" required placeholder="36.107" />
+        <label for="length">Length (miles):*</label>
+        <input type="text" required placeholder="7.8" />
+        * = required field
+        <input type="submit" value="Add New Trail" />
       </form>
     </div>
 
     <!-- Update Form -->
-    <div class="formContainer">
+    <!-- <div class="formContainer">
       <form>
         <label for="trail_id">Trail ID:</label>
         <input type="text" />
@@ -73,15 +73,15 @@
         <input type="text" />
         <input type="submit" value="Update" />
       </form>
-    </div>
+    </div> -->
 
     <!-- Delete Form -->
-    <div class="formContainer">
+    <!-- <div class="formContainer">
       <form>
         <label for="trail_id">Trail ID:</label>
         <input type="text" />
         <input type="submit" value="Delete" />
       </form>
-    </div>
+    </div> -->
   </body>
 </html>

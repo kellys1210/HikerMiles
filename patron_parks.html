@@ -1,57 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="app.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="app.css" />
     <title>Patron Parks</title>
-</head>
-<body>
+  </head>
+  <body>
     <header>Hiker Miles Program</header>
     <nav class="pageLinks">
-        <ul>
-          <li><a href="index.html">Home</a></li>
-          <li><a href="patrons.html">Hiker Miles Members</a></li>
-          <li><a href="parks.html">Park Directory</a></li>
-          <li><a href="trails.html">Trail Directory</a></li>
-          <li><a href="brain_implants.html">Brain Implant Directory</a></li>
-          <li><a href="patron_parks.html">Member Park Visit History</a></li>
-          <li><a href="patron_trails.html">Member Trail Visit History</a></li>
-        </ul>
-      </nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="patrons.html">Patron Directory</a></li>
+        <li><a href="rewards_points.html">Rewards</a></li>
+        <li><a href="parks.html">Park Directory</a></li>
+        <li><a href="trails.html">Trail Directory</a></li>
+        <li><a href="brain_implants.html">Brain Implant Directory</a></li>
+        <li><a href="patron_parks.html">Patron Park Visit History</a></li>
+        <li><a href="patron_trails.html">Patron Trail Visit History</a></li>
+      </ul>
+    </nav>
 
     <h1>Patron Parks</h1>
 
     <div class="dataTable">
-        <table>
-            <tr>
-                <th>Patron ID</th>
-                <th>Park ID</th>
-                <th>Visit Count</th>
-            </tr>
-            <tr>
-                <td>Dummy Int</td>
-                <td>Dummy Int</td>
-                <td>Dummy Int</td>
-            </tr>
-        </table>    
+      <table>
+        <tr>
+          <th>Patron ID</th>
+          <th>Park ID</th>
+          <th>Visit Count</th>
+        </tr>
+        <tr>
+          <td>Dummy Int</td>
+          <td>Dummy Int</td>
+          <td>Dummy Int</td>
+        </tr>
+      </table>
     </div>
 
     <!-- Insert Form -->
     <div class="formContainer">
-        <form>
-            <label for="patron_id">Patron ID:</label>
-            <input type="text">
-            <label for="park_id">Park ID:</label>
-            <input type="text">
-            <label for="visit_count">Visit Count:</label>
-            <input type="text">
-            <input type="submit" value="Insert" />
-        </form>
+      <form action="" method="post">
+        <!-- 
+        TODO: I'm putting name because I guess this is how the user 
+        will be able to add? Since they won't know the IDs? -->
+
+        <label for="patron_id">Patron Name:*</label>
+        <input type="text" placeholder="Tony Soprano" required />
+        <label for="park_id">Park Name:*</label>
+        <input type="text" placeholder="Grand Canyon National Park" required />
+        <label for="visit_count">Visit Count:*</label>
+        <input type="text" placeholder="1, 2, 3..." required />
+        * = required field
+        <input type="submit" value="Add New Patron Park Visit" />
+      </form>
     </div>
 
     <!-- Update Form -->
-    <div class="formContainer">
+    <!-- <div class="formContainer">
         <form>
             <label for="patron_id">Patron ID:</label>
             <input type="text">
@@ -59,19 +65,19 @@
             <input type="text">
             <label for="visit_count">Visit Count:</label>
             <input type="text">
-            <input type="submit" value="Update" />
+            <input type="submit" value="Update Patron Park Visit" />
         </form>
-    </div>
+    </div> -->
 
     <!-- Delete Form -->
-    <div class="formContainer">
+    <!-- <div class="formContainer">
         <form>
             <label for="patron_id">Patron ID:</label>
             <input type="text">
             <label for="park_id">Park ID:</label>
             <input type="text">
-            <input type="submit" value="Delete" />
+            <input type="submit" value="Delete Patron Park Visit" />
         </form>
-    </div>
-</body>
+    </div> -->
+  </body>
 </html>

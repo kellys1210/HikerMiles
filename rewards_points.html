@@ -1,81 +1,81 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="app.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="app.css" />
     <title>Rewards Points</title>
-</head>
-<body>
+  </head>
+  <body>
     <header>Hiker Miles Program</header>
     <nav class="pageLinks">
-        <ul>
-          <li><a href="index.html">Home</a></li>
-          <li><a href="patrons.html">Hiker Miles Members</a></li>
-          <li><a href="parks.html">Park Directory</a></li>
-          <li><a href="trails.html">Trail Directory</a></li>
-          <li><a href="brain_implants.html">Brain Implant Directory</a></li>
-          <li><a href="patron_parks.html">Member Park Visit History</a></li>
-          <li><a href="patron_trails.html">Member Trail Visit History</a></li>
-        </ul>
-      </nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="patrons.html">Patron Directory</a></li>
+        <li><a href="rewards_points.html">Rewards</a></li>
+        <li><a href="parks.html">Park Directory</a></li>
+        <li><a href="trails.html">Trail Directory</a></li>
+        <li><a href="brain_implants.html">Brain Implant Directory</a></li>
+        <li><a href="patron_parks.html">Patron Park Visit History</a></li>
+        <li><a href="patron_trails.html">Patron Trail Visit History</a></li>
+      </ul>
+    </nav>
 
     <h1>Rewards Points</h1>
 
     <div class="dataTable">
-        <table>
-            <tr>
-                <th>Reward ID</th>
-                <th>Patron ID</th>
-                <th>Distance</th>
-                <th>Reward</th>
-            </tr>
-            <tr>
-                <td>Dummy Int</td>
-                <td>Dummy Int</td>
-                <td>Dummy Int</td>
-                <td>Dummy Float</td>
-            </tr>
-        </table>    
+      <table>
+        <tr>
+          <th>Reward ID</th>
+          <th>Patron ID</th>
+          <th>Distance</th>
+          <th>Reward</th>
+        </tr>
+        <tr>
+          <td>Dummy Int</td>
+          <td>Dummy Int</td>
+          <td>Dummy Int</td>
+          <td>Dummy Float</td>
+        </tr>
+      </table>
     </div>
 
     <!-- Insert Form -->
     <div class="formContainer">
-        <form>
-            <label for="reward_id">Reward ID:</label>
-            <input type="text">
-            <label for="patron_id">Patron ID:</label>
-            <input type="text">
-            <label for="distance">Distance:</label>
-            <input type="text">
-            <label for="reward">Reward:</label>
-            <input type="text">
-            <input type="submit" value="Insert" />
-        </form>
+      <form action="" method="post">
+        <label for="patron_id">Patron Name:*</label>
+        <input type="text" placeholder="Tony Montana" required />
+        <label for="distance">Distance (miles):</label>
+        <input type="text" placeholder="10" required />
+        <label for="reward">Reward (%):</label>
+        <input type="text" placeholder="15" required />
+        * = required field
+        <input type="submit" value="Add New Rewards" />
+      </form>
     </div>
 
     <!-- Update Form -->
-    <div class="formContainer">
-        <form>
-            <label for="reward_id">Reward ID:</label>
-            <input type="text">
-            <label for="patron_id">Patron ID:</label>
-            <input type="text">
-            <label for="distance">Distance:</label>
-            <input type="text">
-            <label for="reward">Reward:</label>
-            <input type="text">
-            <input type="submit" value="Update" />
-        </form>
-    </div>
+    <!-- <div class="formContainer">
+      <form>
+        <label for="reward_id">Reward ID:</label>
+        <input type="text" />
+        <label for="patron_id">Patron ID:</label>
+        <input type="text" />
+        <label for="distance">Distance:</label>
+        <input type="text" />
+        <label for="reward">Reward:</label>
+        <input type="text" />
+        <input type="submit" value="Update" />
+      </form>
+    </div> -->
 
     <!-- Delete Form -->
-    <div class="formContainer">
-        <form>
-            <label for="reward_id">Reward ID:</label>
-            <input type="text">
-            <input type="submit" value="Delete" />
-        </form>
-    </div>
-</body>
+    <!-- <div class="formContainer">
+      <form>
+        <label for="reward_id">Reward ID:</label>
+        <input type="text" />
+        <input type="submit" value="Delete" />
+      </form>
+    </div> -->
+  </body>
 </html>

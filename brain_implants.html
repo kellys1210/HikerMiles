@@ -11,24 +11,25 @@
     <nav class="pageLinks">
       <ul>
         <li><a href="index.html">Home</a></li>
-        <li><a href="patrons.html">Hiker Miles Members</a></li>
+        <li><a href="patrons.html">Patron Directory</a></li>
+        <li><a href="rewards_points.html">Rewards</a></li>
         <li><a href="parks.html">Park Directory</a></li>
         <li><a href="trails.html">Trail Directory</a></li>
         <li><a href="brain_implants.html">Brain Implant Directory</a></li>
-        <li><a href="patron_parks.html">Member Park Visit History</a></li>
-        <li><a href="patron_trails.html">Member Trail Visit History</a></li>
+        <li><a href="patron_parks.html">Patron Park Visit History</a></li>
+        <li><a href="patron_trails.html">Patron Trail Visit History</a></li>
       </ul>
     </nav>
 
-    <h1>Brain Implants</h1>
+    <h1>Brain Implant Directory</h1>
 
     <div class="dataTable">
       <table>
         <tr>
           <th>Implant ID</th>
           <th>Patron ID</th>
-          <th>Experiation Date</th>
-          <th>Beserk Mode</th>
+          <th>Expiration Date</th>
+          <th>Beserk Mode?</th>
         </tr>
         <tr>
           <td>Dummy Int</td>
@@ -41,21 +42,21 @@
 
     <!-- Insert -->
     <div class="formContainer">
-      <form>
-        <label for="implant_id">Implant ID:</label>
+      <form action="" method="post">
+        <!-- TODO: patron_id FK will have to allow Null or we'll have an insert anomaly here -->
+        <label for="patron_id">Patron ID: (if not yet implanted, leave blank)</label>
         <input type="text" />
-        <label for="patron_id">Patron ID:</label>
-        <input type="text" />
-        <label for="expiration_date">Expiration Date:</label>
-        <input type="text" />
-        <label for="berserk_mode">Berserk Mode:</label>
-        <input type="text" />
-        <input type="submit" value="Insert" />
+        <label for="expiration_date">Expiration Date:*</label>
+        <input type="date" required />
+        <label for="berserk_mode">Berserk Mode?*</label>
+        <input type="text" placeholder="True or False" required />
+        * = required field
+        <input type="submit" value="Add New Implant" />
       </form>
     </div>
 
     <!-- Update -->
-    <div class="formContainer">
+    <!-- <div class="formContainer">
       <form>
         <label for="implant_id">Implant ID:</label>
         <input type="text" />
@@ -67,15 +68,15 @@
         <input type="text" />
         <input type="submit" value="Update" />
       </form>
-    </div>
+    </div> -->
 
     <!-- Delete -->
-    <div class="formContainer">
+    <!-- <div class="formContainer">
       <form>
         <label for="implant_id">Implant ID:</label>
         <input type="text" />
         <input type="submit" value="Delete" />
       </form>
-    </div>
+    </div> -->
   </body>
 </html>
