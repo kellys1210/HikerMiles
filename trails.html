@@ -1,84 +1,87 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="app.css" />
     <title>Trails</title>
-</head>
-<body>
+  </head>
+  <body>
+    <header>Hiker Miles Program</header>
     <nav class="pageLinks">
-        <a href="index.html">Home</a>
-        <a href="patrons.html">Hiker Miles Program Members</a>
-        <a href="parks.html">Park Directory</a>
-        <a href="trails.html">Trail Directory</a>
-        <a href="brain_implants.html">Brain Implant Directory</a>
-        <a href="patron_parks.html">Member Park Visit History</a>
-        <a href="patron_trails.html">Member Trail Visit History</a>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="patrons.html">Hiker Miles Members</a></li>
+        <li><a href="parks.html">Park Directory</a></li>
+        <li><a href="trails.html">Trail Directory</a></li>
+        <li><a href="brain_implants.html">Brain Implant Directory</a></li>
+        <li><a href="patron_parks.html">Member Park Visit History</a></li>
+        <li><a href="patron_trails.html">Member Trail Visit History</a></li>
+      </ul>
     </nav>
-
 
     <h1>Trails</h1>
 
-    <div>
-        <table>
-            <tr>
-                <th>Trail ID</th>
-                <th>Park ID</th>
-                <th>Name</th>
-                <th>Trail Head Coordinates</th>
-                <th>Length</th>
-            </tr>
-            <tr>
-                <td>Dummy Int</td>
-                <td>Dummy Int</td>
-                <td>Dummy Text</td>
-                <td>Dummy Float</td>
-                <td>Dummy Float</td>
-            </tr>
-        </table>    
+    <div class="dataTable">
+      <table>
+        <tr>
+          <th>Trail ID</th>
+          <th>Park ID</th>
+          <th>Name</th>
+          <th>Trail Head Coordinates</th>
+          <th>Length</th>
+        </tr>
+        <tr>
+          <td>Dummy Int</td>
+          <td>Dummy Int</td>
+          <td>Dummy Text</td>
+          <td>Dummy Float</td>
+          <td>Dummy Float</td>
+        </tr>
+      </table>
     </div>
 
     <!-- Insert Form -->
-    <div>
-        <button type="button">Insert</button>
-        <form>
-            <label for="trail_id">Trail ID:</label>
-            <input type="text">
-            <label for="park_id">Park ID:</label>
-            <input type="text">
-            <label for="name">Name:</label>
-            <input type="text">
-            <label for="trail_head">Trail Head Coordinates:</label>
-            <input type="text">
-            <label for="length">Length:</label>
-            <input type="text">
-        </form>
+    <div class="formContainer">
+      <form>
+        <label for="trail_id">Trail ID:</label>
+        <input type="text" />
+        <label for="park_id">Park ID:</label>
+        <input type="text" />
+        <label for="name">Name:</label>
+        <input type="text" />
+        <label for="trail_head">Trail Head Coordinates:</label>
+        <input type="text" />
+        <label for="length">Length:</label>
+        <input type="text" />
+        <input type="submit" value="Insert" />
+      </form>
     </div>
 
     <!-- Update Form -->
-    <div>
-        <button type="button">Update</button>
-        <form>
-            <label for="trail_id">Trail ID:</label>
-            <input type="text">
-            <label for="park_id">Park ID:</label>
-            <input type="text">
-            <label for="name">Name:</label>
-            <input type="text">
-            <label for="trail_head">Trail Head Coordinates:</label>
-            <input type="text">
-            <label for="length">Length:</label>
-            <input type="text">
-        </form>
+    <div class="formContainer">
+      <form>
+        <label for="trail_id">Trail ID:</label>
+        <input type="text" />
+        <label for="park_id">Park ID:</label>
+        <input type="text" />
+        <label for="name">Name:</label>
+        <input type="text" />
+        <label for="trail_head">Trail Head Coordinates:</label>
+        <input type="text" />
+        <label for="length">Length:</label>
+        <input type="text" />
+        <input type="submit" value="Update" />
+      </form>
     </div>
 
     <!-- Delete Form -->
-    <div>
-        <button type="button">Delete</button>
-        <form>
-            <label for="trail_id">Trail ID:</label>
-            <input type="text">
-        </form>
+    <div class="formContainer">
+      <form>
+        <label for="trail_id">Trail ID:</label>
+        <input type="text" />
+        <input type="submit" value="Delete" />
+      </form>
     </div>
-</body>
+  </body>
 </html>

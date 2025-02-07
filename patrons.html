@@ -3,23 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="app.css">
     <title>Patrons</title>
 </head>
 <body>
+    <header>Hiker Miles Program</header>
     <nav class="pageLinks">
-        <a href="index.html">Home</a>
-        <a href="patrons.html">Hiker Miles Program Members</a>
-        <a href="parks.html">Park Directory</a>
-        <a href="trails.html">Trail Directory</a>
-        <a href="brain_implants.html">Brain Implant Directory</a>
-        <a href="patron_parks.html">Member Park Visit History</a>
-        <a href="patron_trails.html">Member Trail Visit History</a>
-    </nav>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="patrons.html">Hiker Miles Members</a></li>
+          <li><a href="parks.html">Park Directory</a></li>
+          <li><a href="trails.html">Trail Directory</a></li>
+          <li><a href="brain_implants.html">Brain Implant Directory</a></li>
+          <li><a href="patron_parks.html">Member Park Visit History</a></li>
+          <li><a href="patron_trails.html">Member Trail Visit History</a></li>
+        </ul>
+      </nav>
 
 
     <h1>Patrons</h1>
 
-    <div>
+    <div class="dataTable">
         <table>
             <tr>
                 <th>Patron ID</th>
@@ -37,8 +41,7 @@
     </div>
     
     <!-- Insert Form -->
-    <div>
-        <button type="button">Insert</button>
+    <div class="formContainer">
         <form>
             <label for="patron_id">Patron ID:</label>
             <input type="text">
@@ -48,12 +51,12 @@
             <input type="text">
             <label for="address">Address:</label>
             <input type="text">
+            <input type="submit" value="Insert" />
         </form>
     </div>
 
     <!-- Update Form -->
-    <div>
-        <button type="button">Update</button>
+    <div class="formContainer">
         <form>
             <label for="patron_id">Patron ID:</label>
             <input type="text">
@@ -63,15 +66,16 @@
             <input type="text">
             <label for="address">Address:</label>
             <input type="text">
+            <input type="submit" value="Update" />
         </form>
     </div>
 
     <!-- Delete Form -->
-    <div>
-        <button type="button">Delete</button>
+    <div class="formContainer">
         <form>
             <label for="patron_id">Patron ID:</label>
             <input type="text">
+            <input type="submit" value="Delete" />
         </form>
     </div>
 </body>

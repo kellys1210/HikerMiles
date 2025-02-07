@@ -1,0 +1,157 @@
+/*
+# Citation for CSS:
+# Date: 2/6/25
+# Based on:
+# Source URL: https://www.w3schools.com/css/default.asp */
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: white;
+  color: black;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+}
+
+main {
+}
+
+header {
+  text-align: center;
+  font-size: 30px;
+  font-weight: bold;
+  padding: 30px 20px;
+}
+
+h1 {
+}
+
+h2 {
+}
+
+h3 {
+}
+
+/* HOME PAGE */
+.homePage {
+  text-align: center;
+  justify-content: center;
+}
+
+.homePage a {
+  text-decoration: none;
+}
+
+.homePage a:hover {
+  text-decoration: underline;
+}
+
+/* NAVIGATION */
+nav {
+  margin: 8px 0;
+  display: block;
+}
+
+nav a {
+  text-decoration: none;
+}
+
+nav a:hover {
+  color: green;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  background-color: white;
+  color: black;
+}
+
+ul li:not(:last-child) {
+  border-right: 2px solid black;
+  padding-right: 5px;
+}
+
+li {
+  display: inline;
+}
+
+/* TABLES */
+
+/* table div  */
+.dataTable {
+  width: 75%;
+  padding: 12px 20px;
+  margin: 8px 0;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  border: 1px solid;
+}
+
+th {
+  border: 1px solid;
+}
+
+td {
+  border: 1px solid;
+}
+
+/* FORMS */
+
+/* form div  */
+.formContainer {
+  width: 75%;
+}
+
+form {
+}
+
+input {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  border: 2px solid black;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+input:focus {
+  border: 3px solid blue;
+}
+
+/* BUTTONS */
+
+button {
+  background-color: green;
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  margin: 8px 0;
+  text-align: center;
+  display: inline-block;
+  font-size: 16px;
+}
+
+input[type="submit"] {
+  background-color: green;
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  margin: 8px 0;
+  text-align: center;
+  display: inline-block;
+  font-size: 16px;
+}
+
+input[type="submit"]:hover {
+  outline: none;
+  background-color: #006400;
+}
