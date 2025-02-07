@@ -9,6 +9,7 @@ Insert Into Patrons (name, date_of_birth, address)
     Values (:name, :date_of_birth, :address);
 
 -- Update
+Update Patrons
 Set name = :name, date_of_birth = :date_of_birth, 
     address = :address
     Where id = :patron_id;
