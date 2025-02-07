@@ -26,13 +26,13 @@
     <div class="dataTable">
       <table>
         <tr>
-          <th>Patron ID</th>
-          <th>Park ID</th>
+          <th>Patron Name</th>
+          <th>Park Name</th>
           <th>Visit Count</th>
         </tr>
         <tr>
-          <td>Dummy Int</td>
-          <td>Dummy Int</td>
+          <td>Dummy String</td>
+          <td>Dummy String</td>
           <td>Dummy Int</td>
         </tr>
       </table>
@@ -41,14 +41,16 @@
     <!-- Insert Form -->
     <div class="formContainer">
       <form action="" method="post">
-        <!-- 
-        TODO: I'm putting name because I guess this is how the user 
-        will be able to add? Since they won't know the IDs? -->
-
         <label for="patron_id">Patron Name:*</label>
-        <input type="text" placeholder="Tony Soprano" required />
+        <select id="patron_id" required>
+          <option value="" disabled selected>Select a patron</option>
+        </select>
+
         <label for="park_id">Park Name:*</label>
-        <input type="text" placeholder="Grand Canyon National Park" required />
+        <select id="park_id" required>
+          <option value="" disabled selected>Select a park</option>
+        </select>
+
         <label for="visit_count">Visit Count:*</label>
         <input type="text" placeholder="1, 2, 3..." required />
         * = required field
@@ -57,27 +59,40 @@
     </div>
 
     <!-- Update Form -->
-    <!-- <div class="formContainer">
-        <form>
-            <label for="patron_id">Patron ID:</label>
-            <input type="text">
-            <label for="park_id">Park ID:</label>
-            <input type="text">
-            <label for="visit_count">Visit Count:</label>
-            <input type="text">
-            <input type="submit" value="Update Patron Park Visit" />
-        </form>
-    </div> -->
+    <div class="formContainer">
+      <form>
+        <label for="patron_id_update">Patron Name:*</label>
+        <select id="patron_id_update" required>
+          <option value="" disabled selected>Select a patron</option>
+        </select>
+
+        <label for="park_id_update">Park Name:*</label>
+        <select id="park_id_update" required>
+          <option value="" disabled selected>Select a park</option>
+        </select>
+
+        <label for="visit_count_update">Visit Count:*</label>
+        <input type="text" placeholder="1, 2, 3..." required />
+        * = required field
+        <input type="submit" value="Update Patron Park Visit" />
+      </form>
+    </div>
 
     <!-- Delete Form -->
-    <!-- <div class="formContainer">
-        <form>
-            <label for="patron_id">Patron ID:</label>
-            <input type="text">
-            <label for="park_id">Park ID:</label>
-            <input type="text">
-            <input type="submit" value="Delete Patron Park Visit" />
-        </form>
-    </div> -->
+    <div class="formContainer">
+      <form>
+        <label for="patron_id_delete">Patron Name:*</label>
+        <select id="patron_id_delete" required>
+          <option value="" disabled selected>Select a patron</option>
+        </select>
+
+        <label for="park_id_delete">Park Name:*</label>
+        <select id="park_id_delete" required>
+          <option value="" disabled selected>Select a park</option>
+        </select>
+
+        <input type="submit" value="Delete Patron Park Visit" />
+      </form>
+    </div>
   </body>
 </html>

@@ -25,13 +25,13 @@
     <div class="dataTable">
       <table>
         <tr>
-          <th>Patron ID</th>
-          <th>Trail ID</th>
-          <th>Hike Count</th>
+          <th>Patron Name</th>
+          <th>Trail Name</th>
+          <th>Number of Times Hiked</th>
         </tr>
         <tr>
-          <td>Dummy Int</td>
-          <td>Dummy Int</td>
+          <td>Dummy String</td>
+          <td>Dummy String</td>
           <td>Dummy Int</td>
         </tr>
       </table>
@@ -40,14 +40,16 @@
     <!-- Insert Form -->
     <div class="formContainer">
       <form action="" method="post">
-        <!-- 
-        TODO: I'm putting name because I guess this is how the user 
-        will be able to add? Since they won't know the IDs? -->
-
         <label for="patron_id">Patron Name:*</label>
-        <input type="text" placeholder="Big Bird" required />
+        <select id="patron_id" required>
+          <option value="" disabled selected>Select a patron</option>
+        </select>
+
         <label for="trail_id">Trail Name:*</label>
-        <input type="text" placeholder="Fairy Falls Trail" required />
+        <select id="trail_id" required>
+          <option value="" disabled selected>Select a trail</option>
+        </select>
+
         <label for="hike_count">Hike Count:*</label>
         <input type="text" placeholder="1, 2, 3..." required />
         * = required field
@@ -58,11 +60,17 @@
     <!-- Update Form -->
     <div class="formContainer">
       <form>
-        <label for="patron_id">Patron Name:*</label>
-        <input type="text" placeholder="Big Bird" required />
-        <label for="trail_id">Trail Name:*</label>
-        <input type="text" placeholder="Fairy Falls Trail" required />
-        <label for="hike_count">Hike Count:*</label>
+        <label for="patron_id_update">Patron Name:*</label>
+        <select id="patron_id_update" required>
+          <option value="" disabled selected>Select a patron</option>
+        </select>
+
+        <label for="trail_id_update">Trail Name:*</label>
+        <select id="trail_id_update" required>
+          <option value="" disabled selected>Select a trail</option>
+        </select>
+
+        <label for="hike_count_update">Hike Count:*</label>
         <input type="text" placeholder="1, 2, 3..." required />
         * = required field
         <input type="submit" value="Update Patron Trail Visit" />
@@ -72,13 +80,15 @@
     <!-- Delete Form -->
     <div class="formContainer">
       <form>
-        <label for="patron_id">Patron Name:*</label>
-        <input type="text" placeholder="Big Bird" required />
-        <label for="trail_id">Trail Name:*</label>
-        <input type="text" placeholder="Fairy Falls Trail" required />
-        <label for="hike_count">Hike Count:*</label>
-        <input type="text" placeholder="1, 2, 3..." required />
-        * = required field
+        <label for="patron_id_delete">Patron Name:*</label>
+        <select id="patron_id_delete" required>
+          <option value="" disabled selected>Select a patron</option>
+        </select>
+
+        <label for="trail_id_delete">Trail Name:*</label>
+        <select id="trail_id_delete" required>
+          <option value="" disabled selected>Select a trail</option>
+        </select>
         <input type="submit" value="Delete Patron Trail Visit" />
       </form>
     </div>
