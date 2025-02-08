@@ -66,43 +66,41 @@
 
     <!-- Insert -->
     <div class="formContainer">
+      * = required field
       <form action="" method="post">
         <!-- TODO: patron_id FK will have to allow Null or we'll have an insert anomaly here -->
-        <label for="patron_id"
-          >Patron Name: (if not yet implanted, leave blank)</label
-        >
-        <input type="text" />
+        <label for="patron_id">Patron Name: (if not yet implanted, leave blank)</label>
+        <input type="text" required/>
         <label for="expiration_date">Expiration Date:*</label>
         <input type="date" required />
         <label for="berserk_mode">Berserk Mode?*</label>
         <input type="text" placeholder="True or False" required />
-        * = required field
         <input type="submit" value="Add New Implant" />
       </form>
     </div>
 
     <!-- Update -->
-    <!-- <div class="formContainer">
+    <div class="formContainer">
       <form>
-        <label for="implant_id">Implant ID:</label>
-        <input type="text" />
-        <label for="patron_id">Patron ID:</label>
-        <input type="text" />
-        <label for="expiration_date">Expiration Date:</label>
-        <input type="text" />
-        <label for="berserk_mode">Berserk Mode:</label>
-        <input type="text" />
+        <label for="implant_id">Implant ID:*</label>
+        <input type="text" required/>
+        <label for="patron_id">Patron ID:*</label>
+        <input type="text" required/>
+        <label for="expiration_date">Expiration Date:*</label>
+        <input type="text" required/>
+        <label for="berserk_mode">Berserk Mode:*</label>
+        <input type="text" required/>
         <input type="submit" value="Update" />
       </form>
-    </div> -->
+    </div>
 
     <!-- Delete -->
-    <!-- <div class="formContainer">
+    <div class="formContainer">
       <form>
-        <label for="implant_id">Implant ID:</label>
-        <input type="text" />
+        <label for="implant_id">Implant ID:*</label>
+        <input type="text" required/>
         <input type="submit" value="Delete" />
       </form>
-    </div> -->
+    </div>
   </body>
 </html>

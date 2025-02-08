@@ -56,7 +56,7 @@
           <td>560 Dillon Course Suite 939, Lopezberg, SD 51099</td>
         </tr>
         <tr>
-          <td>4</td>
+          <td>5</td>
           <td>Lauren Barajas</td>
           <td>1977-10-26</td>
           <td>7736 Steele Lodge, South Brianstad, AZ 63162</td>
@@ -66,6 +66,7 @@
 
     <!-- Insert Form -->
     <div class="formContainer">
+      * = required field
       <form action="" method="post">
         <label for="name">Name:*</label>
         <input type="text" required placeholder="Stick Stickly" />
@@ -81,27 +82,27 @@
     </div>
 
     <!-- Update Form -->
-    <!-- <div class="formContainer">
+    <div class="formContainer">
         <form>
-            <label for="patron_id">Patron ID:</label>
-            <input type="text">
-            <label for="name">Name:</label>
-            <input type="text">
-            <label for="dob">Date of Birth:</label>
-            <input type="text">
+            <label for="patron_id">Patron ID:*</label>
+            <input type="text" required>
+            <label for="name">Name:*</label>
+            <input type="text" required>
+            <label for="dob">Date of Birth:*</label>
+            <input type="date" required/>
             <label for="address">Address:</label>
             <input type="text">
             <input type="submit" value="Update" />
         </form>
-    </div> -->
+    </div>
 
     <!-- Delete Form -->
-    <!-- <div class="formContainer">
+    <div class="formContainer">
         <form>
-            <label for="patron_id">Patron ID:</label>
-            <input type="text">
+            <label for="patron_id">Patron ID:*</label>
+            <input type="text" required>
             <input type="submit" value="Delete" />
         </form>
-    </div> -->
+    </div>
   </body>
 </html>

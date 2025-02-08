@@ -65,6 +65,7 @@
     </div>
 
     <!-- Insert Form -->
+    * = required field
     <div class="formContainer">
       <form action="" method="post">
         <label for="patron_id">Patron Name:*</label>
@@ -75,33 +76,32 @@
         <input type="text" placeholder="10" required />
         <label for="reward">Reward (%):</label>
         <input type="text" placeholder="15" required />
-        * = required field
         <input type="submit" value="Add New Rewards" />
       </form>
     </div>
 
     <!-- Update Form -->
-    <!-- <div class="formContainer">
+    <div class="formContainer">
       <form>
-        <label for="reward_id">Reward ID:</label>
-        <input type="text" />
-        <label for="patron_id">Patron ID:</label>
-        <input type="text" />
+        <label for="reward_id">Reward ID*</label>
+        <input type="text" required/>
+        <label for="patron_id">Patron ID:*</label>
+        <input type="text" required/>
         <label for="distance">Distance:</label>
         <input type="text" />
         <label for="reward">Reward:</label>
         <input type="text" />
         <input type="submit" value="Update" />
       </form>
-    </div> -->
+    </div>
 
     <!-- Delete Form -->
-    <!-- <div class="formContainer">
+    <div class="formContainer">
       <form>
-        <label for="reward_id">Reward ID:</label>
-        <input type="text" />
+        <label for="reward_id">Reward ID:*</label>
+        <input type="text" required/>
         <input type="submit" value="Delete" />
       </form>
-    </div> -->
+    </div>
   </body>
 </html>

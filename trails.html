@@ -72,6 +72,7 @@
 
     <!-- Insert Form -->
     <div class="formContainer">
+      * = required field
       <form action="" method="post">
         <label for="park_id">Park Name:*</label>
         <input type="text" required placeholder="Grand Canyon National Park" />
@@ -81,35 +82,34 @@
         <input type="text" required placeholder="36.107" />
         <label for="length">Length (miles):*</label>
         <input type="text" required placeholder="7.8" />
-        * = required field
         <input type="submit" value="Add New Trail" />
       </form>
     </div>
 
     <!-- Update Form -->
-    <!-- <div class="formContainer">
+    <div class="formContainer">
       <form>
-        <label for="trail_id">Trail ID:</label>
-        <input type="text" />
-        <label for="park_id">Park ID:</label>
-        <input type="text" />
-        <label for="name">Name:</label>
-        <input type="text" />
-        <label for="trail_head">Trail Head Coordinates:</label>
-        <input type="text" />
-        <label for="length">Length:</label>
-        <input type="text" />
+        <label for="trail_id">Trail ID:*</label>
+        <input type="text" required/>
+        <label for="park_id">Park ID:*</label>
+        <input type="text" required/>
+        <label for="name">Name:*</label>
+        <input type="text" required/>
+        <label for="trail_head">Trail Head Coordinates:*</label>
+        <input type="text" required/>
+        <label for="length">Length:*</label>
+        <input type="text" required/>
         <input type="submit" value="Update" />
       </form>
-    </div> -->
+    </div>
 
     <!-- Delete Form -->
-    <!-- <div class="formContainer">
+    <div class="formContainer">
       <form>
-        <label for="trail_id">Trail ID:</label>
-        <input type="text" />
+        <label for="trail_id">Trail ID:*</label>
+        <input type="text" required/>
         <input type="submit" value="Delete" />
       </form>
-    </div> -->
+    </div>
   </body>
 </html>
