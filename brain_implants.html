@@ -32,10 +32,34 @@
           <th>Beserk Mode?</th>
         </tr>
         <tr>
-          <td>Dummy Int</td>
-          <td>Dummy Int</td>
-          <td>Dummy Date</td>
-          <td>Dummy Bool</td>
+          <td>1</td>
+          <td>1</td>
+          <td>2031-05-20</td>
+          <td>TRUE</td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>2</td>
+          <td>2034-07-15</td>
+          <td>FALSE</td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td>3</td>
+          <td>2030-11-05</td>
+          <td>TRUE</td>
+        </tr>
+        <tr>
+          <td>4</td>
+          <td>4</td>
+          <td>2029-01-25</td>
+          <td>FALSE</td>
+        </tr>
+        <tr>
+          <td>5</td>
+          <td>5</td>
+          <td>2028-09-10</td>
+          <td>TRUE</td>
         </tr>
       </table>
     </div>
@@ -44,7 +68,9 @@
     <div class="formContainer">
       <form action="" method="post">
         <!-- TODO: patron_id FK will have to allow Null or we'll have an insert anomaly here -->
-        <label for="patron_id">Patron ID: (if not yet implanted, leave blank)</label>
+        <label for="patron_id"
+          >Patron Name: (if not yet implanted, leave blank)</label
+        >
         <input type="text" />
         <label for="expiration_date">Expiration Date:*</label>
         <input type="date" required />
