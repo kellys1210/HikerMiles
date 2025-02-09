@@ -28,37 +28,31 @@
         <tr>
           <th>Reward ID</th>
           <th>Patron ID</th>
-          <th>Distance</th>
           <th>Reward</th>
         </tr>
         <tr>
           <td>1</td>
           <td>1</td>
-          <td>150</td>
           <td>30.5</td>
         </tr>
         <tr>
           <td>2</td>
           <td>2</td>
-          <td>220</td>
           <td>50.0</td>
         </tr>
         <tr>
           <td>3</td>
           <td>3</td>
-          <td>75</td>
           <td>10.0</td>
         </tr>
         <tr>
           <td>4</td>
           <td>4</td>
-          <td>310</td>
           <td>70.5</td>
         </tr>
         <tr>
           <td>5</td>
           <td>5</td>
-          <td>310</td>
           <td>40.0</td>
         </tr>
       </table>
@@ -72,8 +66,6 @@
         <select id="patron_id" required>
           <option value="" disabled selected>Select a patron</option>
         </select>
-        <label for="distance">Distance (miles):</label>
-        <input type="text" placeholder="10" required />
         <label for="reward">Reward (%):</label>
         <input type="text" placeholder="15" required />
         <input type="submit" value="Add New Rewards" />
@@ -84,10 +76,8 @@
     <div class="formContainer">
       <form>
         <label for="reward_id">Reward ID*</label>
-        <input type="text" required/>
+        <input type="text" required />
         <label for="patron_id">Patron ID:*</label>
-        <input type="text" required/>
-        <label for="distance">Distance:</label>
         <input type="text" />
         <label for="reward">Reward:</label>
         <input type="text" />
@@ -99,7 +89,7 @@
     <div class="formContainer">
       <form>
         <label for="reward_id">Reward ID:*</label>
-        <input type="text" required/>
+        <input type="text" required />
         <input type="submit" value="Delete" />
       </form>
     </div>

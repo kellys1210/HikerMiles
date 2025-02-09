@@ -26,21 +26,19 @@ WHERE patron_id = :patron_id;
 --------------- Rewards Directory ---------------
 
 -- Read
-SELECT reward_id, patron_id, distance, reward
+SELECT reward_id, patron_id, reward
 FROM RewardPoints;
 
 -- Create
 INSERT INTO RewardPoints (name, distance, reward)
 VALUES (
     (SELECT name FROM Patrons WHERE name = :name), 
-    :distance, 
     :reward
 );
 
 -- Update
 UPDATE RewardPoints
 SET name = (SELECT name FROM Patrons WHERE name = :name), 
-    distance = :distance, 
     reward = :reward
 WHERE reward_id = :reward_id;
 
