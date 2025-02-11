@@ -29,42 +29,48 @@
           <th>Trail ID</th>
           <th>Park ID</th>
           <th>Name</th>
-          <th>Trail Head Coordinates</th>
+          <th>Latitude</th>
+          <th>Longitude</th>
           <th>Length</th>
         </tr>
         <tr>
           <td>1</td>
           <td>1</td>
           <td>Fairy Falls Trail</td>
-          <td>44.4717</td>
+          <td>44.51434</td>
+          <td>-110.83184</td>
           <td>2.3</td>
         </tr>
         <tr>
           <td>2</td>
           <td>2</td>
           <td>Bright Angel Trail</td>
-          <td>36.107</td>
+          <td>36.1935</td>
+          <td>-112.0486</td>
           <td>7.8</td>
         </tr>
         <tr>
           <td>3</td>
           <td>3</td>
           <td>Mist Trail</td>
-          <td>37.7329</td>
+          <td>37.72694</td>
+          <td>-119.54444</td>
           <td>3.0</td>
         </tr>
         <tr>
           <td>4</td>
           <td>4</td>
           <td>Angels Landing</td>
-          <td>37.2694</td>
+          <td>37.2690</td>
+          <td>-112.9469</td>
           <td>2.5</td>
         </tr>
         <tr>
           <td>5</td>
           <td>5</td>
           <td>Alum Cave Trail</td>
-          <td>35.6545</td>
+          <td>35.629553</td>
+          <td>-83.451443</td>
           <td>4.6</td>
         </tr>
       </table>
@@ -78,8 +84,10 @@
         <input type="text" required placeholder="Grand Canyon National Park" />
         <label for="name">Trail Name:*</label>
         <input type="text" required placeholder="Bright Angel Trail" />
-        <label for="trail_head">Trail Head Coordinates:*</label>
-        <input type="text" required placeholder="36.107" />
+        <label for="latitude">Latitude:*</label>
+        <input type="number" required placeholder="36.107" />
+        <label for="longitude">Longitude:*</label>
+        <input type="number" required placeholder="-83.451443" />
         <label for="length">Length (miles):*</label>
         <input type="text" required placeholder="7.8" />
         <input type="submit" value="Add New Trail" />
@@ -93,10 +101,12 @@
         <input type="text" required/>
         <label for="park_id">Park ID:*</label>
         <input type="text" required/>
-        <label for="name">Name:*</label>
+        <label for="name">Trail Name:*</label>
         <input type="text" required/>
-        <label for="trail_head">Trail Head Coordinates:*</label>
-        <input type="text" required/>
+        <label for="latitude">Latitude:*</label>
+        <input type="number" required/>
+        <label for="longitude">Longitude:*</label>
+        <input type="number" required/>
         <label for="length">Length:*</label>
         <input type="text" required/>
         <input type="submit" value="Update" />

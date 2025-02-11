@@ -71,21 +71,23 @@ WHERE park_id = :park_id;
 --------------- Trail Directory ---------------
 
 -- Read
-SELECT trail_id, park_id, name, trail_head_coord, length
+SELECT trail_id, park_id, name, latitude, longitude, length
 FROM Trails;
 
 -- Create
-INSERT INTO Trails (name, trail_head_coord, length)
+INSERT INTO Trails (name, latitude, longitude, length)
 VALUES (
     (SELECT name FROM Parks WHERE name = :name), 
-    :trail_head_coord, 
+    :latitude,
+    :longitude, 
     :length
 );
 
 -- Update
 UPDATE Trails
 SET name = (SELECT name FROM Parks WHERE name = :name), 
-    trail_head_coord = :trail_head_coord, 
+    latitude = :latitude, 
+    longitude = :longitude,
     length = :length
 WHERE trail_id = :trail_id;
 

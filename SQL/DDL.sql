@@ -1,6 +1,6 @@
 -- Austin Holcomb
 -- Kelly Shields
--- Eric Peterson
+-- Eric Peters
 
 SET FOREIGN_KEY_CHECKS=0;
 SET AUTOCOMMIT = 0;
@@ -27,7 +27,8 @@ CREATE OR REPLACE TABLE Trails (
     trail_id INT AUTO_INCREMENT PRIMARY KEY,
     park_id INT NOT NULL,
     name VARCHAR(255) NOT NULL,
-    trail_head_coord FLOAT NOT NULL,
+    latitude DECIMAL(8, 6) NOT NULL,
+    longitude DECIMAL(9, 6) NOT NULL,
     length FLOAT NOT NULL,
     FOREIGN KEY (park_id) REFERENCES Parks(park_id)
     ON DELETE CASCADE
@@ -40,7 +41,7 @@ CREATE OR REPLACE TABLE BrainImplants (
     expiration_date DATE NOT NULL,
     berserk_mode BOOLEAN NOT NULL,
     FOREIGN KEY (patron_id) REFERENCES Patrons(patron_id)
-    ON DELETE NULL
+    ON DELETE SET NULL
 );
 
 -- --------- RewardsPoints -----------
@@ -92,16 +93,16 @@ INSERT INTO Parks (name, state, county, has_ranger_station) VALUES
 ('Great Smoky Mountains National Park', 'Tennessee', 'Sevier', FALSE);
 
 -- --------- TRAILS -----------
-INSERT INTO Trails (name, park_id, trail_head_coord, length) VALUES 
-('Fairy Falls Trail', (SELECT park_id FROM Parks WHERE name = 'Yellowstone National Park'), 44.4717, 2.3);
-INSERT INTO Trails (name, park_id, trail_head_coord, length) VALUES 
-('Bright Angel Trail', (SELECT park_id FROM Parks WHERE name = 'Grand Canyon National Park'), 36.107, 7.8);
-INSERT INTO Trails (name, park_id, trail_head_coord, length) VALUES 
-('Mist Trail', (SELECT park_id FROM Parks WHERE name = 'Yosemite National Park'), 37.7329, 3.0);
-INSERT INTO Trails (name, park_id, trail_head_coord, length) VALUES 
-('Angels Landing', (SELECT park_id FROM Parks WHERE name = 'Zion National Park'), 37.2694, 2.5);
-INSERT INTO Trails (name, park_id, trail_head_coord, length) VALUES 
-('Alum Cave Trail', (SELECT park_id FROM Parks WHERE name = 'Great Smoky Mountains National Park'), 35.6545, 4.6);
+INSERT INTO Trails (name, park_id, latitude, longitude, length) VALUES 
+('Fairy Falls Trail', (SELECT park_id FROM Parks WHERE name = 'Yellowstone National Park'), 44.51434, -110.83184, 2.3);
+INSERT INTO Trails (name, park_id, latitude, longitude, length) VALUES 
+('Bright Angel Trail', (SELECT park_id FROM Parks WHERE name = 'Grand Canyon National Park'), 36.1935, -112.0486, 7.8);
+INSERT INTO Trails (name, park_id, latitude, longitude, length) VALUES 
+('Mist Trail', (SELECT park_id FROM Parks WHERE name = 'Yosemite National Park'), 37.72694, -119.54444, 3.0);
+INSERT INTO Trails (name, park_id, latitude, longitude, length) VALUES 
+('Angels Landing', (SELECT park_id FROM Parks WHERE name = 'Zion National Park'), 37.2690, -112.9469, 2.5);
+INSERT INTO Trails (name, park_id, latitude, longitude, length) VALUES 
+('Alum Cave Trail', (SELECT park_id FROM Parks WHERE name = 'Great Smoky Mountains National Park'), 35.629553, -83.451443, 4.6);
 
 -- --------- BrainImplants -----------
 INSERT INTO BrainImplants (expiration_date, berserk_mode, patron_id) VALUES 
@@ -118,13 +119,13 @@ INSERT INTO BrainImplants (expiration_date, berserk_mode, patron_id) VALUES
 -- --------- RewardsPoints -----------
 INSERT INTO RewardsPoints (reward, patron_id) VALUES 
 (30.5, (SELECT patron_id FROM Patrons WHERE name = 'James Jimenez'));
-INSERT INTO RewardsPoints (distance, reward, patron_id) VALUES 
+INSERT INTO RewardsPoints (reward, patron_id) VALUES 
 (50.0, (SELECT patron_id FROM Patrons WHERE name = 'April Singleton'));
-INSERT INTO RewardsPoints (distance, reward, patron_id) VALUES 
+INSERT INTO RewardsPoints (reward, patron_id) VALUES 
 (10.0, (SELECT patron_id FROM Patrons WHERE name = 'Jay Spears'));
-INSERT INTO RewardsPoints (distance, reward, patron_id) VALUES 
+INSERT INTO RewardsPoints (reward, patron_id) VALUES 
 (70.5, (SELECT patron_id FROM Patrons WHERE name = 'Bradley Barrett'));
-INSERT INTO RewardsPoints (distance, reward, patron_id) VALUES 
+INSERT INTO RewardsPoints (reward, patron_id) VALUES 
 (40.0, (SELECT patron_id FROM Patrons WHERE name = 'Lauren Barajas'));
 
 -- --------- PatronTrails  -----------
