@@ -7,7 +7,10 @@
     <title>Rewards Points</title>
   </head>
   <body>
-    <header>Hiker Miles Program</header>
+    <header>
+      <img class="headerImg" src="assets/pexels-robbymccullough-1867601.jpg" />
+      Hiker Miles Program
+    </header>
     <nav class="pageLinks">
       <ul>
         <li><a href="index.html">Home</a></li>
@@ -59,8 +62,9 @@
     </div>
 
     <!-- Insert Form -->
-    * = required field
     <div class="formContainer">
+      * = required field
+      <h2>Add a New Rewards Account</h2>
       <form action="" method="post">
         <label for="patron_id">Patron Name:*</label>
         <select id="patron_id" required>
@@ -74,22 +78,24 @@
 
     <!-- Update Form -->
     <div class="formContainer">
+      <h2>Update an Existing Rewards Account</h2>
       <form>
         <label for="reward_id">Reward ID*</label>
-        <input type="text" required />
+        <input type="text" required placeholder="1, 2, 3..." />
         <label for="patron_id">Patron ID:*</label>
-        <input type="text" />
+        <input type="text" required placeholder="1, 2, 3..." />
         <label for="reward">Reward:</label>
-        <input type="text" />
+        <input type="text" required placeholder="20" />
         <input type="submit" value="Update" />
       </form>
     </div>
 
     <!-- Delete Form -->
     <div class="formContainer">
+      <h2>Delete an Existing Rewards Account</h2>
       <form>
         <label for="reward_id">Reward ID:*</label>
-        <input type="text" required />
+        <input type="text" required placeholder="1, 2, 3..." />
         <input type="submit" value="Delete" />
       </form>
     </div>

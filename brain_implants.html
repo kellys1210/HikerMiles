@@ -7,7 +7,10 @@
     <title>Brain Implants</title>
   </head>
   <body>
-    <header>Hiker Miles Program</header>
+    <header>
+      <img class="headerImg" src="assets/pexels-robbymccullough-1867601.jpg" />
+      Hiker Miles Program
+    </header>
     <nav class="pageLinks">
       <ul>
         <li><a href="index.html">Home</a></li>
@@ -67,10 +70,13 @@
     <!-- Insert -->
     <div class="formContainer">
       * = required field
+      <h2>Add a New Implant Record</h2>
       <form action="" method="post">
         <!-- TODO: patron_id FK will have to allow Null or we'll have an insert anomaly here -->
-        <label for="patron_id">Patron Name: (if not yet implanted, leave blank)</label>
-        <input type="text" required/>
+        <label for="patron_id"
+          >Patron Name: (if not yet implanted, leave blank)</label
+        >
+        <input type="text" required placeholder="Patrick Mahomes" />
         <label for="expiration_date">Expiration Date:*</label>
         <input type="date" required />
         <label for="berserk_mode">Berserk Mode?*</label>
@@ -81,24 +87,26 @@
 
     <!-- Update -->
     <div class="formContainer">
+      <h2>Update an Existing Implant Record</h2>
       <form>
         <label for="implant_id">Implant ID:*</label>
-        <input type="text" required/>
+        <input type="text" required placeholder="1, 2, 3..." />
         <label for="patron_id">Patron ID:</label>
-        <input type="text"/>
+        <input type="text" required placeholder="1, 2, 3..." />
         <label for="expiration_date">Expiration Date:*</label>
-        <input type="text" required/>
+        <input type="date" required />
         <label for="berserk_mode">Berserk Mode:*</label>
-        <input type="text" required/>
+        <input type="text" required placeholder="True or False" />
         <input type="submit" value="Update" />
       </form>
     </div>
 
     <!-- Delete -->
     <div class="formContainer">
+      <h2>Delete an Existing Implant Record</h2>
       <form>
         <label for="implant_id">Implant ID:*</label>
-        <input type="text" required/>
+        <input type="text" required placeholder="1, 2, 3..." />
         <input type="submit" value="Delete" />
       </form>
     </div>

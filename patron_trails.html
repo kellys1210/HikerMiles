@@ -7,7 +7,10 @@
     <title>Patron Trails</title>
   </head>
   <body>
-    <header>Hiker Miles Program</header>
+    <header>
+      <img class="headerImg" src="assets/pexels-robbymccullough-1867601.jpg" />
+      Hiker Miles Program
+    </header>
     <nav class="pageLinks">
       <ul>
         <li><a href="index.html">Home</a></li>
@@ -84,6 +87,8 @@
 
     <!-- Insert Form -->
     <div class="formContainer">
+      * = required field
+      <h2>Add a New Patron Trail Visit</h2>
       <form action="" method="post">
         <label for="patron_id">Patron Name:*</label>
         <select id="patron_id" required>
@@ -97,13 +102,13 @@
 
         <label for="hike_count">Hike Count:*</label>
         <input type="text" placeholder="1, 2, 3..." required />
-        * = required field
-        <input type="submit" value="Add New Patron Trail Visit" />
+        <input type="submit" value="Add New Visit" />
       </form>
     </div>
 
     <!-- Update Form -->
     <div class="formContainer">
+      <h2>Update an Existing Patron Trail Visit</h2>
       <form>
         <label for="patron_id_update">Patron Name:*</label>
         <select id="patron_id_update" required>
@@ -118,12 +123,13 @@
         <label for="hike_count_update">Hike Count:*</label>
         <input type="text" placeholder="1, 2, 3..." required />
         * = required field
-        <input type="submit" value="Update Patron Trail Visit" />
+        <input type="submit" value="Update" />
       </form>
     </div>
 
     <!-- Delete Form -->
     <div class="formContainer">
+      <h2>Delete an Existing Patron Trail Visit</h2>
       <form>
         <label for="patron_id_delete">Patron Name:*</label>
         <select id="patron_id_delete" required>
@@ -134,7 +140,7 @@
         <select id="trail_id_delete" required>
           <option value="" disabled selected>Select a trail</option>
         </select>
-        <input type="submit" value="Delete Patron Trail Visit" />
+        <input type="submit" value="Delete" />
       </form>
     </div>
   </body>

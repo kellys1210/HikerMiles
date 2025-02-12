@@ -7,7 +7,10 @@
     <title>Patrons</title>
   </head>
   <body>
-    <header>Hiker Miles Program</header>
+    <header>
+      <img class="headerImg" src="assets/pexels-robbymccullough-1867601.jpg" />
+      Hiker Miles Program
+    </header>
     <nav class="pageLinks">
       <ul>
         <li><a href="index.html">Home</a></li>
@@ -67,6 +70,7 @@
     <!-- Insert Form -->
     <div class="formContainer">
       * = required field
+      <h2>Add a New Patron</h2>
       <form action="" method="post">
         <label for="name">Name:*</label>
         <input type="text" required placeholder="Stick Stickly" />
@@ -83,26 +87,31 @@
 
     <!-- Update Form -->
     <div class="formContainer">
-        <form>
-            <label for="patron_id">Patron ID:*</label>
-            <input type="text" required>
-            <label for="name">Name:*</label>
-            <input type="text" required>
-            <label for="dob">Date of Birth:*</label>
-            <input type="date" required/>
-            <label for="address">Address:</label>
-            <input type="text">
-            <input type="submit" value="Update" />
-        </form>
+      <h2>Update an Existing Patron</h2>
+      <form>
+        <label for="patron_id">Patron ID:*</label>
+        <input type="text" required placeholder="1, 2, 3..." />
+        <label for="name">Name:*</label>
+        <input type="text" required placeholder="Stick Stickly" />
+        <label for="dob">Date of Birth:*</label>
+        <input type="date" required />
+        <label for="address">Address:</label>
+        <input
+          type="text"
+          required
+          placeholder="P.O. Box 963, New York City, New York, 10108" />
+        <input type="submit" value="Update" />
+      </form>
     </div>
 
     <!-- Delete Form -->
     <div class="formContainer">
-        <form>
-            <label for="patron_id">Patron ID:*</label>
-            <input type="text" required>
-            <input type="submit" value="Delete" />
-        </form>
+      <h2>Delete an Existing Patron</h2>
+      <form>
+        <label for="patron_id">Patron ID:*</label>
+        <input type="text" required placeholder="1, 2, 3..." />
+        <input type="submit" value="Delete" />
+      </form>
     </div>
   </body>
 </html>
