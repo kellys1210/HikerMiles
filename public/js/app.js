@@ -31,8 +31,6 @@ app.get("/", function (req, res) {
 }); // received back from the query
 
 // add patron:
-// app.js - ROUTES section
-
 app.post("/add-patron", function (req, res) {
   // Capture the incoming data and parse it back to a JS object
   let data = req.body;
@@ -68,6 +66,40 @@ app.post("/add-patron", function (req, res) {
       });
     }
   });
+});
+
+// delete patron:
+app.delete("/delete-patron/", function (req, res, next) {
+  let data = req.body;
+  console.log(`data after: ${JSON.stringify(data)}`);
+  let patronID = parseInt(data.id);
+  console.log(`patronID: ${patronID}`);
+  // let deletePatronTrails_Patron = `DELETE FROM PatronTrails WHERE patron_id = ${patronID}`;
+  let deletePatrons_Patron = `DELETE FROM Patrons WHERE patron_id = ${patronID}`;
+
+  // Run the 1st query
+  // db.pool.query(
+  //   deletePatronTrails_Patron,
+  //   [patronID],
+  //   function (error, rows, fields) {
+  //     if (error) {
+  //       // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
+  //       console.log(error);
+  //       res.sendStatus(400);
+  //     } else {
+  // Run the second query
+  db.pool.query(
+    deletePatrons_Patron,
+    [patronID],
+    function (error, rows, fields) {
+      if (error) {
+        console.log(error);
+        res.sendStatus(400);
+      } else {
+        res.sendStatus(204);
+      }
+    }
+  );
 });
 
 // LISTENER:
