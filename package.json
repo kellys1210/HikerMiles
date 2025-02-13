@@ -1,0 +1,26 @@
+{
+  "name": "hikermiles",
+  "version": "1.0.0",
+  "description": "Hiker Miles",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kellys1210/HikerMiles.git"
+  },
+  "author": "Austin Holcomb, Eric Peters, Kelly Shields",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kellys1210/HikerMiles/issues"
+  },
+  "homepage": "https://github.com/kellys1210/HikerMiles#readme",
+  "dependencies": {
+    "express": "^4.21.2",
+    "express-handlebars": "^8.0.1",
+    "forever": "^4.0.3",
+    "mysql": "^2.18.1",
+    "nodemon": "^3.1.9"
+  }
+}

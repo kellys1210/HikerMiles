@@ -1,0 +1,24 @@
+<!-- index.hbs -->
+<h1>The server is running!</h1>
+<p>If you see this text, the server is <strong>definitely</strong> working!</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>patron_id</th>
+      <th>name</th>
+      <th>date_of_birth</th>
+      <th>address</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each data}}
+      <tr>
+        <td>{{this.patron_id}}</td>
+        <td>{{this.name}}</td>
+        <td>{{this.date_of_birth}}</td>
+        <td>{{this.address}}</td>
+      </tr>
+    {{/each}}
+  </tbody>
+</table>
