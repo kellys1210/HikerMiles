@@ -65,6 +65,11 @@ addRowToTable = (data) => {
   let parsedData = JSON.parse(data);
   let newRow = parsedData[parsedData.length - 1];
 
+  // Formats date to YYYY/MM/DD
+  const formattedDate = new Date(newRow.date_of_birth).toLocaleDateString(
+    "en-CA"
+  );
+
   // Create a row and 4 cells
   let row = document.createElement("TR");
   let idCell = document.createElement("TD");
@@ -76,7 +81,7 @@ addRowToTable = (data) => {
   // Fill the cells with correct data
   idCell.innerText = newRow.patron_id;
   nameCell.innerText = newRow.name;
-  dateOfBirthCell.innerText = newRow.date_of_birth;
+  dateOfBirthCell.innerText = formattedDate;
   addressCell.innerText = newRow.address;
 
   deleteCell = document.createElement("button");
