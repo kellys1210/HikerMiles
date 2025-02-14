@@ -1,0 +1,59 @@
+{{! Code based on: https://github.com/osu-cs340-ecampus/nodejs-starter-app }}
+
+{{! for delete function: }}
+<script
+  src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"
+></script>
+
+<h1>Patrons</h1>
+
+{{! Create a table }}
+<table id="patrons-table">
+
+  {{! Header section }}
+  <thead>
+    <tr>
+      <th>Patron ID</th>
+      <th>Name</th>
+      <th>Date of Birth</th>
+      <th>Address</th>
+      <th>Delete?</th>
+    </tr>
+  </thead>
+
+  {{! Body section }}
+  <tbody>
+
+    {{! For each row, print the patron_id, name, date_of_birth, and address in order }}
+    {{#each data}}
+      <tr>
+        <td>{{this.patron_id}}</td>
+        <td>{{this.name}}</td>
+        <td>{{this.date_of_birth}}</td>
+        <td>{{this.address}}</td>
+        <td><button
+            onclick="deletePatron({{this.patron_id}})"
+          >Delete</button></td>
+      </tr>
+    {{/each}}
+  </tbody>
+</table>
+<script src="/js/delete_patron.js"></script>
+
+{{! Form to add a record to the table  }}
+<p>To add a new person, please enter their information below and click 'Submit'!</p>
+<form id="add-patron-form">
+  <label for="input-name">Name: </label>
+  <input type="text" name="input-name" id="input-name" />
+
+  <label for="input-dateofbirth">Date of Birth: </label>
+  <input type="date" name="input-dateofbirth" id="input-dateofbirth" />
+
+  <label for="input-address">Address: </label>
+  <input type="text" name="input-address" id="input-address" />
+
+  <input type="submit" />
+</form>
+
+{{! Embed our javascript to handle the DOM manipulation and AJAX request }}
+<script src="/js/add_patron.js"></script>
