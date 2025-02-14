@@ -26,49 +26,129 @@ app.get("/", (req, res) => {
 });
 
 app.get("/brain_implants", (req, res) => {
-  res.render("brain_implants");
-});
+
+  // Define our query
+  let select_table_query = "SELECT implant_id, (SELECT name FROM Patrons WHERE Patrons.patron_id = BrainImplants.patron_id) AS patron_name, expiration_date, berserk_mode FROM BrainImplants;"; 
+
+  // Execute the query
+  db.pool.query(select_table_query, function (error, rows, fields) {
+
+    // Render the brain_implants.hbs file, and also send the renderer
+    // an object where 'data' is equal to the 'rows' we
+    // received back from the query
+
+    res.render("brain_implants", { data: rows }); 
+  }); 
+}); 
 
 app.get("/parks", (req, res) => {
-  res.render("parks");
-});
+
+  // Define our query
+  let select_table_query = "SELECT * FROM Parks;"; 
+
+  // Execute the query
+  db.pool.query(select_table_query, function (error, rows, fields) {
+
+    // Render the parks.hbs file, and also send the renderer
+    // an object where 'data' is equal to the 'rows' we
+    // received back from the query
+
+    res.render("parks", { data: rows }); 
+  }); 
+}); 
 
 app.get("/patron_parks", (req, res) => {
-  res.render("patron_parks");
-});
+
+  // Define our query
+  let select_table_query = "SELECT (SELECT name FROM  Patrons WHERE Patrons.patron_id = PatronParks.patron_id) AS patron_name, (SELECT name FROM Parks WHERE Parks.park_id = PatronParks.park_id) AS park_name,  visit_count  FROM PatronParks;"; 
+
+  // Execute the query
+  db.pool.query(select_table_query, function (error, rows, fields) {
+
+    // Render the patron_parks.hbs file, and also send the renderer
+    // an object where 'data' is equal to the 'rows' we
+    // received back from the query
+
+    res.render("patron_parks", { data: rows }); 
+  }); 
+}); 
 
 app.get("/patron_trails", (req, res) => {
-  res.render("patron_trails");
-});
+
+  // Define our query
+  let select_table_query = "SELECT (SELECT name FROM  Patrons WHERE Patrons.patron_id = PatronTrails.patron_id) AS patron_name, (SELECT name FROM Trails WHERE Trails.trail_id = PatronTrails.trail_id) AS trail_name,  hike_count  FROM PatronTrails;"; 
+
+  // Execute the query
+  db.pool.query(select_table_query, function (error, rows, fields) {
+
+    // Render the patron_trails.hbs file, and also send the renderer
+    // an object where 'data' is equal to the 'rows' we
+    // received back from the query
+
+    res.render("patron_trails", { data: rows }); 
+  }); 
+}); 
+
+
 
 app.get("/rewards_points", (req, res) => {
-  res.render("rewards_points");
-});
+
+  // Define our query
+  let select_table_query = "SELECT reward_id, (SELECT name FROM Patrons WHERE Patrons.patron_id = RewardsPoints.patron_id) AS patron_name, reward FROM RewardsPoints;"; 
+
+  // Execute the query
+  db.pool.query(select_table_query, function (error, rows, fields) {
+
+    // Render the rewards_points.hbs file, and also send the renderer
+    // an object where 'data' is equal to the 'rows' we
+    // received back from the query
+
+    res.render("rewards_points", { data: rows }); 
+  }); 
+}); 
 
 app.get("/trails", (req, res) => {
-  res.render("trails");
-});
 
+  // Define our query
+  let select_table_query = "SELECT * FROM Trails;"; 
 
-// QUERIES:
+  // Execute the query
+  db.pool.query(select_table_query, function (error, rows, fields) {
 
-// PATRONS:
+    // Render the trails.hbs file, and also send the renderer
+    // an object where 'data' is equal to the 'rows' we
+    // received back from the query
 
-// SELECT
-app.get("/patrons", function (req, res) {
-  let query1 = "SELECT * FROM Patrons;"; // Define our query
+    res.render("trails", { data: rows }); 
+  }); 
+}); 
 
-  db.pool.query(query1, function (error, rows, fields) {
-    // Execute the query
+app.get("/patrons", (req, res) => {
+
+  // Define our query
+  let select_table_query = "SELECT * FROM Patrons;"; 
+
+  // Execute the query
+  db.pool.query(select_table_query, function (error, rows, fields) {
 
     // Reformats all dates to YYYY-MM-DD
     rows.forEach(row => {
       row.date_of_birth = new Date(row.date_of_birth).toLocaleDateString('en-CA'); 
     });
 
-    res.render("patrons", { data: rows }); // Render the patrons.hbs file, and also send the renderer
-  }); // an object where 'data' is equal to the 'rows' we
-}); // received back from the query
+    // Render the patrons.hbs file, and also send the renderer
+    // an object where 'data' is equal to the 'rows' we
+    // received back from the query
+
+    res.render("patrons", { data: rows }); 
+  }); 
+}); 
+
+
+// QUERIES:
+
+// PATRONS:
+
 
 // INSERT
 app.post("/add-patron", function (req, res) {
