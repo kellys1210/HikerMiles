@@ -61,6 +61,11 @@ app.get("/patrons", function (req, res) {
   db.pool.query(query1, function (error, rows, fields) {
     // Execute the query
 
+    // Reformats all dates to YYYY-MM-DD
+    rows.forEach(row => {
+      row.date_of_birth = new Date(row.date_of_birth).toLocaleDateString('en-CA'); 
+    });
+
     res.render("patrons", { data: rows }); // Render the patrons.hbs file, and also send the renderer
   }); // an object where 'data' is equal to the 'rows' we
 }); // received back from the query
