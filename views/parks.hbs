@@ -1,1 +1,56 @@
+{{! Code based on: https://github.com/osu-cs340-ecampus/nodejs-starter-app }}
+
+{{! Parks - Handlebars Template }}
+
+{{! for delete function: }}
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
 <h1>Parks</h1>
+
+{{! Create a table }}
+<table id="parks-table">
+  <thead>
+    <tr>
+      <th>Park ID</th>
+      <th>Name</th>
+      <th>State</th>
+      <th>County</th>
+      <th>Has Ranger Station</th>
+      <th>Delete?</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each data}}
+      <tr>
+        <td>{{this.park_id}}</td>
+        <td>{{this.name}}</td>
+        <td>{{this.state}}</td>
+        <td>{{this.county}}</td>
+        <td>{{this.has_ranger_station}}</td>
+        <td><button onclick="deletePark({{this.park_id}})">Delete</button></td>
+      </tr>
+    {{/each}}
+  </tbody>
+</table>
+
+<script src="/js/delete_park.js"></script>
+
+{{! Form to add a record to the table }}
+<p>To add a new park, please enter the details below and click 'Submit'!</p>
+<form id="add-park-form">
+  <label for="input-name">Park Name:* </label>
+  <input type="text" name="input-name" id="input-name" />
+
+  <label for="input-state">State:* </label>
+  <input type="text" name="input-state" id="input-state" />
+
+  <label for="input-county">County:* </label>
+  <input type="text" name="input-county" id="input-county" />
+
+  <label for="input-ranger">Has Ranger Station:* </label>
+  <input type="text" name="input-ranger" id="input-ranger" />
+
+  <input type="submit" />
+</form>
+
+<script src="/js/add_park.js"></script>
