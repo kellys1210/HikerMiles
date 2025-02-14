@@ -1,1 +1,50 @@
+{{! Code based on: https://github.com/osu-cs340-ecampus/nodejs-starter-app }}
+
+{{! Rewards Points - Handlebars Template }}
+
+{{! for delete function: }}
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
 <h1>Rewards Points</h1>
+
+{{! Create a table }}
+<table id="rewards-points-table">
+  <thead>
+    <tr>
+      <th>Reward ID</th>
+      <th>Patron Name</th>
+      <th>Reward</th>
+      <th>Delete?</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each data}}
+      <tr>
+        <td>{{this.reward_id}}</td>
+        <td>{{this.patron_name}}</td>
+        <td>{{this.reward}}</td>
+        <td><button onclick="deleteReward({{this.reward_id}})">Delete</button></td>
+      </tr>
+    {{/each}}
+  </tbody>
+</table>
+
+<script src="/js/delete_reward.js"></script>
+
+{{! Form to add a record to the table }}
+<p>To add a new reward, please enter the details below and click 'Submit'!</p>
+<form id="add-reward-form">
+  <label for="input-patron">Patron Name:* </label>
+  <select name="input-patron" id="input-patron">
+    {{#each patrons}}
+      <option value="{{this.id}}">{{this.name}}</option>
+    {{/each}}
+  </select>
+
+  <label for="input-reward">Reward:* </label>
+  <input type="text" name="input-reward" id="input-reward" />
+
+  <input type="submit" />
+</form>
+
+<script src="/js/add_reward.js"></script>

@@ -1,1 +1,65 @@
-<h1>Brain Implants</h1>
+{{! Code based on: https://github.com/osu-cs340-ecampus/nodejs-starter-app }}
+
+{{! Trails - Handlebars Template }}
+
+{{! for delete function: }}
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+<h1>Trails</h1>
+
+{{! Create a table }}
+<table id="trails-table">
+  <thead>
+    <tr>
+      <th>Trail ID</th>
+      <th>Park Name</th>
+      <th>Name</th>
+      <th>Latitude</th>
+      <th>Longitude</th>
+      <th>Length</th>
+      <th>Delete?</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each data}}
+      <tr>
+        <td>{{this.trail_id}}</td>
+        <td>{{this.park_name}}</td>
+        <td>{{this.name}}</td>
+        <td>{{this.latitude}}</td>
+        <td>{{this.longitude}}</td>
+        <td>{{this.length}}</td>
+        <td><button onclick="deleteTrail({{this.trail_id}})">Delete</button></td>
+      </tr>
+    {{/each}}
+  </tbody>
+</table>
+
+<script src="/js/delete_trail.js"></script>
+
+{{! Form to add a record to the table }}
+<p>To add a new trail, please enter the details below and click 'Submit'!</p>
+<form id="add-trail-form">
+  <label for="input-park">Park Name:* </label>
+  <select name="input-park" id="input-park">
+    {{#each parks}}
+      <option value="{{this.id}}">{{this.name}}</option>
+    {{/each}}
+  </select>
+
+  <label for="input-name">Trail Name:* </label>
+  <input type="text" name="input-name" id="input-name" />
+
+  <label for="input-latitude">Latitude:* </label>
+  <input type="text" name="input-latitude" id="input-latitude" />
+
+  <label for="input-longitude">Longitude:* </label>
+  <input type="text" name="input-longitude" id="input-longitude" />
+
+  <label for="input-length">Length:* </label>
+  <input type="text" name="input-length" id="input-length" />
+
+  <input type="submit" />
+</form>
+
+<script src="/js/add_trail.js"></script>

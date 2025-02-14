@@ -1,1 +1,57 @@
+{{! Code based on: https://github.com/osu-cs340-ecampus/nodejs-starter-app }}
+
+{{! Patron Trails - Handlebars Template }}
+
+{{! for delete function: }}
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
 <h1>Patron Trails</h1>
+
+{{! Create a table }}
+<table id="patron-trails-table">
+  <thead>
+    <tr>
+      <th>Patron Name</th>
+      <th>Trail Name</th>
+      <th>Number of Times Hiked</th>
+      <th>Delete?</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each data}}
+      <tr>
+        <td>{{this.patron_name}}</td>
+        <td>{{this.trail_name}}</td>
+        <td>{{this.hike_count}}</td>
+        <td><button onclick="deletePatronTrail({{this.id}})">Delete</button></td>
+      </tr>
+    {{/each}}
+  </tbody>
+</table>
+
+<script src="/js/delete_patron_trail.js"></script>
+
+{{! Form to add a record to the table }}
+<p>To add a new trail visit, please enter the details below and click 'Submit'!</p>
+<form id="add-patron-trail-form">
+  <label for="input-patron">Patron Name:* </label>
+  <select name="input-patron" id="input-patron">
+    {{#each patrons}}
+      <option value="{{this.id}}">{{this.name}}</option>
+    {{/each}}
+  </select>
+
+  <label for="input-trail">Trail Name:* </label>
+  <select name="input-trail" id="input-trail">
+    {{#each trails}}
+      <option value="{{this.id}}">{{this.name}}</option>
+    {{/each}}
+  </select>
+
+  <label for="input-hike-count">Hike Count:* </label>
+  <input type="number" name="input-hike-count" id="input-hike-count" />
+
+  <input type="submit" />
+</form>
+
+<script src="/js/add_patron_trail.js"></script>
