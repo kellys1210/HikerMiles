@@ -17,10 +17,7 @@ app.set("view engine", ".hbs");
 // DATABASE:
 const db = require("../../database/db-connector");
 
-// ROUTES:
-
-// PAGE RENDER ROUTES:  ***** EVENTUALLY THE ENTITY SPECIFIC ROUTES WILL BE COMBINED WITH QUERIES LIKE SEEN BELOW IN PATRONS. 
-// These are to allow pages to render for now.
+// RENDER ROUTES: 
 app.get("/", (req, res) => {
   res.render("index");
 });
@@ -148,7 +145,6 @@ app.get("/patrons", (req, res) => {
 // QUERIES:
 
 // PATRONS:
-
 
 // INSERT
 app.post("/add-patron", function (req, res) {
