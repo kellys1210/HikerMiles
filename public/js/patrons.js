@@ -37,12 +37,15 @@ addPatronForm.addEventListener("submit", function (e) {
   xhttp.onreadystatechange = () => {
     if (xhttp.readyState == 4 && xhttp.status == 200) {
       // Add the new data to the table
-      addRowToTable(xhttp.response);
+      // addRowToTable(xhttp.response);
 
-      // Clear the input fields for another transaction
-      inputName.value = "";
-      inputDateOfBirth.value = "";
-      inputAddress.value = "";
+      // Refresh page to requery updated table
+      location.reload()
+
+      // // Clear the input fields for another transaction
+      // inputName.value = "";
+      // inputDateOfBirth.value = "";
+      // inputAddress.value = "";
     } else if (xhttp.readyState == 4 && xhttp.status != 200) {
       console.log("There was an error with the input.");
     }
@@ -52,57 +55,57 @@ addPatronForm.addEventListener("submit", function (e) {
   xhttp.send(JSON.stringify(data));
 });
 
-// Creates a single row from an Object representing a single record from
-// Patrons
-addRowToTable = (data) => {
-  // Get a reference to the current table on the page and clear it out.
-  let currentTable = document.getElementById("patrons-table");
+// // Creates a single row from an Object representing a single record from
+// // Patrons
+// addRowToTable = (data) => {
+//   // Get a reference to the current table on the page and clear it out.
+//   let currentTable = document.getElementById("patrons-table");
 
-  // Get the location where we should insert the new row (end of table)
-  let newRowIndex = currentTable.rows.length;
+//   // Get the location where we should insert the new row (end of table)
+//   let newRowIndex = currentTable.rows.length;
 
-  // Get a reference to the new row from the database query (last object)
-  let parsedData = JSON.parse(data);
-  let newRow = parsedData[parsedData.length - 1];
+//   // Get a reference to the new row from the database query (last object)
+//   let parsedData = JSON.parse(data);
+//   let newRow = parsedData[parsedData.length - 1];
 
-  // Formats date to YYYY/MM/DD
-  const formattedDate = new Date(newRow.date_of_birth).toLocaleDateString(
-    "en-CA"
-  );
+//   // Formats date to YYYY/MM/DD
+//   const formattedDate = new Date(newRow.date_of_birth).toLocaleDateString(
+//     "en-CA"
+//   );
 
-  // Create a row and 4 cells
-  let row = document.createElement("TR");
-  let idCell = document.createElement("TD");
-  let nameCell = document.createElement("TD");
-  let dateOfBirthCell = document.createElement("TD");
-  let addressCell = document.createElement("TD");
-  let deleteCell = document.createElement("TD");
+//   // Create a row and 4 cells
+//   let row = document.createElement("TR");
+//   let idCell = document.createElement("TD");
+//   let nameCell = document.createElement("TD");
+//   let dateOfBirthCell = document.createElement("TD");
+//   let addressCell = document.createElement("TD");
+//   let deleteCell = document.createElement("TD");
 
-  // Fill the cells with correct data
-  idCell.innerText = newRow.patron_id;
-  nameCell.innerText = newRow.name;
-  dateOfBirthCell.innerText = formattedDate;
-  addressCell.innerText = newRow.address;
+//   // Fill the cells with correct data
+//   idCell.innerText = newRow.patron_id;
+//   nameCell.innerText = newRow.name;
+//   dateOfBirthCell.innerText = formattedDate;
+//   addressCell.innerText = newRow.address;
 
-  deleteCell = document.createElement("button");
-  deleteCell.innerHTML = "Delete";
-  deleteCell.onclick = function () {
-    deletePatron(newRow.patron_id);
-  };
+//   deleteCell = document.createElement("button");
+//   deleteCell.innerHTML = "Delete";
+//   deleteCell.onclick = function () {
+//     deletePatron(newRow.patron_id);
+//   };
 
-  // Add the cells to the row
-  row.appendChild(idCell);
-  row.appendChild(nameCell);
-  row.appendChild(dateOfBirthCell);
-  row.appendChild(addressCell);
-  row.appendChild(deleteCell);
+//   // Add the cells to the row
+//   row.appendChild(idCell);
+//   row.appendChild(nameCell);
+//   row.appendChild(dateOfBirthCell);
+//   row.appendChild(addressCell);
+//   row.appendChild(deleteCell);
 
-  // Add a row attribute so the deleteRow function can find a newly added row
-  row.setAttribute("data-value", newRow.patron_id);
+//   // Add a row attribute so the deleteRow function can find a newly added row
+//   row.setAttribute("data-value", newRow.patron_id);
 
-  // Add the row to the table
-  currentTable.appendChild(row);
-};
+//   // Add the row to the table
+//   currentTable.appendChild(row);
+// };
 
 function deletePatron(patronID) {
   let link = "/patrons";
@@ -118,17 +121,19 @@ function deletePatron(patronID) {
     data: JSON.stringify(data),
     contentType: "application/json; charset=utf-8",
     success: function (result) {
-      deleteRow(patronID);
+      // Refresh page to requery updated table
+      location.reload()
+      // deleteRow(patronID);
     },
   });
 }
 
-function deleteRow(patronID) {
-  let table = document.getElementById("patrons-table");
-  for (let i = 0, row; (row = table.rows[i]); i++) {
-    if (table.rows[i].getAttribute("data-value") == patronID) {
-      table.deleteRow(i);
-      break;
-    }
-  }
-}
+// function deleteRow(patronID) {
+//   let table = document.getElementById("patrons-table");
+//   for (let i = 0, row; (row = table.rows[i]); i++) {
+//     if (table.rows[i].getAttribute("data-value") == patronID) {
+//       table.deleteRow(i);
+//       break;
+//     }
+//   }
+// }

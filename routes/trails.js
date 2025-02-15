@@ -7,7 +7,7 @@ router.get("/", (req, res) => {
     "SELECT trail_id, (SELECT name FROM Parks WHERE Parks.park_id = Trails.park_id) AS park_name, name, latitude, longitude, length FROM Trails;";
 
   let select_parks_query =
-    "SELECT park_id, (SELECT name from Parks WHERE  Parks.park_id = Trails.park_id) AS park_name FROM Trails;";
+    "SELECT park_id, name AS park_name FROM Parks;";
 
   // Execute the query
   db.pool.query(select_table_query, function (error, rows, fields) {
@@ -26,5 +26,60 @@ router.get("/", (req, res) => {
     });
   });
 });
+
+// INSERT
+router.post("/", function (req, res) {
+  // Capture the incoming data and parse it back to a JS object
+  let data = req.body;
+
+  // Create the query and run it on the database
+  let insert_query = `INSERT INTO Trails (park_id, name, latitude, longitude, length) 
+                VALUES ('${data.park_id}', '${data.name}', '${data.latitude}', '${data.longitude}', '${data.length}')`;
+
+  console.log(`Attempting to query: ${insert_query}`);
+
+  db.pool.query(insert_query, function (error, rows, fields) {
+    if (error) {
+      console.log(error);
+      res.sendStatus(400);
+    } else {
+      // If there was no error, return the newly inserted trail
+      let error_query = `SELECT * FROM Trails;`;
+      db.pool.query(error_query, function (error, rows, fields) {
+        if (error) {
+          console.log(error);
+          res.sendStatus(400);
+        } else {
+          res.send(rows);
+        }
+      });
+    }
+  });
+});
+
+
+// DELETE
+router.delete("/", function (req, res, next) {
+  let data = req.body;
+  console.log(`data after: ${JSON.stringify(data)}`);
+  let id = parseInt(data.id);
+  console.log(`trailsID: ${id}`);
+  let delete_id_query = `DELETE FROM Trails WHERE trail_id = ${id}`;
+
+  // Run the query
+  db.pool.query(
+    delete_id_query,
+    [id],
+    function (error, rows, fields) {
+      if (error) {
+        console.log(error);
+        res.sendStatus(400);
+      } else {
+        res.sendStatus(204);
+      }
+    }
+  );
+});
+
 
 module.exports = router;

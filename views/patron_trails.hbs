@@ -36,6 +36,7 @@
 <form id="add-patron-trail-form">
   <label for="input-patron">Patron Name:* </label>
   <select name="input-patron" id="input-patron">
+    <option  value="">Select a patron</option>
     {{#each patrons}}
       <option value="{{this.patron_id}}">{{this.patron_name}}</option>
     {{/each}}
@@ -43,6 +44,7 @@
 
   <label for="input-park">Trail Name:* </label>
   <select name="input-park" id="input-park">
+    <option  value="">Select a trail</option>
     {{#each trails}}
       <option value="{{this.trail_id}}">{{this.trail_name}}</option>
     {{/each}}

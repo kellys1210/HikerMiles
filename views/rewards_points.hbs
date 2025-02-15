@@ -32,11 +32,11 @@
 {{! Form to add a record to the table }}
 <p>To add a new reward, please enter the details below and click 'Submit'!</p>
 <form id="add-reward-form">
-  <label for="input-patron">Patron Name:* </label>
-  <select name="input-patron" id="input-patron-ajax">
-    <option  value="">Select a person</option>
+  <label for="input-patron_id">Patron Name:* </label>
+  <select name="input-patron_id" id="input-patron_id">
+    <option  value="">Select a patron</option>
     {{#each patrons}}
-      <option value="{{this.id}}">{{this.patron_name}}</option>
+      <option value="{{this.patron_id}}">{{this.patron_name}}</option>
     {{/each}}
   </select>
 

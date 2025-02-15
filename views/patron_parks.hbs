@@ -34,6 +34,7 @@
 <form id="add-patron-park-form">
   <label for="input-patron">Patron Name:* </label>
   <select name="input-patron" id="input-patron">
+    <option  value="">Select a patron</option>
     {{#each patrons}}
       <option value="{{this.patron_id}}">{{this.patron_name}}</option>
     {{/each}}
@@ -41,6 +42,7 @@
 
   <label for="input-park">Park Name:* </label>
   <select name="input-park" id="input-park">
+    <option  value="">Select a park</option>
     {{#each parks}}
       <option value="{{this.park_id}}">{{this.park_name}}</option>
     {{/each}}
