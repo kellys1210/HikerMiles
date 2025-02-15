@@ -18,7 +18,7 @@
     </tr>
   </thead>
   <tbody>
-    {{#each data}}
+    {{#each patron_parks}}
       <tr>
         <td>{{this.patron_name}}</td>
         <td>{{this.park_name}}</td>
@@ -29,22 +29,20 @@
   </tbody>
 </table>
 
-<script src="/js/patron_parks.js"></script>
-
 {{! Form to add a record to the table }}
 <p>To add a new visit, please enter the details below and click 'Submit'!</p>
 <form id="add-patron-park-form">
   <label for="input-patron">Patron Name:* </label>
   <select name="input-patron" id="input-patron">
     {{#each patrons}}
-      <option value="{{this.id}}">{{this.name}}</option>
+      <option value="{{this.patron_id}}">{{this.patron_name}}</option>
     {{/each}}
   </select>
 
   <label for="input-park">Park Name:* </label>
   <select name="input-park" id="input-park">
     {{#each parks}}
-      <option value="{{this.id}}">{{this.name}}</option>
+      <option value="{{this.park_id}}">{{this.park_name}}</option>
     {{/each}}
   </select>
 

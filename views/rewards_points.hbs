@@ -18,7 +18,7 @@
     </tr>
   </thead>
   <tbody>
-    {{#each data}}
+    {{#each rewards_points}}
       <tr>
         <td>{{this.reward_id}}</td>
         <td>{{this.patron_name}}</td>
@@ -29,15 +29,14 @@
   </tbody>
 </table>
 
-<script src="/js/rewards_points.js"></script>
-
 {{! Form to add a record to the table }}
 <p>To add a new reward, please enter the details below and click 'Submit'!</p>
 <form id="add-reward-form">
   <label for="input-patron">Patron Name:* </label>
-  <select name="input-patron" id="input-patron">
+  <select name="input-patron" id="input-patron-ajax">
+    <option  value="">Select a person</option>
     {{#each patrons}}
-      <option value="{{this.id}}">{{this.name}}</option>
+      <option value="{{this.id}}">{{this.patron_name}}</option>
     {{/each}}
   </select>
 

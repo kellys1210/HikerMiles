@@ -33,8 +33,6 @@
   </tbody>
 </table>
 
-<script src="/js/parks.js"></script>
-
 {{! Form to add a record to the table }}
 <p>To add a new park, please enter the details below and click 'Submit'!</p>
 <form id="add-park-form">
@@ -48,7 +46,10 @@
   <input type="text" name="input-county" id="input-county" />
 
   <label for="input-ranger">Has Ranger Station:* </label>
-  <input type="text" name="input-ranger" id="input-ranger" />
+  <select name="input-ranger" id="input-ranger">
+      <option value="0">False</option>
+      <option value="1">True</option>
+  </select>
 
   <input type="submit" />
 </form>
