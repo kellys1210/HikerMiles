@@ -3,7 +3,11 @@
 {{! Patrons - Handlebars Template }}
 
 {{! for delete function: }}
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script
+  src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"
+></script>
+
+<link rel="stylesheet" href="../css/app.css" />
 
 <h1>Patrons</h1>
 
@@ -25,7 +29,9 @@
         <td>{{this.name}}</td>
         <td>{{this.date_of_birth}}</td>
         <td>{{this.address}}</td>
-        <td><button onclick="deletePatron({{this.patron_id}})">Delete</button></td>
+        <td><button
+            onclick="deletePatron({{this.patron_id}})"
+          >Delete</button></td>
       </tr>
     {{/each}}
   </tbody>
