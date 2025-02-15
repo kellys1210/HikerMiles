@@ -73,13 +73,14 @@ addPatronForm.addEventListener("submit", function (e) {
 //     "en-CA"
 //   );
 
-//   // Create a row and 4 cells
-//   let row = document.createElement("TR");
-//   let idCell = document.createElement("TD");
-//   let nameCell = document.createElement("TD");
-//   let dateOfBirthCell = document.createElement("TD");
-//   let addressCell = document.createElement("TD");
-//   let deleteCell = document.createElement("TD");
+  // Create a row and 4 cells
+  let row = document.createElement("TR");
+  let idCell = document.createElement("TD");
+  let nameCell = document.createElement("TD");
+  let dateOfBirthCell = document.createElement("TD");
+  let addressCell = document.createElement("TD");
+  let editCell = document.createElement("TD");
+  let deleteCell = document.createElement("TD");
 
 //   // Fill the cells with correct data
 //   idCell.innerText = newRow.patron_id;
@@ -87,25 +88,98 @@ addPatronForm.addEventListener("submit", function (e) {
 //   dateOfBirthCell.innerText = formattedDate;
 //   addressCell.innerText = newRow.address;
 
-//   deleteCell = document.createElement("button");
-//   deleteCell.innerHTML = "Delete";
-//   deleteCell.onclick = function () {
-//     deletePatron(newRow.patron_id);
-//   };
+  // Edit Button
+  let editButton = document.createElement("button");
+  editButton.innerText = "Edit";
+  editButton.onclick = function () {
+    editPatron(newRow.patron_id, newRow.name, formattedDate, newRow.address);
+  };
+  editCell.appendChild(editButton);
 
-//   // Add the cells to the row
-//   row.appendChild(idCell);
-//   row.appendChild(nameCell);
-//   row.appendChild(dateOfBirthCell);
-//   row.appendChild(addressCell);
-//   row.appendChild(deleteCell);
+  // Delete Button
+  deleteCell = document.createElement("button");
+  deleteCell.innerHTML = "Delete";
+  deleteCell.onclick = function () {
+    deletePatron(newRow.patron_id);
+  };
+
+  // Add the cells to the row
+  row.appendChild(idCell);
+  row.appendChild(nameCell);
+  row.appendChild(dateOfBirthCell);
+  row.appendChild(addressCell);
+  row.appendChild(editCell);
+  row.appendChild(deleteCell);
 
 //   // Add a row attribute so the deleteRow function can find a newly added row
 //   row.setAttribute("data-value", newRow.patron_id);
 
-//   // Add the row to the table
-//   currentTable.appendChild(row);
-// };
+  // Add the row to the table
+  currentTable.appendChild(row);
+};
+
+// User clicks edit button
+function editPatron(patronID, curName, curDateOfBirth, curAddress) {
+  console.log("Editing patron:", patronID);
+  let editForm = document.getElementById("add-patron-form");
+  let editDescription = document.getElementById("add-description");
+
+  // Change the bottom form to the edit form
+  editDescription.innerHTML = "Edit a Patron by updating each field."
+  editForm.innerHTML = `
+    <label for="edit-name">Name:* </label>
+    <input type="text" id="edit-name" value="${curName}" required />
+
+    <label for="edit-dateofbirth">Date of Birth:* </label>
+    <input type="date" id="edit-dateofbirth" value="${curDateOfBirth}" required />
+
+    <label for="edit-address">Address:* </label>
+    <input type="text" id="edit-address" value="${curAddress}" required />
+
+    <button type="submit">Save Changes</button>
+    <button type="button" onclick="cancelEdit()">Cancel</button>
+  `;
+
+  editForm.addEventListener("submit", function (e) {
+    e.preventDefault();
+    savePatronEdit(patronID); 
+  });
+}
+
+// User clicks cancel to put back Insert Form
+function cancelEdit() {
+  location.reload();
+}
+
+// Save the edit and send data to server
+function savePatronEdit(patronID) {
+  let newName = document.getElementById("edit-name").value;
+  let newDateofBirth = document.getElementById("edit-dateofbirth").value;
+  let newAddress = document.getElementById("edit-address").value;
+
+  let data = {
+    patron_id: patronID,
+    name: newName,
+    date_of_birth: newDateofBirth,
+    address: newAddress,
+  };
+  let link = "/patrons";
+
+  $.ajax({
+    url: link,
+    type: "PUT",
+    data: JSON.stringify(data),
+    contentType: "application/json; charset=utf-8", 
+    success: function (response) {
+      console.log("patron edited");
+      location.reload();
+    },
+    error: function (xhr, status, error) {
+      console.log(error);
+    } 
+  });
+}
+
 
 function deletePatron(patronID) {
   let link = "/patrons";
