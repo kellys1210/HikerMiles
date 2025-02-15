@@ -18,7 +18,7 @@
     </tr>
   </thead>
   <tbody>
-    {{#each data}}
+    {{#each patron_trails}}
       <tr>
         <td>{{this.patron_name}}</td>
         <td>{{this.trail_name}}</td>
@@ -37,14 +37,14 @@
   <label for="input-patron">Patron Name:* </label>
   <select name="input-patron" id="input-patron">
     {{#each patrons}}
-      <option value="{{this.id}}">{{this.name}}</option>
+      <option value="{{this.patron_id}}">{{this.patron_name}}</option>
     {{/each}}
   </select>
 
-  <label for="input-trail">Trail Name:* </label>
-  <select name="input-trail" id="input-trail">
+  <label for="input-park">Trail Name:* </label>
+  <select name="input-park" id="input-park">
     {{#each trails}}
-      <option value="{{this.id}}">{{this.name}}</option>
+      <option value="{{this.trail_id}}">{{this.trail_name}}</option>
     {{/each}}
   </select>
 

@@ -5,7 +5,8 @@ const db = require("../database/db-connector");
 // SELECT
 router.get("/", (req, res) => {
   // Define our query
-  let select_table_query = "SELECT * FROM Parks;";
+  let select_table_query = 
+    "SELECT park_id, name, state, county, (CASE WHEN has_ranger_station = 1 THEN 'True' ELSE 'False' END) AS has_ranger_station FROM Parks;";
 
   // Execute the query
   db.pool.query(select_table_query, function (error, rows, fields) {
