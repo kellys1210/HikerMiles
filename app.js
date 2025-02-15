@@ -30,6 +30,7 @@ app.get("/", (req, res) => {
 app.use("/brain_implants", brainImplantsRoute);
 app.use("/patrons", patronsRoute);
 
+<<<<<<< Updated upstream
 app.get("/parks", (req, res) => {
   // Define our query
   let select_table_query = "SELECT * FROM Parks;";
@@ -103,6 +104,8 @@ app.get("/trails", (req, res) => {
   });
 });
 
+=======
+>>>>>>> Stashed changes
 // LISTENER:
 app.listen(PORT, function () {
   console.log(`Server is running on port ${PORT}`);
