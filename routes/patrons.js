@@ -3,7 +3,6 @@ const router = express.Router();
 const db = require("../database/db-connector");
 
 // SELECT
-
 router.get("/", (req, res) => {
   // Define our query
   let select_table_query = "SELECT * FROM Patrons;";
@@ -26,7 +25,7 @@ router.get("/", (req, res) => {
 });
 
 // INSERT
-router.post("/add-patron", function (req, res) {
+router.post("/", function (req, res) {
   // Capture the incoming data and parse it back to a JS object
   let data = req.body;
 
@@ -64,7 +63,7 @@ router.post("/add-patron", function (req, res) {
 });
 
 // DELETE
-router.delete("/delete-patron/", function (req, res, next) {
+router.delete("/", function (req, res, next) {
   let data = req.body;
   console.log(`data after: ${JSON.stringify(data)}`);
   let patronID = parseInt(data.id);

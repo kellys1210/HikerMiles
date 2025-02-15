@@ -2,7 +2,6 @@ const express = require("express");
 const router = express.Router();
 const db = require("../database/db-connector");
 
-// SELECT
 router.get("/", (req, res) => {
   // Define our query
   let select_table_query = "SELECT * FROM Trails;";
