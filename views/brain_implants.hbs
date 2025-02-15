@@ -3,12 +3,14 @@
 {{! Trails - Handlebars Template }}
 
 {{! for delete function: }}
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script
+  src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"
+></script>
 
 <h1>Brain Implants</h1>
 
 {{! Create a table }}
-<table id="trails-table">
+<table id="brain-implants-table">
   <thead>
     <tr>
       <th>Implant ID</th>
@@ -25,7 +27,9 @@
         <td>{{this.patron_name}}</td>
         <td>{{this.expiration_date}}</td>
         <td>{{this.berserk_mode}}</td>
-        <td><button onclick="deleteTrail({{this.trail_id}})">Delete</button></td>
+        <td><button
+            onclick="deleteTrail({{this.trail_id}})"
+          >Delete</button></td>
       </tr>
     {{/each}}
   </tbody>
@@ -35,24 +39,21 @@
 <p>To add a new trail, please enter the details below and click 'Submit'!</p>
 <form id="add-brain-implant-form">
 
-  <label for="input-name">Implant ID:* </label>
-  <input type="text" name="implant_id" id="implant_id" />
-
   <label for="input-patron">Patron Name:* </label>
   <select name="input-patron" id="input-patron">
     <option value="">NULL</option>
     {{#each patrons}}
-      <option value="{{this.patron_id}}">{{this.patron_name}}</option>
+      <option value="{{this.patron_id}}">{{this.name}}</option>
     {{/each}}
   </select>
 
-  <label for="input-latitude">Expiration Date:* </label>
-  <input type="text" name="expiration_date" id="expiration_date" />
+  <label for="input-expiration-date">Expiration Date:* </label>
+  <input type="date" name="expiration_date" id="input-expiration-date" />
 
-  <label for="input-longitude">Berserk Mode:* </label>
-  <select name="input-berserk_mode" id="input-berserk_mode">
-      <option value="0">False</option>
-      <option value="1">True</option>
+  <label for="input-berserk-mode">Berserk Mode:* </label>
+  <select name="input-berserk-mode" id="input-berserk-mode">
+    <option value="0">False</option>
+    <option value="1">True</option>
   </select>
 
   <input type="submit" />

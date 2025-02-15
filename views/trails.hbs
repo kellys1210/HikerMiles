@@ -3,7 +3,9 @@
 {{! Trails - Handlebars Template }}
 
 {{! for delete function: }}
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script
+  src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"
+></script>
 
 <h1>Trails</h1>
 
@@ -21,7 +23,7 @@
     </tr>
   </thead>
   <tbody>
-    {{#each data}}
+    {{#each trails}}
       <tr>
         <td>{{this.trail_id}}</td>
         <td>{{this.park_name}}</td>
@@ -29,7 +31,9 @@
         <td>{{this.latitude}}</td>
         <td>{{this.longitude}}</td>
         <td>{{this.length}}</td>
-        <td><button onclick="deleteTrail({{this.trail_id}})">Delete</button></td>
+        <td><button
+            onclick="deleteTrail({{this.trail_id}})"
+          >Delete</button></td>
       </tr>
     {{/each}}
   </tbody>
@@ -43,7 +47,7 @@
   <label for="input-park">Park Name:* </label>
   <select name="input-park" id="input-park">
     {{#each parks}}
-      <option value="{{this.id}}">{{this.name}}</option>
+      <option value="{{this.park_id}}">{{this.park_name}}</option>
     {{/each}}
   </select>
 
