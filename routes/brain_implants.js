@@ -6,7 +6,7 @@ const db = require("../database/db-connector");
 router.get("/", (req, res) => {
   // Define our query
   let select_table_query =
-    "SELECT implant_id, COALESCE((SELECT name FROM Patrons WHERE Patrons.patron_id = BrainImplants.patron_id), 'N/A') AS patron_name, expiration_date, berserk_mode FROM BrainImplants;";
+    "SELECT implant_id, COALESCE((SELECT name FROM Patrons WHERE Patrons.patron_id = BrainImplants.patron_id), 'N/A') AS patron_name, DATE_FORMAT(expiration_date, '%Y-%m-%d') as expiration_date, (CASE WHEN berserk_mode = 1 THEN 'True' ELSE 'False' END) AS berserk_mode FROM BrainImplants;";
 
   let select_patrons_query =
     "SELECT patron_id, name AS patron_name FROM Patrons";
@@ -38,7 +38,7 @@ router.post("/", function (req, res) {
   let data = req.body;
 
   // Create the query and run it on the database
-  insert_query = `INSERT INTO BrainImplants (patron_id, expiration_date, berserk_mode) VALUES (${data.patron_id}, '${data.expiration_date}', '${data.berserk_mode}')`;
+  insert_query = `INSERT INTO BrainImplants (patron_id, expiration_date, berserk_mode) VALUES (${data.patron_id}, '${data.expiration_date}', ${data.berserk_mode})`;
 
   console.log(`Attempting to query: ${insert_query}`);
 
@@ -47,9 +47,12 @@ router.post("/", function (req, res) {
     if (error) {
       // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
       console.log(error);
-      res.sendStatus(400);
+      res.status(400).json({
+        error:
+          "ERROR: Please select a patron that has not already been implanted. If you wish to edit the selected patron's implant record, please use the option to edit the existing implant record instead.",
+      });
     } else {
-      // If there was no error, perform a SELECT * on Patrons
+      // If there was no error, perform a SELECT * on BrainImplants
       error_query = `SELECT * FROM BrainImplants;`;
       db.pool.query(error_query, function (error, rows, fields) {
         // If there was an error on the second query, send a 400

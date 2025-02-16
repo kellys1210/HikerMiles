@@ -121,7 +121,9 @@ function editPatron(patronID, curName, curDateOfBirth, curAddress) {
   let editDescription = document.getElementById("add-description");
 
   // Change the bottom form to the edit form
-  editDescription.innerHTML = "Edit a Patron by updating each field.";
+  editDescription.innerHTML =
+    "To edit an implant record, please enter the details below and click 'Submit'!";
+
   editForm.innerHTML = `
     <label for="edit-name">Name:* </label>
     <input type="text" id="edit-name" value="${curName}" required />

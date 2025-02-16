@@ -45,8 +45,14 @@ addImplantForm.addEventListener("submit", function (e) {
     if (xhttp.readyState == 4 && xhttp.status == 200) {
       // Refresh page to requery updated table after successfull post
       location.reload();
-    } else if (xhttp.readyState == 4 && xhttp.status != 200) {
-      console.log("There was an error with the input.");
+    } else if (xhttp.status == 400) {
+      // Adapted from: https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/responseText
+      let response = JSON.parse(xhttp.responseText);
+      let errorMessage = response.error;
+
+      // Adapted from: https://developer.mozilla.org/en-US/docs/Web/API/Node/textContent
+      let errorMessageDisplay = document.getElementById("errorMessage");
+      errorMessageDisplay.textContent = errorMessage;
     }
   };
 

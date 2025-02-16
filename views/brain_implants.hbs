@@ -10,36 +10,40 @@
 <h1>Brain Implants</h1>
 
 {{! Create a table }}
-<table id="brain-implants-table">
-  <thead>
-    <tr>
-      <th>Implant ID</th>
-      <th>Patron Name</th>
-      <th>Expiration Date</th>
-      <th>Berserk Mode</th>
-      <th>Delete?</th>
-    </tr>
-  </thead>
-  <tbody>
-    {{#each brain_implants}}
+<div class="dataTable">
+  <table id="brain-implants-table">
+    <thead>
       <tr>
-        <td>{{this.implant_id}}</td>
-        <td>{{this.patron_name}}</td>
-        <td>{{this.expiration_date}}</td>
-        <td>{{this.berserk_mode}}</td>
-        <td><button
-            onclick="deleteImplant({{this.implant_id}})"
-          >Delete</button></td>
+        <th>Implant ID</th>
+        <th>Patron Name</th>
+        <th>Expiration Date</th>
+        <th>Berserk Mode</th>
+        <th>Delete?</th>
       </tr>
-    {{/each}}
-  </tbody>
-</table>
+    </thead>
+    <tbody>
+      {{#each brain_implants}}
+        <tr>
+          <td>{{this.implant_id}}</td>
+          <td>{{this.patron_name}}</td>
+          <td>{{this.expiration_date}}</td>
+          <td>{{this.berserk_mode}}</td>
+          <td><button
+              onclick="deleteImplant({{this.implant_id}})"
+            >Delete</button></td>
+        </tr>
+      {{/each}}
+    </tbody>
+  </table>
+</div>
 
 {{! Form to add a record to the table }}
 <p>To add a new implant, please enter the details below and click 'Submit'!</p>
+<div id="errorMessage"></div>
 <form id="add-implant-form">
-
-  <label for="input-patron">Patron Name:* </label>
+  <label for="input-patron">Patron Name: (select N/A if not yet implanted into a
+    patient)*
+  </label>
   <select name="input-patron" id="input-patron">
     {{#each patrons}}
       <option value="{{this.patron_id}}">{{this.patron_name}}</option>
