@@ -39,13 +39,12 @@
   </tbody>
 </table>
 
-<script src="/js/trails.js"></script>
-
 {{! Form to add a record to the table }}
 <p>To add a new trail, please enter the details below and click 'Submit'!</p>
 <form id="add-trail-form">
   <label for="input-park">Park Name:* </label>
   <select name="input-park" id="input-park">
+    <option  value="">Select a park</option>
     {{#each parks}}
       <option value="{{this.park_id}}">{{this.park_name}}</option>
     {{/each}}

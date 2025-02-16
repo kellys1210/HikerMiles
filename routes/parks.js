@@ -19,3 +19,62 @@ router.get("/", (req, res) => {
 });
 
 module.exports = router;
+
+// INSERT
+router.post("/", function (req, res) {
+  // Capture the incoming data and parse it back to a JS object
+  let data = req.body;
+
+  // Create the query and run it on the database
+  let insert_query = `INSERT INTO Parks (name, state, county, has_ranger_station) 
+                      VALUES ('${data.name}', '${data.state}', '${data.county}', '${data.has_ranger_station}')`;
+
+  console.log(`Attempting to query: ${insert_query}`);
+
+  db.pool.query(insert_query, function (error, rows, fields) {
+    if (error) {
+      console.log(error);
+      res.sendStatus(400);
+    } else {
+      // If there was no error, return the updated table
+      let select_query = `SELECT * FROM Parks;`;
+      db.pool.query(select_query, function (error, rows, fields) {
+        if (error) {
+          console.log(error);
+          res.sendStatus(400);
+        } else {
+          res.send(rows);
+        }
+      });
+    }
+  });
+});
+
+
+
+
+// DELETE
+router.delete("/", function (req, res, next) {
+  let data = req.body;
+  console.log(`data after: ${JSON.stringify(data)}`);
+  let id = parseInt(data.id);
+  console.log(`parksID: ${id}`);
+  let delete_id_query = `DELETE FROM Parks WHERE park_id = ${id}`;
+
+  // Run the query
+  db.pool.query(
+    delete_id_query,
+    [id],
+    function (error, rows, fields) {
+      if (error) {
+        console.log(error);
+        res.sendStatus(400);
+      } else {
+        res.sendStatus(204);
+      }
+    }
+  );
+});
+
+
+module.exports = router;

@@ -42,6 +42,7 @@
   <label for="input-patron">Patron Name:* </label>
   <select name="input-patron" id="input-patron">
     <option value="">NULL</option>
+    <option  value="">Select a patron</option>
     {{#each patrons}}
       <option value="{{this.patron_id}}">{{this.name}}</option>
     {{/each}}
