@@ -15,7 +15,7 @@ router.get("/", (req, res) => {
     // Save table query
     let data_table = rows;
 
-    // Execture  query  for patrons
+    // Execute query for patrons
     db.pool.query(select_patrons_query, function (error, rows, fields) {
       // Save patrons
       let data_patrons = rows;
