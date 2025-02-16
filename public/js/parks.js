@@ -47,6 +47,11 @@ addForm.addEventListener("submit", function (e) {
 
 
 function deletePark(ID) {
+    if (
+        window.confirm(
+          "Do you really want to delete this record? This cannot be undone. Click 'OK' to continue with deleting this record."
+        )
+      ) {
     let link = "/parks";
     let data = {
         id: ID,
@@ -64,4 +69,4 @@ function deletePark(ID) {
             location.reload()
         },
     });
-}
+}};

@@ -5,65 +5,68 @@ let addForm = document.getElementById("add-trail-form");
 
 // Modify the objects we need
 addForm.addEventListener("submit", function (e) {
-    // Prevent the form from submitting
-    e.preventDefault();
+  // Prevent the form from submitting
+  e.preventDefault();
 
-    // Get input data
-    let parkID = document.getElementById("input-park").value;
-    let trailName = document.getElementById("input-name").value;
-    let latitude = document.getElementById("input-latitude").value;
-    let longitude = document.getElementById("input-longitude").value;
-    let length = document.getElementById("input-length").value;
+  // Get input data
+  let parkID = document.getElementById("input-park").value;
+  let trailName = document.getElementById("input-name").value;
+  let latitude = document.getElementById("input-latitude").value;
+  let longitude = document.getElementById("input-longitude").value;
+  let length = document.getElementById("input-length").value;
 
-    // Create data object to insert
-    let data = {
-        park_id: parkID,
-        name: trailName,
-        latitude: latitude,
-        longitude: longitude,
-        length: length
-    };
+  // Create data object to insert
+  let data = {
+    park_id: parkID,
+    name: trailName,
+    latitude: latitude,
+    longitude: longitude,
+    length: length,
+  };
 
-    console.log(data);
+  console.log(data);
 
-    // Setup AJAX request
-    var xhttp = new XMLHttpRequest();
-    xhttp.open("POST", "/trails", true);
-    xhttp.setRequestHeader("Content-type", "application/json");
+  // Setup AJAX request
+  var xhttp = new XMLHttpRequest();
+  xhttp.open("POST", "/trails", true);
+  xhttp.setRequestHeader("Content-type", "application/json");
 
-    // Tell AJAX request how to resolve
-    xhttp.onreadystatechange = () => {
-        if (xhttp.readyState == 4 && xhttp.status == 200) {
+  // Tell AJAX request how to resolve
+  xhttp.onreadystatechange = () => {
+    if (xhttp.readyState == 4 && xhttp.status == 200) {
+      // Refresh page to requery updated table after successfull post
+      location.reload();
+    } else if (xhttp.readyState == 4 && xhttp.status != 200) {
+      console.log("There was an error with the input.");
+    }
+  };
 
-            // Refresh page to requery updated table after successfull post
-            location.reload()
-
-        } else if (xhttp.readyState == 4 && xhttp.status != 200) {
-            console.log("There was an error with the input.");
-        }
-    };
-
-    // Send the request and wait for the response
-    xhttp.send(JSON.stringify(data));
+  // Send the request and wait for the response
+  xhttp.send(JSON.stringify(data));
 });
 
-
 function deleteTrail(ID) {
+  if (
+    window.confirm(
+      "Do you really want to delete this record? This cannot be undone. Click 'OK' to continue with deleting this record."
+    )
+  ) {
     let link = "/trails";
     let data = {
-        id: ID,
+      id: ID,
     };
 
     console.log(`data before: ${JSON.stringify(data)}`);
 
     $.ajax({
-        url: link,
-        type: "DELETE",
-        data: JSON.stringify(data),
-        contentType: "application/json; charset=utf-8",
-        success: function (result) {
-            // Refresh page to requery updated table
-            location.reload()
-        },
+      url: link,
+      type: "DELETE",
+      data: JSON.stringify(data),
+      contentType: "application/json; charset=utf-8",
+      success: function (result) {
+        // Refresh page to requery updated table
+        location.reload();
+      },
     });
+  }
 }

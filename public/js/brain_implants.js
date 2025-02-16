@@ -61,21 +61,27 @@ addImplantForm.addEventListener("submit", function (e) {
 });
 
 function deleteImplant(implantID) {
-  let link = "/brain_implants";
-  let data = {
-    id: implantID,
-  };
+  if (
+    window.confirm(
+      "Do you really want to delete this record? This cannot be undone. Click 'OK' to continue with deleting this record."
+    )
+  ) {
+    let link = "/brain_implants";
+    let data = {
+      id: implantID,
+    };
 
-  console.log(`data before: ${JSON.stringify(data)}`);
+    console.log(`data before: ${JSON.stringify(data)}`);
 
-  $.ajax({
-    url: link,
-    type: "DELETE",
-    data: JSON.stringify(data),
-    contentType: "application/json; charset=utf-8",
-    success: function (result) {
-      // Refresh page to requery updated table
-      location.reload();
-    },
-  });
+    $.ajax({
+      url: link,
+      type: "DELETE",
+      data: JSON.stringify(data),
+      contentType: "application/json; charset=utf-8",
+      success: function (result) {
+        // Refresh page to requery updated table
+        location.reload();
+      },
+    });
+  }
 }

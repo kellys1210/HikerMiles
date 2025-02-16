@@ -63,6 +63,11 @@ addPatronParkForm.addEventListener("submit", function (e) {
 });
 
 function deletePatronPark(patronName, parkName) {
+  if (
+    window.confirm(
+      "Do you really want to delete this record? This cannot be undone. Click 'OK' to continue with deleting this record."
+    )
+  ) {
   let link = "/patron_parks";
   let data = {
     patron_name: patronName,
@@ -81,4 +86,4 @@ function deletePatronPark(patronName, parkName) {
       location.reload();
     },
   });
-}
+}};
