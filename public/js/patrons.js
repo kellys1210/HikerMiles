@@ -116,7 +116,6 @@ addPatronForm.addEventListener("submit", function (e) {
 
   // Add the row to the table
   currentTable.appendChild(row);
-};
 
 // User clicks edit button
 function editPatron(patronID, curName, curDateOfBirth, curAddress) {

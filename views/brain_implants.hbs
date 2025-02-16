@@ -28,7 +28,7 @@
         <td>{{this.expiration_date}}</td>
         <td>{{this.berserk_mode}}</td>
         <td><button
-            onclick="deleteTrail({{this.trail_id}})"
+            onclick="deleteImplant({{this.implant_id}})"
           >Delete</button></td>
       </tr>
     {{/each}}
@@ -36,13 +36,12 @@
 </table>
 
 {{! Form to add a record to the table }}
-<p>To add a new trail, please enter the details below and click 'Submit'!</p>
-<form id="add-brain-implant-form">
+<p>To add a new implant, please enter the details below and click 'Submit'!</p>
+<form id="add-implant-form">
 
   <label for="input-patron">Patron Name:* </label>
   <select name="input-patron" id="input-patron">
-    <option value="">NULL</option>
-    <option  value="">Select a patron</option>
+    <option value="NULL">NULL</option>
     {{#each patrons}}
       <option value="{{this.patron_id}}">{{this.name}}</option>
     {{/each}}

@@ -11,7 +11,7 @@ addForm.addEventListener("submit", function (e) {
     // Get input data
     let parkName = document.getElementById("input-name").value;
     let state = document.getElementById("input-state").value;
-    let county = document.getElementById("input-ranger").value;
+    let county = document.getElementById("input-county").value;
     let hasRangerStation = document.getElementById("input-ranger").value;
 
     // Create data object to insert

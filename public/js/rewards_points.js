@@ -1,10 +1,10 @@
 // Code based on: https://github.com/osu-cs340-ecampus/nodejs-starter-app
 
 // Get the objects we need to modify
-let addPatronForm = document.getElementById("add-reward-form");
+let addRewardForm = document.getElementById("add-reward-form");
 
 // Modify the objects we need
-addPatronForm.addEventListener("submit", function (e) {
+addRewardForm.addEventListener("submit", function (e) {
   // Prevent the form from submitting
   e.preventDefault();
 
@@ -24,7 +24,7 @@ addPatronForm.addEventListener("submit", function (e) {
     reward: rewardValue,
   };
 
-  console.log(`data.patron_id: ${data.patron_id}, data.reward: ${data.reward}`)
+  console.log(`data.patron_id: ${data.patron_id}, data.reward: ${data.reward}`);
 
   // Setup our AJAX request
   var xhttp = new XMLHttpRequest();
@@ -34,10 +34,8 @@ addPatronForm.addEventListener("submit", function (e) {
   // Tell our AJAX request how to resolve
   xhttp.onreadystatechange = () => {
     if (xhttp.readyState == 4 && xhttp.status == 200) {
-
-    // Refresh page to requery updated table after successfull post
-    location.reload()
-
+      // Refresh page to requery updated table after successfull post
+      location.reload();
     } else if (xhttp.readyState == 4 && xhttp.status != 200) {
       console.log("There was an error with the input.");
     }
@@ -47,13 +45,11 @@ addPatronForm.addEventListener("submit", function (e) {
   xhttp.send(JSON.stringify(data));
 });
 
-
 function deleteReward(rewardID) {
   let link = "/rewards_points";
   let data = {
     id: rewardID,
   };
-
 
   console.log(`data before: ${JSON.stringify(data)}`);
 
@@ -63,8 +59,8 @@ function deleteReward(rewardID) {
     data: JSON.stringify(data),
     contentType: "application/json; charset=utf-8",
     success: function (result) {
-        // Refresh page to requery updated table
-        location.reload()
+      // Refresh page to requery updated table
+      location.reload();
     },
   });
 }
