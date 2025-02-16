@@ -3,7 +3,9 @@
 {{! Patron Trails - Handlebars Template }}
 
 {{! for delete function: }}
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script
+  src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"
+></script>
 
 <h1>Patron Trails</h1>
 
@@ -23,28 +25,29 @@
         <td>{{this.patron_name}}</td>
         <td>{{this.trail_name}}</td>
         <td>{{this.hike_count}}</td>
-        <td><button onclick="deletePatronTrail({{this.id}})">Delete</button></td>
+        <td><button
+            onclick="deletePatronTrail('{{this.patron_name}}', '{{this.trail_name}}')"
+          >Delete</button></td>
+
       </tr>
     {{/each}}
   </tbody>
 </table>
-
-<script src="/js/patron_trails.js"></script>
 
 {{! Form to add a record to the table }}
 <p>To add a new trail visit, please enter the details below and click 'Submit'!</p>
 <form id="add-patron-trail-form">
   <label for="input-patron">Patron Name:* </label>
   <select name="input-patron" id="input-patron">
-    <option  value="">Select a patron</option>
+    <option value="">Select a patron</option>
     {{#each patrons}}
       <option value="{{this.patron_id}}">{{this.patron_name}}</option>
     {{/each}}
   </select>
-
-  <label for="input-park">Trail Name:* </label>
-  <select name="input-park" id="input-park">
-    <option  value="">Select a trail</option>
+  <div id="errorMessage"></div>
+  <label for="input-trail">Trail Name:* </label>
+  <select name="input-trail" id="input-trail">
+    <option value="">Select a trail</option>
     {{#each trails}}
       <option value="{{this.trail_id}}">{{this.trail_name}}</option>
     {{/each}}

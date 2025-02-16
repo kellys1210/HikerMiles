@@ -62,7 +62,7 @@ router.post("/", function (req, res) {
       console.log(error);
       res.status(400).json({
         error:
-          "ERROR: Please select a park that has not been previously visited by this patron. If you wish to add or delete the patron's visit count number, please edit the existing visit record instead.",
+          "ERROR: Please select a park that has not been previously visited by this patron. If you wish to increase or decrease the patron's visit count number to the selected park, please edit the existing visit park record instead.",
       });
     } else {
       // If there was no error, perform a SELECT * on Patrons
@@ -105,5 +105,16 @@ router.delete("/", function (req, res, next) {
     }
   );
 });
+
+// These were the original queries in SELECT (from PatronTrails, forgot to save these ones first), saving them here if needed later:
+
+// let select_table_query =
+// "SELECT (SELECT name FROM  Patrons WHERE Patrons.patron_id = PatronTrails.patron_id) AS patron_name, (SELECT name FROM Trails WHERE Trails.trail_id = PatronTrails.trail_id) AS trail_name,  hike_count  FROM PatronTrails;";
+
+// let select_patrons_query =
+// "SELECT patron_id, (SELECT name FROM Patrons WHERE Patrons.patron_id = PatronTrails.patron_id) AS patron_name FROM PatronTrails GROUP BY patron_name";
+
+// let select_trails_query =
+// "SELECT trail_id, (SELECT name FROM Trails WHERE Trails.trail_id = PatronTrails.trail_id) AS trail_name FROM PatronTrails GROUP BY trail_name";
 
 module.exports = router;
