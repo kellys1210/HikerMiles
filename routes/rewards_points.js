@@ -14,13 +14,13 @@ router.get("/", (req, res) => {
   db.pool.query(select_table_query, function (error, rows, fields) {
 
     // Save table query
-    let  data_table = rows;
+    let data_table = rows;
 
     // Execture  query  for patrons
     db.pool.query(select_patrons_query, function (error, rows, fields) {
 
       // Save patrons
-      let data_patrons  = rows;
+      let data_patrons = rows;
 
       // Render the rewards_points.hbs file, and also send the renderer
       // an object where 'data' is equal to the 'rows' we

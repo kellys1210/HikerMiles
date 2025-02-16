@@ -9,10 +9,9 @@ router.get("/", (req, res) => {
     "SELECT (SELECT name FROM  Patrons WHERE Patrons.patron_id = PatronParks.patron_id) AS patron_name, (SELECT name FROM Parks WHERE Parks.park_id = PatronParks.park_id) AS park_name,  visit_count  FROM PatronParks;";
 
   let select_patrons_query =
-    "SELECT patron_id, (SELECT name FROM Patrons WHERE Patrons.patron_id = PatronParks.patron_id) AS patron_name FROM PatronParks GROUP BY patron_name";
+    "SELECT patron_id, name AS patron_name FROM Patrons";
 
-  let select_parks_query =
-    "SELECT park_id, (SELECT name FROM Parks WHERE Parks.park_id = PatronParks.park_id) AS park_name FROM PatronParks GROUP BY park_name";
+  let select_parks_query = "SELECT park_id, name AS park_name FROM Parks";
 
   // Execute the query
   db.pool.query(select_table_query, function (error, rows, fields) {
@@ -24,6 +23,11 @@ router.get("/", (req, res) => {
       data_patrons = rows;
 
       db.pool.query(select_parks_query, function (error, rows, fields) {
+        if (error) {
+          console.error("Error executing select_parks_query:", error);
+          return res.status(500).send("Database error: Duplicate ID chosen");
+        }
+
         // Save parks query
         data_parks = rows;
 
@@ -39,6 +43,67 @@ router.get("/", (req, res) => {
       });
     });
   });
+});
+
+// INSERT
+router.post("/", function (req, res) {
+  // Capture the incoming data and parse it back to a JS object
+  let data = req.body;
+
+  // Create the query and run it on the database
+  insert_query = `INSERT INTO PatronParks (patron_id, park_id, visit_count) VALUES ('${data.patron_id}', '${data.park_id}', '${data.visit_count}')`;
+
+  console.log(`Attempting to query: ${insert_query}`);
+
+  db.pool.query(insert_query, function (error, rows, fields) {
+    // Check to see if there was an error
+    if (error) {
+      // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
+      console.log(error);
+      res.status(400).json({
+        error:
+          "ERROR: Please select a park that has not been previously visited by this patron. If you wish to add or delete the patron's visit count number, please edit the existing visit record instead.",
+      });
+    } else {
+      // If there was no error, perform a SELECT * on Patrons
+      error_query = `SELECT * FROM PatronParks;`;
+      db.pool.query(error_query, function (error, rows, fields) {
+        // If there was an error on the second query, send a 400
+        if (error) {
+          // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
+          console.log(error);
+          res.sendStatus(400);
+        }
+        // If all went well, send the results of the query back.
+        else {
+          res.send(rows);
+        }
+      });
+    }
+  });
+});
+
+// DELETE
+router.delete("/", function (req, res, next) {
+  let data = req.body;
+  let patronName = data.patron_name;
+  let parkName = data.park_name;
+  console.log(`patronID: ${patronName}, parkID: ${parkName}`);
+  let delete_id_query = `DELETE FROM PatronParks WHERE patron_id = (SELECT patron_id FROM Patrons where name = '${patronName}') AND park_id = (SELECT park_id FROM Parks WHERE name = '${parkName}')`;
+
+  // Run query
+  db.pool.query(
+    delete_id_query,
+    [patronName, parkName],
+    function (error, rows, fields) {
+      if (error) {
+        console.log(error);
+        res.sendStatus(400);
+      } else {
+        res.sendStatus(204);
+      }
+    }
+  );
 });
 
 module.exports = router;
