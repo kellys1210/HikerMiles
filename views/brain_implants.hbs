@@ -45,10 +45,11 @@
     patient)*
   </label>
   <select name="input-patron" id="input-patron">
+    <option value="">Select a patron</option>
+    <option value="NULL">N/A</option>
     {{#each patrons}}
       <option value="{{this.patron_id}}">{{this.patron_name}}</option>
     {{/each}}
-    <option value="NULL">N/A</option>
   </select>
 
   <label for="input-expiration-date">Expiration Date:* </label>
