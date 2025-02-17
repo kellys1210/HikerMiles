@@ -58,21 +58,23 @@ function editParks(parkID, curName, curState, curCounty, curRangerStation) {
       <input type="text" id="edit-name" value="${curName}" required />
   
       <label for="edit-state">State:* </label>
-      <input type="date" id="edit-state" value="${curState}" required />
+      <input type="text" id="edit-state" value="${curState}" required />
   
       <label for="edit-county">County:* </label>
       <input type="text" id="edit-county" value="${curCounty}" required />
 
       <label for="edit-ranger-station">Has Ranger Station:* </label>
-      <input type="text" id="edit-ranger-station" value="${curRangerStation}" required />
-  
+      <select name="input-ranger" id="edit-ranger-station" required>
+        <option value="0" ${curRangerStation == 0 ? "selected" : ""}>False</option>
+        <option value="1" ${curRangerStation == 1 ? "selected" : ""}>True</option>
+      </select>
       <button type="submit">Save Changes</button>
       <button type="button" onclick="cancelEdit()">Cancel</button>
     `;
   
     editForm.addEventListener("submit", function (e) {
       e.preventDefault();
-      savePatronEdit(parkID);
+      saveParkEdit(parkID);
     });
   }
   
@@ -96,7 +98,7 @@ function editParks(parkID, curName, curState, curCounty, curRangerStation) {
       has_ranger_station: newRangerStation
     };
     let link = "/parks";
-  
+   
     $.ajax({
       url: link,
       type: "PUT",
