@@ -50,7 +50,26 @@ router.post("/", function (req, res) {
   });
 });
 
-
+// UPDATE
+router.put("/", function (req, res) {
+  let data = req.body;
+  let query = 
+    `UPDATE Parks
+      SET name = ?, 
+      state = ?, 
+      county = ?,
+      has_ranger_station =?,
+    WHERE park_id = ?`;
+  
+  db.pool.query(query, [data.name, data.state, data.county, data.has_ranger_station], function (err, result) {
+    if (err) {
+      console.log(err);
+      res.status(500).send("error");
+    } else {
+      res.status(200).send("parks updated")
+    }
+  });
+});
 
 
 // DELETE

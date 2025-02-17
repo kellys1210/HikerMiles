@@ -20,6 +20,7 @@
       <th>Latitude</th>
       <th>Longitude</th>
       <th>Length</th>
+      <th>Edit</th>
       <th>Delete?</th>
     </tr>
   </thead>
@@ -33,6 +34,9 @@
         <td>{{this.longitude}}</td>
         <td>{{this.length}}</td>
         <td><button
+            onclick="editTrail({{this.trail_id}}, '{{this.park_name}}', '{{this.name}}', '{{this.latitude}}', '{{this.longitude}}', '{{this.length}}')"
+          >Edit</button></td>
+        <td><button
             onclick="deleteTrail({{this.trail_id}})"
           >Delete</button></td>
       </tr>
@@ -42,7 +46,7 @@
 </div>
 
 {{! Form to add a record to the table }}
-<p>To add a new trail, please enter the details below and click 'Submit'!</p>
+<p id="add-description">To add a new trail, please enter the details below and click 'Submit'!</p>
 <form id="add-trail-form">
   <label for="input-park">Park Name:* </label>
   <select name="input-park" id="input-park">

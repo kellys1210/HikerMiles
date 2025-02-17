@@ -43,7 +43,74 @@ addForm.addEventListener("submit", function (e) {
     xhttp.send(JSON.stringify(data));
 });
 
+// User clicks edit button
+function editParks(parkID, curName, curState, curCounty, curRangerStation) {
+    console.log("Editing park:", parkID);
+    let editForm = document.getElementById("add-park-form");
+    let editDescription = document.getElementById("add-description");
+  
+    // Change the bottom form to the edit form
+    editDescription.innerHTML =
+      "To edit a park, please enter the details below and click 'Submit'!";
+  
+    editForm.innerHTML = `
+      <label for="edit-name">Name:* </label>
+      <input type="text" id="edit-name" value="${curName}" required />
+  
+      <label for="edit-state">State:* </label>
+      <input type="date" id="edit-state" value="${curState}" required />
+  
+      <label for="edit-county">County:* </label>
+      <input type="text" id="edit-county" value="${curCounty}" required />
 
+      <label for="edit-ranger-station">Has Ranger Station:* </label>
+      <input type="text" id="edit-ranger-station" value="${curRangerStation}" required />
+  
+      <button type="submit">Save Changes</button>
+      <button type="button" onclick="cancelEdit()">Cancel</button>
+    `;
+  
+    editForm.addEventListener("submit", function (e) {
+      e.preventDefault();
+      savePatronEdit(parkID);
+    });
+  }
+  
+  // User clicks cancel to put back Insert Form
+  function cancelEdit() {
+    location.reload();
+  }
+  
+  // Save the edit and send data to server
+  function saveParkEdit(parkID) {
+    let newName = document.getElementById("edit-name").value;
+    let newState = document.getElementById("edit-state").value;
+    let newCounty = document.getElementById("edit-county").value;
+    let newRangerStation = document.getElementById("edit-ranger-station").value;
+  
+    let data = {
+      park_id: parkID,
+      name: newName,
+      state: newState,
+      county: newCounty,
+      has_ranger_station: newRangerStation
+    };
+    let link = "/parks";
+  
+    $.ajax({
+      url: link,
+      type: "PUT",
+      data: JSON.stringify(data),
+      contentType: "application/json; charset=utf-8",
+      success: function (response) {
+        console.log("park edited");
+        location.reload();
+      },
+      error: function (xhr, status, error) {
+        console.log(error);
+      },
+    });
+  }
 
 
 function deletePark(ID) {

@@ -9,6 +9,7 @@ addPatronForm.addEventListener("submit", function (e) {
   e.preventDefault();
 
   // Get form fields we need to get data from
+  console.log("Grabing new patron information from SUBMIT form")
   let inputName = document.getElementById("input-name");
   let inputDateOfBirth = document.getElementById("input-dateofbirth");
   let inputAddress = document.getElementById("input-address");
@@ -42,10 +43,6 @@ addPatronForm.addEventListener("submit", function (e) {
       // Refresh page to requery updated table
       location.reload();
 
-      // // Clear the input fields for another transaction
-      // inputName.value = "";
-      // inputDateOfBirth.value = "";
-      // inputAddress.value = "";
     } else if (xhttp.readyState == 4 && xhttp.status != 200) {
       console.log("There was an error with the input.");
     }
@@ -55,46 +52,13 @@ addPatronForm.addEventListener("submit", function (e) {
   xhttp.send(JSON.stringify(data));
 });
 
-// // Creates a single row from an Object representing a single record from
-// // Patrons
-// addRowToTable = (data) => {
-//   // Get a reference to the current table on the page and clear it out.
-//   let currentTable = document.getElementById("patrons-table");
-
-//   // Get the location where we should insert the new row (end of table)
-//   let newRowIndex = currentTable.rows.length;
-
-//   // Get a reference to the new row from the database query (last object)
-//   let parsedData = JSON.parse(data);
-//   let newRow = parsedData[parsedData.length - 1];
-
-//   // Formats date to YYYY/MM/DD
-//   const formattedDate = new Date(newRow.date_of_birth).toLocaleDateString(
-//     "en-CA"
-//   );
-
-// Create a row and 4 cells
-let row = document.createElement("TR");
-let idCell = document.createElement("TD");
-let nameCell = document.createElement("TD");
-let dateOfBirthCell = document.createElement("TD");
-let addressCell = document.createElement("TD");
-let editCell = document.createElement("TD");
-let deleteCell = document.createElement("TD");
-
-//   // Fill the cells with correct data
-//   idCell.innerText = newRow.patron_id;
-//   nameCell.innerText = newRow.name;
-//   dateOfBirthCell.innerText = formattedDate;
-//   addressCell.innerText = newRow.address;
-
 // Edit Button
 let editButton = document.createElement("button");
 editButton.innerText = "Edit";
 editButton.onclick = function () {
   editPatron(newRow.patron_id, newRow.name, formattedDate, newRow.address);
 };
-editCell.appendChild(editButton);
+// editCell.appendChild(editButton);
 
 // Delete Button
 deleteCell = document.createElement("button");
@@ -102,17 +66,6 @@ deleteCell.innerHTML = "Delete";
 deleteCell.onclick = function () {
   deletePatron(newRow.patron_id);
 };
-
-// Add the cells to the row
-row.appendChild(idCell);
-row.appendChild(nameCell);
-row.appendChild(dateOfBirthCell);
-row.appendChild(addressCell);
-row.appendChild(editCell);
-row.appendChild(deleteCell);
-
-//   // Add a row attribute so the deleteRow function can find a newly added row
-//   row.setAttribute("data-value", newRow.patron_id);
 
 // User clicks edit button
 function editPatron(patronID, curName, curDateOfBirth, curAddress) {
@@ -122,7 +75,7 @@ function editPatron(patronID, curName, curDateOfBirth, curAddress) {
 
   // Change the bottom form to the edit form
   editDescription.innerHTML =
-    "To edit an implant record, please enter the details below and click 'Submit'!";
+    "To edit an patron, please enter the details below and click 'Submit'!";
 
   editForm.innerHTML = `
     <label for="edit-name">Name:* </label>
@@ -151,6 +104,7 @@ function cancelEdit() {
 
 // Save the edit and send data to server
 function savePatronEdit(patronID) {
+  console.log("Grabing new patron information from EDIT form")
   let newName = document.getElementById("edit-name").value;
   let newDateofBirth = document.getElementById("edit-dateofbirth").value;
   let newAddress = document.getElementById("edit-address").value;
@@ -199,18 +153,7 @@ function deletePatron(patronID) {
       success: function (result) {
         // Refresh page to requery updated table
         location.reload();
-        // deleteRow(patronID);
       },
     });
   }
 }
-
-// function deleteRow(patronID) {
-//   let table = document.getElementById("patrons-table");
-//   for (let i = 0, row; (row = table.rows[i]); i++) {
-//     if (table.rows[i].getAttribute("data-value") == patronID) {
-//       table.deleteRow(i);
-//       break;
-//     }
-//   }
-// }

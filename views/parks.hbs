@@ -17,6 +17,7 @@
       <th>State</th>
       <th>County</th>
       <th>Has Ranger Station</th>
+      <th>Edit</th>
       <th>Delete?</th>
     </tr>
   </thead>
@@ -28,6 +29,8 @@
         <td>{{this.state}}</td>
         <td>{{this.county}}</td>
         <td>{{this.has_ranger_station}}</td>
+        <td><button onclick="editPatron(
+        {{this.park_id}}, '{{this.name}}', '{{this.state}}', '{{this.county}}', '{{this.has_ranger_station}}')">Edit</button></td>
         <td><button onclick="deletePark({{this.park_id}})">Delete</button></td>
       </tr>
     {{/each}}

@@ -57,6 +57,29 @@ router.post("/", function (req, res) {
   });
 });
 
+// UPDATE
+router.put("/", function (req, res) {
+  let data = req.body;
+  let query = 
+    `UPDATE Patrons
+      SET 
+      park_id = (SELECT park_id FROM Parks WHERE name = ?, 
+      name = ?, 
+      latitude = ?,
+      longitdue = ?,
+      length = ?
+    WHERE trail_id = ?`;
+  
+  db.pool.query(query, [data.park_name, data.name, data.latitude, data.longitude, data.length, data.trail_id], function (err, result) {
+    if (err) {
+      console.log(err);
+      res.status(500).send("error");
+    } else {
+      res.status(200).send("trail updated")
+    }
+  });
+});
+
 
 // DELETE
 router.delete("/", function (req, res, next) {
