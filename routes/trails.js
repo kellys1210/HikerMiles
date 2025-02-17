@@ -61,12 +61,12 @@ router.post("/", function (req, res) {
 router.put("/", function (req, res) {
   let data = req.body;
   let query = 
-    `UPDATE Patrons
+    `UPDATE Trails
       SET 
-      park_id = (SELECT park_id FROM Parks WHERE name = ?, 
+      park_id = (SELECT park_id FROM Parks WHERE name = ?), 
       name = ?, 
       latitude = ?,
-      longitdue = ?,
+      longitude = ?,
       length = ?
     WHERE trail_id = ?`;
   

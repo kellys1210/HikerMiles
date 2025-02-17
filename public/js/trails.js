@@ -102,7 +102,7 @@ function saveTrailEdit(trailID) {
     type: "PUT",
     data: JSON.stringify(data),
     contentType: "application/json; charset=utf-8",
-    success: function () {
+    success: function (response) {
       console.log("Trail updated");
       location.reload();
     },
