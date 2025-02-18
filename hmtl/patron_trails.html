@@ -3,12 +3,12 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="app.css" />
+    <link rel="stylesheet" href="../public/css/app.css" />
     <title>Patron Trails</title>
   </head>
   <body>
     <header>
-      <img class="headerImg" src="assets/pexels-robbymccullough-1867601.jpg" />
+      <img class="headerImg" src="../public/img/pexels-robbymccullough-1867601.jpg" />
       Hiker Miles Program
     </header>
     <nav class="pageLinks">
@@ -31,117 +31,189 @@
           <th>Patron Name</th>
           <th>Trail Name</th>
           <th>Number of Times Hiked</th>
+          <th>Edit</th>
+          <th>Delete?</th>
         </tr>
         <tr>
           <td>James Jimenez</td>
           <td>Bright Angel Trail</td>
           <td>2</td>
+          <td><button
+            onclick="editPatronTrail()">Edit</button></td>
+          <td><button
+            onclick="deletePatronTrail()">Delete</button></td>
         </tr>
         <tr>
           <td>April Singleton</td>
           <td>Mist Trail</td>
           <td>3</td>
+          <td><button
+            onclick="editPatronTrail()">Edit</button></td>
+          <td><button
+            onclick="deletePatronTrail()">Delete</button></td>
         </tr>
         <tr>
           <td>Jay Spears</td>
           <td>Fairy Falls Trail</td>
           <td>1</td>
+          <td><button
+            onclick="editPatronTrail()">Edit</button></td>
+          <td><button
+            onclick="deletePatronTrail()">Delete</button></td>
         </tr>
         <tr>
           <td>Bradley Barrett</td>
           <td>Alum Cave Trail</td>
           <td>2</td>
+          <td><button
+            onclick="editPatronTrail()">Edit</button></td>
+          <td><button
+            onclick="deletePatronTrail()">Delete</button></td>
         </tr>
         <tr>
           <td>Lauren Barajas</td>
           <td>Angels Landing</td>
           <td>3</td>
+          <td><button
+            onclick="editPatronTrail()">Edit</button></td>
+          <td><button
+            onclick="deletePatronTrail()">Delete</button></td>
         </tr>
         <tr>
           <td>James Jimenez</td>
           <td>Fairy Falls Trail</td>
           <td>5</td>
+          <td><button
+            onclick="editPatronTrail()">Edit</button></td>
+          <td><button
+            onclick="deletePatronTrail()">Delete</button></td>
         </tr>
         <tr>
           <td>April Singleton</td>
           <td>Bright Angel Trail</td>
           <td>3</td>
+          <td><button
+            onclick="editPatronTrail()">Edit</button></td>
+          <td><button
+            onclick="deletePatronTrail()">Delete</button></td>
         </tr>
         <tr>
           <td>Jay Spears</td>
           <td>Mist Trail</td>
           <td>2</td>
+          <td><button
+            onclick="editPatronTrail()">Edit</button></td>
+          <td><button
+            onclick="deletePatronTrail()">Delete</button></td>
         </tr>
         <tr>
           <td>Bradley Barrett</td>
           <td>Angels Landing</td>
           <td>4</td>
+          <td><button
+            onclick="editPatronTrail()">Edit</button></td>
+          <td><button
+            onclick="deletePatronTrail()">Delete</button></td>
         </tr>
         <tr>
           <td>Lauren Barajas</td>
           <td>Alum Cave Trail</td>
           <td>6</td>
+          <td><button
+            onclick="editPatronTrail()">Edit</button></td>
+          <td><button
+            onclick="deletePatronTrail()">Delete</button></td>
         </tr>
       </table>
     </div>
 
     <!-- Insert Form -->
-    <div class="formContainer">
-      * = required field
-      <h2>Add a New Patron Trail Visit</h2>
-      <form action="" method="post">
-        <label for="patron_id">Patron Name:*</label>
-        <select id="patron_id" required>
+    <div id="add-PatronTrail">
+      <p>To add a new Patron Trail, please enter the details below and click 'Submit'!</p>
+      <form id="patrontrail-insert">
+        <label for="patron_name">Patron Name:*</label>
+        <select id="patron_name" required>
           <option value="" disabled selected>Select a patron</option>
+          <option>James Jimenez</option>
+          <option>April Singleton</option>
+          <option>Jay Spears</option>
+          <option>Bradley Barrett</option>
+          <option>Lauren Barajas</option>
         </select>
 
         <label for="trail_id">Trail Name:*</label>
         <select id="trail_id" required>
           <option value="" disabled selected>Select a trail</option>
+          <option>Bright Angel Trail</option>
+          <option>Mist Trail</option>
+          <option>Fairy Falls Trail</option>
+          <option>Alum Cave Trail</option>
+          <option>Angels Landing</option>
         </select>
 
         <label for="hike_count">Hike Count:*</label>
-        <input type="text" placeholder="1, 2, 3..." required />
+        <input type="number" placeholder="1, 2, 3..." required />
         <input type="submit" value="Add New Visit" />
       </form>
     </div>
 
-    <!-- Update Form -->
-    <div class="formContainer">
-      <h2>Update an Existing Patron Trail Visit</h2>
-      <form>
-        <label for="patron_id_update">Patron Name:*</label>
-        <select id="patron_id_update" required>
-          <option value="" disabled selected>Select a patron</option>
-        </select>
+    <script>
+      document.getElementById("patrontrail-insert").addEventListener("submit", function(e) {
+        e.preventDefault();
+        alert("Entry Added!");
+        location.reload();
+      });
 
-        <label for="trail_id_update">Trail Name:*</label>
-        <select id="trail_id_update" required>
-          <option value="" disabled selected>Select a trail</option>
-        </select>
+      function deletePatronTrail() {
+        if (window.confirm(
+          "Do you really want to delete this record? This cannot be undone. Click 'OK' to continue with deleting this record."
+        )){alert("Entry deleted!");}
+      }
 
-        <label for="hike_count_update">Hike Count:*</label>
-        <input type="text" placeholder="1, 2, 3..." required />
-        * = required field
-        <input type="submit" value="Update" />
-      </form>
-    </div>
+      function editPatronTrail() {
+        let editForm = document.getElementById("add-PatronTrail");
 
-    <!-- Delete Form -->
-    <div class="formContainer">
-      <h2>Delete an Existing Patron Trail Visit</h2>
-      <form>
-        <label for="patron_id_delete">Patron Name:*</label>
-        <select id="patron_id_delete" required>
-          <option value="" disabled selected>Select a patron</option>
-        </select>
+        editForm.innerHTML = `
+          <p>To edit a Patron Trail visit, please enter the details below and click 'Save Changes'!</p>
+          <form id="edit-form">
+            <label for="patron_name">Patron Name:*</label>
+            <select id="patron_name" required>
+              <option value="" disabled selected>Select a patron</option>
+              <option>James Jimenez</option>
+              <option>April Singleton</option>
+              <option>Jay Spears</option>
+              <option>Bradley Barrett</option>
+              <option>Lauren Barajas</option>
+            </select>
 
-        <label for="trail_id_delete">Trail Name:*</label>
-        <select id="trail_id_delete" required>
-          <option value="" disabled selected>Select a trail</option>
-        </select>
-        <input type="submit" value="Delete" />
-      </form>
-    </div>
+            <label for="trail_id">Trail Name:*</label>
+            <select id="trail_id" required>
+              <option value="" disabled selected>Select a trail</option>
+              <option>Bright Angel Trail</option>
+              <option>Mist Trail</option>
+              <option>Fairy Falls Trail</option>
+              <option>Alum Cave Trail</option>
+              <option>Angels Landing</option>
+            </select>
+
+            <label for="hike_count">Hike Count:*</label>
+            <input type="number" placeholder="1, 2, 3..." required />
+            <button type="submit">Save Changes</button>
+            <button type="button" onclick="cancelEdit()">Cancel</button>
+          </form>
+        `;
+
+        document.getElementById("edit-form").addEventListener("submit", function (e) {
+          e.preventDefault();
+          alert("Entry Updated!");
+          location.reload();
+        });
+      }
+
+      function cancelEdit() {
+        location.reload();
+      }
+    </script>
+
   </body>
 </html>

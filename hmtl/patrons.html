@@ -3,12 +3,12 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="app.css" />
+    <link rel="stylesheet" href="../public/css/app.css" />
     <title>Patrons</title>
   </head>
   <body>
     <header>
-      <img class="headerImg" src="assets/pexels-robbymccullough-1867601.jpg" />
+      <img class="headerImg" src="../public/img/pexels-robbymccullough-1867601.jpg" />
       Hiker Miles Program
     </header>
     <nav class="pageLinks">
@@ -33,50 +33,71 @@
           <th>Name</th>
           <th>Date of Birth</th>
           <th>Address</th>
+          <th>Edit</th>
+          <th>Delete?</th>
         </tr>
         <tr>
           <td>1</td>
           <td>James Jimenez</td>
           <td>1954-09-15</td>
           <td>7111 Ronald Curve, Fieldsbury, CT 77656</td>
+          <td><button
+            onclick="editPatron()">Edit</button></td>
+          <td><button
+            onclick="deletePatron()">Delete</button></td>
         </tr>
         <tr>
           <td>2</td>
           <td>April Singleton</td>
           <td>1993-01-03</td>
           <td>507 Bauer Corner Suite 771, Port Jennifer, HI 60644</td>
+          <td><button
+            onclick="editPatron()">Edit</button></td>
+          <td><button
+            onclick="deletePatron()">Delete</button></td>
         </tr>
         <tr>
           <td>3</td>
           <td>Jay Spears</td>
           <td>1994-03-22</td>
           <td>648 James Crescent Suite 576, New Ryanview, SC 10982</td>
+          <td><button
+            onclick="editPatron()">Edit</button></td>
+          <td><button
+            onclick="deletePatron()">Delete</button></td>
         </tr>
         <tr>
           <td>4</td>
           <td>Bradley Barrett</td>
           <td>1980-03-30</td>
           <td>560 Dillon Course Suite 939, Lopezberg, SD 51099</td>
+          <td><button
+            onclick="editPatron()">Edit</button></td>
+          <td><button
+            onclick="deletePatron()">Delete</button></td>
         </tr>
         <tr>
           <td>5</td>
           <td>Lauren Barajas</td>
           <td>1977-10-26</td>
           <td>7736 Steele Lodge, South Brianstad, AZ 63162</td>
+          <td><button
+            onclick="editPatron()">Edit</button></td>
+          <td><button
+            onclick="deletePatron()">Delete</button></td>
         </tr>
       </table>
     </div>
 
     <!-- Insert Form -->
-    <div class="formContainer">
-      * = required field
-      <h2>Add a New Patron</h2>
-      <form action="" method="post">
+    <div id="add-patron">
+      <p>To add a new patron, please enter their information below and click 'Submit'!</p>
+      <form id="patron-insert">
         <label for="name">Name:*</label>
         <input type="text" required placeholder="Stick Stickly" />
         <label for="dob">Date of Birth:*</label>
         <input type="date" required />
-        <label for="address">Address:</label>
+        <label for="address">Address:*</label>
         <input
           type="text"
           required
@@ -85,33 +106,49 @@
       </form>
     </div>
 
-    <!-- Update Form -->
-    <div class="formContainer">
-      <h2>Update an Existing Patron</h2>
-      <form>
-        <label for="patron_id">Patron ID:*</label>
-        <input type="text" required placeholder="1, 2, 3..." />
-        <label for="name">Name:*</label>
-        <input type="text" required placeholder="Stick Stickly" />
-        <label for="dob">Date of Birth:*</label>
-        <input type="date" required />
-        <label for="address">Address:</label>
-        <input
-          type="text"
-          required
-          placeholder="P.O. Box 963, New York City, New York, 10108" />
-        <input type="submit" value="Update" />
-      </form>
-    </div>
+    <script>
+      document.getElementById("patron-insert").addEventListener("submit", function(e) {
+        e.preventDefault();
+        alert("Entry Added!");
+        location.reload();
+      });
 
-    <!-- Delete Form -->
-    <div class="formContainer">
-      <h2>Delete an Existing Patron</h2>
-      <form>
-        <label for="patron_id">Patron ID:*</label>
-        <input type="text" required placeholder="1, 2, 3..." />
-        <input type="submit" value="Delete" />
-      </form>
-    </div>
+      function deletePatron() {
+        if (window.confirm(
+          "Do you really want to delete this record? This cannot be undone. Click 'OK' to continue with deleting this record."
+        )){alert("Entry deleted!");}
+      }
+
+      function editPatron() {
+        let editForm = document.getElementById("add-patron");
+
+        editForm.innerHTML = `
+          <p>To edit an patron, please enter the details below and click 'Save Changes'!</p>
+          <form id="edit-form">
+            <label for="edit-name">Name:* </label>
+            <input type="text" id="edit-name" value="" required />
+
+            <label for="edit-dateofbirth">Date of Birth:* </label>
+            <input type="date" id="edit-dateofbirth" value="" required />
+
+            <label for="edit-address">Address:* </label>
+            <input type="text" id="edit-address" value="" required />
+
+            <button type="submit">Save Changes</button>
+            <button type="button" onclick="cancelEdit()">Cancel</button>
+          </form>
+        `;
+
+        document.getElementById("edit-form").addEventListener("submit", function (e) {
+          e.preventDefault();
+          alert("Entry Updated!");
+          location.reload();
+        });
+      }
+
+      function cancelEdit() {
+        location.reload();
+      }
+    </script>
   </body>
 </html>

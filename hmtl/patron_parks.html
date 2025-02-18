@@ -3,12 +3,12 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="app.css" />
+    <link rel="stylesheet" href="../public/css/app.css" />
     <title>Patron Parks</title>
   </head>
   <body>
     <header>
-      <img class="headerImg" src="assets/pexels-robbymccullough-1867601.jpg" />
+      <img class="headerImg" src="../public/img/pexels-robbymccullough-1867601.jpg" />
       Hiker Miles Program
     </header>
     <nav class="pageLinks">
@@ -32,116 +32,189 @@
           <th>Patron Name</th>
           <th>Park Name</th>
           <th>Visit Count</th>
+          <th>Edit</th>
+          <th>Delete?</th>
         </tr>
         <tr>
           <td>James Jimenez</td>
           <td>Grand Canyon National Park</td>
           <td>1</td>
+          <td><button
+            onclick="editPatronPark()">Edit</button></td>
+          <td><button
+            onclick="deletePatronPark()">Delete</button></td>
         </tr>
         <tr>
           <td>April Singleton</td>
           <td>Yosemite National Park</td>
           <td>1</td>
+          <td><button
+            onclick="editPatronPark()">Edit</button></td>
+          <td><button
+            onclick="deletePatronPark()">Delete</button></td>
         </tr>
         <tr>
           <td>Jay Spears</td>
           <td>Yellowstone National Park</td>
           <td>1</td>
+          <td><button
+            onclick="editPatronPark()">Edit</button></td>
+          <td><button
+            onclick="deletePatronPark()">Delete</button></td>
         </tr>
         <tr>
           <td>Bradley Barrett</td>
           <td>Great Smoky Mountains National Park</td>
           <td>1</td>
+          <td><button
+            onclick="editPatronPark()">Edit</button></td>
+          <td><button
+            onclick="deletePatronPark()">Delete</button></td>
         </tr>
         <tr>
           <td>Lauren Barajas</td>
           <td>Zion National Park</td>
           <td>1</td>
+          <td><button
+            onclick="editPatronPark()">Edit</button></td>
+          <td><button
+            onclick="deletePatronPark()">Delete</button></td>
         </tr>
         <tr>
           <td>James Jimenez</td>
           <td>Yellowstone National Park</td>
           <td>1</td>
+          <td><button
+            onclick="editPatronPark()">Edit</button></td>
+          <td><button
+            onclick="deletePatronPark()">Delete</button></td>
         </tr>
         <tr>
           <td>April Singleton</td>
           <td>Grand Canyon National Park</td>
           <td>1</td>
+          <td><button
+            onclick="editPatronPark()">Edit</button></td>
+          <td><button
+            onclick="deletePatronPark()">Delete</button></td>
         </tr>
         <tr>
           <td>Jay Spears</td>
           <td>Yosemite National Park</td>
           <td>1</td>
+          <td><button
+            onclick="editPatronPark()">Edit</button></td>
+          <td><button
+            onclick="deletePatronPark()">Delete</button></td>
         </tr>
         <tr>
           <td>Bradley Barrett</td>
           <td>Zion National Park</td>
           <td>1</td>
+          <td><button
+            onclick="editPatronPark()">Edit</button></td>
+          <td><button
+            onclick="deletePatronPark()">Delete</button></td>
         </tr>
         <tr>
           <td>Lauren Barajas</td>
           <td>Great Smoky Mountains National Park</td>
           <td>1</td>
+          <td><button
+            onclick="editPatronPark()">Edit</button></td>
+          <td><button
+            onclick="deletePatronPark()">Delete</button></td>
         </tr>
       </table>
     </div>
 
     <!-- Insert Form -->
-    <div class="formContainer">
-      * = required field
-      <h2>Add a New Patron Park Visit</h2>
-      <form action="" method="post">
-        <label for="patron_id">Patron Name:*</label>
-        <select id="patron_id" required>
+    <div id="add-PatronParks">
+      <p>To add a new Patron Parks, please enter the details below and click 'Submit'!</p>
+      <form id="patronparks-insert">
+        <label for="patron_name">Patron Name:*</label>
+        <select id="patron_name" required>
           <option value="" disabled selected>Select a patron</option>
+          <option>James Jimenez</option>
+          <option>April Singleton</option>
+          <option>Jay Spears</option>
+          <option>Bradley Barrett</option>
+          <option>Lauren Barajas</option>
         </select>
 
-        <label for="park_id">Park Name:*</label>
-        <select id="park_id" required>
+        <label for="park_name">Park Name:*</label>
+        <select id="park_name" required>
           <option value="" disabled selected>Select a park</option>
+          <option>Yellowstone National Park</option>
+          <option>Grand Canyon National Park</option>
+          <option>Yosemite National Park</option>
+          <option>Zion National Park</option>
+          <option>Great Smoky Mountains National Park</option>
         </select>
 
         <label for="visit_count">Visit Count:*</label>
-        <input type="text" placeholder="1, 2, 3..." required />
+        <input type="number" placeholder="1, 2, 3..." required />
         <input type="submit" value="Add New Visit" />
       </form>
     </div>
 
-    <!-- Update Form -->
-    <div class="formContainer">
-      <h2>Update an Existing Patron Park Visit</h2>
-      <form>
-        <label for="patron_id_update">Patron Name:*</label>
-        <select id="patron_id_update" required>
-          <option value="" disabled selected>Select a patron</option>
-        </select>
+    <script>
+      document.getElementById("patronparks-insert").addEventListener("submit", function(e) {
+        e.preventDefault();
+        alert("Entry Added!");
+        location.reload();
+      });
 
-        <label for="park_id_update">Park Name:*</label>
-        <select id="park_id_update" required>
-          <option value="" disabled selected>Select a park</option>
-        </select>
+      function deletePatronPark() {
+        if (window.confirm(
+          "Do you really want to delete this record? This cannot be undone. Click 'OK' to continue with deleting this record."
+        )){alert("Entry deleted!");}
+      }
 
-        <label for="visit_count_update">Visit Count:*</label>
-        <input type="text" placeholder="1, 2, 3..." required />
-        <input type="submit" value="Update" />
-      </form>
-    </div>
+      function editPatronPark() {
+        let editForm = document.getElementById("add-PatronParks");
 
-    <!-- Delete Form -->
-    <div class="formContainer">
-      <h2>Delete an Existing Patron Park Visit</h2>
-      <form>
-        <label for="patron_id_delete">Patron Name:*</label>
-        <select id="patron_id_delete" required>
-          <option value="" disabled selected>Select a patron</option>
-        </select>
+        editForm.innerHTML = `
+          <p>To edit a Patron Parks visit, please enter the details below and click 'Save Changes'!</p>
+          <form id="edit-form">
+            <label for="patron_name">Patron Name:*</label>
+            <select id="patron_name" required>
+              <option value="" disabled selected>Select a patron</option>
+              <option>James Jimenez</option>
+              <option>April Singleton</option>
+              <option>Jay Spears</option>
+              <option>Bradley Barrett</option>
+              <option>Lauren Barajas</option>
+            </select>
 
-        <label for="park_id_delete">Park Name:*</label>
-        <select id="park_id_delete" required>
-          <option value="" disabled selected>Select a park</option>
-        </select>
-        <input type="submit" value="Delete" />
-      </form>
-    </div>
+            <label for="park_name">Park Name:*</label>
+            <select id="park_name" required>
+              <option value="" disabled selected>Select a park</option>
+              <option>Yellowstone National Park</option>
+              <option>Grand Canyon National Park</option>
+              <option>Yosemite National Park</option>
+              <option>Zion National Park</option>
+              <option>Great Smoky Mountains National Park</option>
+            </select>
+
+            <label for="visit_count">Visit Count:*</label>
+            <input type="number" placeholder="1, 2, 3..." required />
+            <button type="submit">Save Changes</button>
+            <button type="button" onclick="cancelEdit()">Cancel</button>
+          </form>
+        `;
+
+        document.getElementById("edit-form").addEventListener("submit", function (e) {
+          e.preventDefault();
+          alert("Entry Updated!");
+          location.reload();
+        });
+      }
+
+      function cancelEdit() {
+        location.reload();
+      }
+    </script>
+   
   </body>
 </html>

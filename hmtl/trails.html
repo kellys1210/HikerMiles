@@ -3,12 +3,12 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="app.css" />
+    <link rel="stylesheet" href="../public/css/app.css" />
     <title>Trails</title>
   </head>
   <body>
     <header>
-      <img class="headerImg" src="assets/pexels-robbymccullough-1867601.jpg" />
+      <img class="headerImg" src="../public/img/pexels-robbymccullough-1867601.jpg" />
       Hiker Miles Program
     </header>
     <nav class="pageLinks">
@@ -30,62 +30,90 @@
       <table>
         <tr>
           <th>Trail ID</th>
-          <th>Park ID</th>
+          <th>Park Name</th>
           <th>Name</th>
           <th>Latitude</th>
           <th>Longitude</th>
           <th>Length</th>
+          <th>Edit</th>
+          <th>Delete?</th>
         </tr>
         <tr>
           <td>1</td>
-          <td>1</td>
+          <td>Yellowstone National Park</td>
           <td>Fairy Falls Trail</td>
           <td>44.51434</td>
           <td>-110.83184</td>
           <td>2.3</td>
+          <td><button
+            onclick="editTrail()">Edit</button></td>
+          <td><button
+            onclick="deleteTrail()">Delete</button></td>
         </tr>
         <tr>
           <td>2</td>
-          <td>2</td>
+          <td>Grand Canyon National Park</td>
           <td>Bright Angel Trail</td>
           <td>36.1935</td>
           <td>-112.0486</td>
           <td>7.8</td>
+          <td><button
+            onclick="editTrail()">Edit</button></td>
+          <td><button
+            onclick="deleteTrail()">Delete</button></td>
         </tr>
         <tr>
           <td>3</td>
-          <td>3</td>
+          <td>Yosemite National Park</td>
           <td>Mist Trail</td>
           <td>37.72694</td>
           <td>-119.54444</td>
           <td>3.0</td>
+          <td><button
+            onclick="editTrail()">Edit</button></td>
+          <td><button
+            onclick="deleteTrail()">Delete</button></td>
         </tr>
         <tr>
           <td>4</td>
-          <td>4</td>
+          <td>Zion National Park</td>
           <td>Angels Landing</td>
           <td>37.2690</td>
           <td>-112.9469</td>
           <td>2.5</td>
+          <td><button
+            onclick="editTrail()">Edit</button></td>
+          <td><button
+            onclick="deleteTrail()">Delete</button></td>
         </tr>
         <tr>
           <td>5</td>
-          <td>5</td>
+          <td>Great Smoky Mountains National Park</td>
           <td>Alum Cave Trail</td>
           <td>35.629553</td>
           <td>-83.451443</td>
           <td>4.6</td>
+          <td><button
+            onclick="editTrail()">Edit</button></td>
+          <td><button
+            onclick="deleteTrail()">Delete</button></td>
         </tr>
       </table>
     </div>
 
     <!-- Insert Form -->
-    <div class="formContainer">
-      * = required field
-      <h2>Add a New Trail</h2>
-      <form action="" method="post">
-        <label for="park_id">Park Name:*</label>
-        <input type="text" required placeholder="Grand Canyon National Park" />
+    <div id="add-Trails">
+      <p>To add a new trail, please enter the details below and click 'Submit'!</p>
+      <form id="trail-insert">
+        <label for="park_name">Park Name:*</label>
+        <select id="park_name" required>
+          <option value="" disabled selected>Select a Park</option>
+          <option>Yellowstone National Park</option>
+          <option>Grand Canyon National Park</option>
+          <option>Yosemite National Park</option>
+          <option>Zion National Park</option>
+          <option>Great Smoky Mountains National Park</option>
+        </select>
         <label for="name">Trail Name:*</label>
         <input type="text" required placeholder="Bright Angel Trail" />
         <label for="latitude">Latitude:*</label>
@@ -93,39 +121,62 @@
         <label for="longitude">Longitude:*</label>
         <input type="number" required placeholder="-83.451443" />
         <label for="length">Length (miles):*</label>
-        <input type="text" required placeholder="7.8" />
+        <input type="number" required placeholder="7.8" />
         <input type="submit" value="Add New Trail" />
       </form>
     </div>
 
-    <!-- Update Form -->
-    <div class="formContainer">
-      <h2>Update an Existing Trail</h2>
-      <form>
-        <label for="trail_id">Trail ID:*</label>
-        <input type="text" required placeholder="1, 2, 3..." />
-        <label for="park_id">Park ID:*</label>
-        <input type="text" required placeholder="1, 2, 3..." />
-        <label for="name">Trail Name:*</label>
-        <input type="text" required placeholder="Bright Angel Trail" />
-        <label for="latitude">Latitude:*</label>
-        <input type="number" required placeholder="36.107" />
-        <label for="longitude">Longitude:*</label>
-        <input type="number" required placeholder="-83.451443" />
-        <label for="length">Length:*</label>
-        <input type="text" required placeholder="7.8" />
-        <input type="submit" value="Update" />
-      </form>
-    </div>
+    <script>
+      document.getElementById("trail-insert").addEventListener("submit", function(e) {
+        e.preventDefault();
+        alert("Entry Added!");
+        location.reload();
+      });
 
-    <!-- Delete Form -->
-    <div class="formContainer">
-      <h2>Delete an Existing Trail</h2>
-      <form>
-        <label for="trail_id">Trail ID:*</label>
-        <input type="text" required placeholder="1, 2, 3..." />
-        <input type="submit" value="Delete" />
-      </form>
-    </div>
+      function deleteTrail() {
+        if (window.confirm(
+          "Do you really want to delete this record? This cannot be undone. Click 'OK' to continue with deleting this record."
+        )){alert("Entry deleted!");}
+      }
+
+      function editTrail() {
+        let editForm = document.getElementById("add-Trails");
+
+        editForm.innerHTML = `
+          <p>To add edit a trail, please enter the details below and click 'Save Changes'!</p>
+          <form id="edit-form">
+            <label for="park_name">Park Name:*</label>
+            <select id="park_name" required>
+              <option value="" disabled selected>Select a Park</option>
+              <option>Yellowstone National Park</option>
+              <option>Grand Canyon National Park</option>
+              <option>Yosemite National Park</option>
+              <option>Zion National Park</option>
+              <option>Great Smoky Mountains National Park</option>
+            </select>
+            <label for="name">Trail Name:*</label>
+            <input type="text" required placeholder="Bright Angel Trail" />
+            <label for="latitude">Latitude:*</label>
+            <input type="number" required placeholder="36.107" />
+            <label for="longitude">Longitude:*</label>
+            <input type="number" required placeholder="-83.451443" />
+            <label for="length">Length (miles):*</label>
+            <input type="number" required placeholder="7.8" />
+            <button type="submit">Save Changes</button>
+            <button type="button" onclick="cancelEdit()">Cancel</button>
+          </form>
+        `;
+
+        document.getElementById("edit-form").addEventListener("submit", function (e) {
+          e.preventDefault();
+          alert("Entry Updated!");
+          location.reload();
+        });
+      }
+
+      function cancelEdit() {
+        location.reload();
+      }
+    </script>
   </body>
 </html>

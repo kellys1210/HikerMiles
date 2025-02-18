@@ -3,12 +3,12 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="app.css" />
+    <link rel="stylesheet" href="../public/css/app.css" />
     <title>Brain Implants</title>
   </head>
   <body>
     <header>
-      <img class="headerImg" src="assets/pexels-robbymccullough-1867601.jpg" />
+      <img class="headerImg" src="../public/img/pexels-robbymccullough-1867601.jpg" />
       Hiker Miles Program
     </header>
     <nav class="pageLinks">
@@ -30,85 +30,137 @@
       <table>
         <tr>
           <th>Implant ID</th>
-          <th>Patron ID</th>
+          <th>Patron Name</th>
           <th>Expiration Date</th>
           <th>Beserk Mode?</th>
+          <th>Edit</th>
+          <th>Delete?</th>
         </tr>
         <tr>
           <td>1</td>
-          <td>1</td>
+          <td>James Jimenez</td>
           <td>2031-05-20</td>
           <td>TRUE</td>
+          <td><button
+            onclick="editImplant()">Edit</button></td>
+          <td><button
+            onclick="deleteImplant()">Delete</button></td>
         </tr>
         <tr>
           <td>2</td>
-          <td>2</td>
+          <td>April Singleton</td>
           <td>2034-07-15</td>
           <td>FALSE</td>
+          <td><button
+            onclick="editImplant()">Edit</button></td>
+          <td><button
+            onclick="deleteImplant()">Delete</button></td>
         </tr>
         <tr>
           <td>3</td>
-          <td>3</td>
+          <td>N/A</td>
           <td>2030-11-05</td>
           <td>TRUE</td>
+          <td><button
+            onclick="editImplant()">Edit</button></td>
+          <td><button
+            onclick="deleteImplant()">Delete</button></td>
         </tr>
         <tr>
           <td>4</td>
-          <td>4</td>
+          <td>N/A</td>
           <td>2029-01-25</td>
           <td>FALSE</td>
+          <td><button
+            onclick="editImplant()">Edit</button></td>
+          <td><button
+            onclick="deleteImplant()">Delete</button></td>
         </tr>
         <tr>
           <td>5</td>
-          <td>5</td>
+          <td>N/A</td>
           <td>2028-09-10</td>
           <td>TRUE</td>
+          <td><button
+            onclick="editImplant()">Edit</button></td>
+          <td><button
+            onclick="deleteImplant()">Delete</button></td>
         </tr>
       </table>
     </div>
 
     <!-- Insert -->
-    <div class="formContainer">
-      * = required field
-      <h2>Add a New Implant Record</h2>
-      <form action="" method="post">
-        <!-- TODO: patron_id FK will have to allow Null or we'll have an insert anomaly here -->
-        <label for="patron_id"
-          >Patron Name: (if not yet implanted, leave blank)</label
-        >
-        <input type="text" required placeholder="Patrick Mahomes" />
+    <div id="add-Implant">
+      <p>To add a new Brain Implant, please enter the details below and click 'Submit'!</p>
+      <form id="implant-insert">
+        <label for="patron_name">Patron Name: (select N/A if not yet implanted into a patient)*</label>
+        <select id="patron-name" required>
+          <option value="" disabled selected>Select a Patron</option>
+          <option>James Jimenez</option>
+          <option>April Singleton</option>
+          <option>N/A</option>
+        </select>
         <label for="expiration_date">Expiration Date:*</label>
         <input type="date" required />
-        <label for="berserk_mode">Berserk Mode?*</label>
-        <input type="text" placeholder="True or False" required />
+        <label for="berserkMode">Berserk Mode:*</label>
+        <select id="berserkMode" required>
+          <option value="" disabled selected>True or False</option>
+          <option>True</option>
+          <option>False</option>
+        </select>
         <input type="submit" value="Add New Implant" />
       </form>
     </div>
 
-    <!-- Update -->
-    <div class="formContainer">
-      <h2>Update an Existing Implant Record</h2>
-      <form>
-        <label for="implant_id">Implant ID:*</label>
-        <input type="text" required placeholder="1, 2, 3..." />
-        <label for="patron_id">Patron ID:</label>
-        <input type="text" required placeholder="1, 2, 3..." />
-        <label for="expiration_date">Expiration Date:*</label>
-        <input type="date" required />
-        <label for="berserk_mode">Berserk Mode:*</label>
-        <input type="text" required placeholder="True or False" />
-        <input type="submit" value="Update" />
-      </form>
-    </div>
+    <script>
+      document.getElementById("implant-insert").addEventListener("submit", function(e) {
+        e.preventDefault();
+        alert("Entry Added!");
+        location.reload();
+      });
 
-    <!-- Delete -->
-    <div class="formContainer">
-      <h2>Delete an Existing Implant Record</h2>
-      <form>
-        <label for="implant_id">Implant ID:*</label>
-        <input type="text" required placeholder="1, 2, 3..." />
-        <input type="submit" value="Delete" />
-      </form>
-    </div>
+      function deleteImplant() {
+        if (window.confirm(
+          "Do you really want to delete this record? This cannot be undone. Click 'OK' to continue with deleting this record."
+        )){alert("Entry deleted!");}
+      }
+
+      function editImplant() {
+        let editForm = document.getElementById("add-Implant");
+
+        editForm.innerHTML = `
+          <p>To edit a Brain Implant, please enter the details below and click 'Save Changes'!</p>
+          <form id="edit-form">
+            <label for="park-name">Patron Name:*</label>
+            <select id="patron-name" required>
+              <option value="" disabled selected>Select a Patron</option>
+              <option>James Jimenez</option>
+              <option>April Singleton</option>
+              <option>N/A</option>
+            </select>
+            <label for="expiration_date">Expiration Date:*</label>
+            <input type="date" required />
+            <label for="berserkMode">Berserk Mode:*</label>
+            <select id="berserkMode" required>
+              <option value="" disabled selected>True or False</option>
+              <option>True</option>
+              <option>False</option>
+            </select>
+            <button type="submit">Save Changes</button>
+            <button type="button" onclick="cancelEdit()">Cancel</button>
+          </form>
+        `;
+
+        document.getElementById("edit-form").addEventListener("submit", function (e) {
+          e.preventDefault();
+          alert("Entry Updated!");
+          location.reload();
+        });
+      }
+
+      function cancelEdit() {
+        location.reload();
+      }
+    </script>    
   </body>
 </html>

@@ -3,14 +3,44 @@
    <head>
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <link rel="stylesheet" href="app.css">
+      <link rel="stylesheet" href="../public/css/app.css">
       <title>Hiker Miles</title>
    </head>
    <body>
-      <header>         <img class="headerImg" src="assets/pexels-robbymccullough-1867601.jpg">
+      <header>         
+         <img class="headerImg" src="../public/img/pexels-robbymccullough-1867601.jpg">
          Hiker Miles Program
       </header>
+      <nav class="pageLinks">
+         <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="patrons.html">Patron Directory</a></li>
+            <li><a href="rewards_points.html">Rewards</a></li>
+            <li><a href="parks.html">Park Directory</a></li>
+            <li><a href="trails.html">Trail Directory</a></li>
+            <li><a href="brain_implants.html">Brain Implant Directory</a></li>
+            <li><a href="patron_parks.html">Patron Park Visit History</a></li>
+            <li><a href="patron_trails.html">Patron Trail Visit History</a></li>
+          </ul>
+      </nav>
       <div class="homePage">
+         <h1>Frequent-Hiker-Miles Database Tables</h1>
+     <div>
+     
+     <div>
+       <ul>
+           <li><strong>Brain_Implants</strong>:<br> Tracks details about each hiker's brain implant, including implant ID, installation date, and status.</li><br>
+           <li><strong>Parks</strong>:<br> Contains records of all participating public lands, including names, locations, and ranger station status.</li><br>
+           <li><strong>Patron_Parks</strong>:<br> Links hikers to the parks they frequent, tracking their visits.</li><br>
+           <li><strong>Patron_Trails</strong>:<br> Records the trails hiked by each participant, including distance.</li><br>
+           <li><strong>Patrons</strong>:<br> Stores personal information of hikers, including name, address, and brain implant identification.</li><br>
+           <li><strong>Rewards_Points</strong>:<br> Tracks the rewards points earned by each hiker based on their miles and rewards redeemed.</li><br>
+           <li><strong>Trails</strong>:<br> Maintains data on all trails in the system including distance, trail name, coordinates, and park association.</li><br>
+        </ul>
+     </div>
+     
+     
+      <!-- <div class="homePage">
       <p>
          <a href="patrons.html">Patron Directory</a>
       </p>
@@ -28,6 +58,6 @@
       </p>
       <p><a href="patron_parks.html">Patron Park Visit History</a></p>
       <p> <a href="patron_trails.html">Patron Trail Visit History</a></p>
-      <div>
+      <div> -->
    </body>
 </html>

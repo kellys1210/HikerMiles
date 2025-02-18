@@ -3,12 +3,12 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="app.css" />
+    <link rel="stylesheet" href="../public/css/app.css" />
     <title>Parks</title>
   </head>
   <body>
     <header>
-      <img class="headerImg" src="assets/pexels-robbymccullough-1867601.jpg" />
+      <img class="headerImg" src="../public/img/pexels-robbymccullough-1867601.jpg" />
       Hiker Miles Program
     </header>
     <nav class="pageLinks">
@@ -33,6 +33,8 @@
           <th>State</th>
           <th>County</th>
           <th>Has Ranger Station</th>
+          <th>Edit</th>
+          <th>Delete?</th>
         </tr>
         <tr>
           <td>1</td>
@@ -40,6 +42,10 @@
           <td>Wyoming</td>
           <td>Park</td>
           <td>TRUE</td>
+          <td><button
+            onclick="editPark()">Edit</button></td>
+          <td><button
+            onclick="deletePark()">Delete</button></td>
         </tr>
         <tr>
           <td>2</td>
@@ -47,6 +53,10 @@
           <td>Arizona</td>
           <td>Coconino</td>
           <td>FALSE</td>
+          <td><button
+            onclick="editPark()">Edit</button></td>
+          <td><button
+            onclick="deletePark()">Delete</button></td>
         </tr>
         <tr>
           <td>3</td>
@@ -54,6 +64,10 @@
           <td>California</td>
           <td>Mariposa</td>
           <td>TRUE</td>
+          <td><button
+            onclick="editPark()">Edit</button></td>
+          <td><button
+            onclick="deletePark()">Delete</button></td>
         </tr>
         <tr>
           <td>4</td>
@@ -61,6 +75,10 @@
           <td>Utah</td>
           <td>Washington</td>
           <td>TRUE</td>
+          <td><button
+            onclick="editPark()">Edit</button></td>
+          <td><button
+            onclick="deletePark()">Delete</button></td>
         </tr>
         <tr>
           <td>5</td>
@@ -68,53 +86,80 @@
           <td>Tennessee</td>
           <td>Sevier</td>
           <td>TRUE</td>
+          <td><button
+            onclick="editPark()">Edit</button></td>
+          <td><button
+            onclick="deletePark()">Delete</button></td>
         </tr>
       </table>
     </div>
 
     <!-- Insert Form -->
-    <div class="formContainer">
-      * = required field
-      <h2>Add a New Park</h2>
-      <form action="" method="post">
+    <div id="add-Parks">
+      <p>To add a new park, please enter the details below and click 'Submit'!</p>
+      <form id="park-insert">
         <label for="name">Park Name:*</label>
         <input type="text" required placeholder="Grand Canyon National Park" />
         <label for="state">State:*</label>
         <input type="text" required placeholder="Arizona" />
         <label for="county">County:*</label>
         <input type="text" required placeholder="Coconino" />
-        <label for="ranger_station">Is There a Ranger Station?:*</label>
-        <input type="text" required placeholder="True or False" />
+        <label for="input-ranger">Has Ranger Station:* </label>
+        <select id="bRangerStation" required>
+          <option value="" disabled selected>Select True or False</option>
+          <option>True</option>
+          <option>False</option>
+        </select>
         <input type="submit" value="Add New Park" />
       </form>
     </div>
 
-    <!-- Update Form -->
-    <div class="formContainer">
-      <h2>Update an Existing Park</h2>
-      <form>
-        <label for="park_id">Park ID:*</label>
-        <input type="text" required placeholder="1, 2, 3..." />
-        <label for="name">Name:*</label>
-        <input type="text" required placeholder="Grand Canyon National Park" />
-        <label for="state">State:*</label>
-        <input type="text" required placeholder="Arizona" />
-        <label for="county">County:*</label>
-        <input type="text" required placeholder="Coconino" />
-        <label for="ranger_station">Has Ranger Station:*</label>
-        <input type="text" required placeholder="True or False" />
-        <input type="submit" value="Update" />
-      </form>
-    </div>
+    <script>
+      document.getElementById("park-insert").addEventListener("submit", function(e) {
+        e.preventDefault();
+        alert("Entry Added!");
+        location.reload();
+      });
 
-    <!-- Delete Form -->
-    <div class="formContainer">
-      <h2>Delete an Existing Park</h2>
-      <form>
-        <label for="park_id">Park ID:*</label>
-        <input type="text" required placeholder="1, 2, 3..." />
-        <input type="submit" value="Delete" />
-      </form>
-    </div>
+      function deletePark() {
+        if (window.confirm(
+          "Do you really want to delete this record? This cannot be undone. Click 'OK' to continue with deleting this record."
+        )){alert("Entry deleted!");}
+      }
+
+      function editPark() {
+        let editForm = document.getElementById("add-Parks");
+
+        editForm.innerHTML = `
+          <p>To edit a park, please enter the details below and click 'Save Changes'!</p>
+          <form id="edit-form">
+            <label for="name">Park Name:*</label>
+            <input type="text" required placeholder="Grand Canyon National Park" />
+            <label for="state">State:*</label>
+            <input type="text" required placeholder="Arizona" />
+            <label for="county">County:*</label>
+            <input type="text" required placeholder="Coconino" />
+            <label for="input-ranger">Has Ranger Station:* </label>
+            <select id="bRangerStation" required>
+              <option value="" disabled selected>Select True or False</option>
+              <option>True</option>
+              <option>False</option>
+            </select>
+            <button type="submit">Save Changes</button>
+            <button type="button" onclick="cancelEdit()">Cancel</button>
+          </form>
+        `;
+
+        document.getElementById("edit-form").addEventListener("submit", function (e) {
+          e.preventDefault();
+          alert("Entry Updated!");
+          location.reload();
+        });
+      }
+
+      function cancelEdit() {
+        location.reload();
+      }
+    </script>
   </body>
 </html>
