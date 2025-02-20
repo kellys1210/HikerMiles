@@ -3,43 +3,50 @@
 {{! Parks - Handlebars Template }}
 
 {{! for delete function: }}
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script
+  src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"
+></script>
 
 <h1>Parks</h1>
 
 {{! Create a table }}
 <div class="dataTable">
-<table id="parks-table">
-  <thead>
-    <tr>
-      <th>Park ID</th>
-      <th>Name</th>
-      <th>State</th>
-      <th>County</th>
-      <th>Has Ranger Station</th>
-      <th>Edit</th>
-      <th>Delete?</th>
-    </tr>
-  </thead>
-  <tbody>
-    {{#each data}}
+  <table id="parks-table">
+    <thead>
       <tr>
-        <td>{{this.park_id}}</td>
-        <td>{{this.name}}</td>
-        <td>{{this.state}}</td>
-        <td>{{this.county}}</td>
-        <td>{{this.has_ranger_station}}</td>
-        <td><button onclick="editParks(
-        {{this.park_id}}, '{{this.name}}', '{{this.state}}', '{{this.county}}', '{{this.has_ranger_station}}')">Edit</button></td>
-        <td><button onclick="deletePark({{this.park_id}})">Delete</button></td>
+        <th>Park ID</th>
+        <th>Name</th>
+        <th>State</th>
+        <th>County</th>
+        <th>Has Ranger Station</th>
+        <th>Edit</th>
+        <th>Delete?</th>
       </tr>
-    {{/each}}
-  </tbody>
-</table>
+    </thead>
+    <tbody>
+      {{#each data}}
+        <tr>
+          <td>{{this.park_id}}</td>
+          <td>{{this.name}}</td>
+          <td>{{this.state}}</td>
+          <td>{{this.county}}</td>
+          <td>{{this.has_ranger_station}}</td>
+          <td><button
+              onclick="editParks(
+        {{this.park_id}}, '{{this.name}}', '{{this.state}}', '{{this.county}}', '{{this.has_ranger_station}}')"
+            >Edit</button></td>
+          <td><button
+              onclick="deletePark({{this.park_id}})"
+            >Delete</button></td>
+        </tr>
+      {{/each}}
+    </tbody>
+  </table>
 </div>
 
 {{! Form to add a record to the table }}
-<p id="add-description">To add a new park, please enter the details below and click 'Submit'!</p>
+<p id="add-description">To add a new park, please enter the details below and
+  click 'Submit'!</p>
 <form id="add-park-form">
   <label for="input-name">Park Name:* </label>
   <input type="text" name="input-name" id="input-name" />
@@ -52,8 +59,8 @@
 
   <label for="input-ranger">Has Ranger Station:* </label>
   <select name="input-ranger" id="input-ranger">
-      <option value="0">False</option>
-      <option value="1">True</option>
+    <option value="0">False</option>
+    <option value="1">True</option>
   </select>
 
   <input type="submit" />

@@ -11,46 +11,47 @@
 
 {{! Create a table }}
 <div class="dataTable">
-<table id="trails-table">
-  <thead>
-    <tr>
-      <th>Trail ID</th>
-      <th>Park Name</th>
-      <th>Name</th>
-      <th>Latitude</th>
-      <th>Longitude</th>
-      <th>Length</th>
-      <th>Edit</th>
-      <th>Delete?</th>
-    </tr>
-  </thead>
-  <tbody>
-    {{#each trails}}
+  <table id="trails-table">
+    <thead>
       <tr>
-        <td>{{this.trail_id}}</td>
-        <td>{{this.park_name}}</td>
-        <td>{{this.name}}</td>
-        <td>{{this.latitude}}</td>
-        <td>{{this.longitude}}</td>
-        <td>{{this.length}}</td>
-        <td><button
-            onclick="editTrail({{this.trail_id}}, '{{this.park_name}}', '{{this.name}}', '{{this.latitude}}', '{{this.longitude}}', '{{this.length}}')"
-          >Edit</button></td>
-        <td><button
-            onclick="deleteTrail({{this.trail_id}})"
-          >Delete</button></td>
+        <th>Trail ID</th>
+        <th>Park Name</th>
+        <th>Name</th>
+        <th>Latitude</th>
+        <th>Longitude</th>
+        <th>Length</th>
+        <th>Edit</th>
+        <th>Delete?</th>
       </tr>
-    {{/each}}
-  </tbody>
-</table>
+    </thead>
+    <tbody>
+      {{#each trails}}
+        <tr>
+          <td>{{this.trail_id}}</td>
+          <td>{{this.park_name}}</td>
+          <td>{{this.name}}</td>
+          <td>{{this.latitude}}</td>
+          <td>{{this.longitude}}</td>
+          <td>{{this.length}}</td>
+          <td><button
+              onclick="editTrail({{this.trail_id}}, '{{this.park_name}}', '{{this.name}}', '{{this.latitude}}', '{{this.longitude}}', '{{this.length}}')"
+            >Edit</button></td>
+          <td><button
+              onclick="deleteTrail({{this.trail_id}})"
+            >Delete</button></td>
+        </tr>
+      {{/each}}
+    </tbody>
+  </table>
 </div>
 
 {{! Form to add a record to the table }}
-<p id="add-description">To add a new trail, please enter the details below and click 'Submit'!</p>
+<p id="add-description">To add a new trail, please enter the details below and
+  click 'Submit'!</p>
 <form id="add-trail-form">
   <label for="input-park">Park Name:* </label>
   <select name="input-park" id="input-park">
-    <option  value="">Select a park</option>
+    <option value="">Select a park</option>
     {{#each parks}}
       <option value="{{this.park_id}}">{{this.park_name}}</option>
     {{/each}}

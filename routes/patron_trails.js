@@ -104,15 +104,4 @@ router.delete("/", function (req, res, next) {
   );
 });
 
-// These were the original queries in SELECT, saving them here if needed later:
-
-// let select_table_query =
-// "SELECT (SELECT name FROM  Patrons WHERE Patrons.patron_id = PatronTrails.patron_id) AS patron_name, (SELECT name FROM Trails WHERE Trails.trail_id = PatronTrails.trail_id) AS trail_name,  hike_count  FROM PatronTrails;";
-
-// let select_patrons_query =
-// "SELECT patron_id, (SELECT name FROM Patrons WHERE Patrons.patron_id = PatronTrails.patron_id) AS patron_name FROM PatronTrails GROUP BY patron_name";
-
-// let select_trails_query =
-// "SELECT trail_id, (SELECT name FROM Trails WHERE Trails.trail_id = PatronTrails.trail_id) AS trail_name FROM PatronTrails GROUP BY trail_name";
-
 module.exports = router;

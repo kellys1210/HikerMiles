@@ -1,6 +1,5 @@
-// Code for all CRUD data handling and HTTP requests adapted from: 
+// Code for all CRUD data handling and HTTP requests adapted from:
 // https://github.com/osu-cs340-ecampus/nodejs-starter-app
-
 
 // Get the objects we need to modify
 let addImplantForm = document.getElementById("add-implant-form");
@@ -20,22 +19,12 @@ addImplantForm.addEventListener("submit", function (e) {
   let expirationValue = inputExpiration.value;
   let berserkValue = inputBerserk.value;
 
-  console.log(
-    `patron_id: ${patronIDValue}, expiration_date: ${expirationValue}`,
-    `berserk_mode: ${berserkValue}`
-  );
-
   // Put our data we want to send in a javascript object
   let data = {
     patron_id: patronIDValue,
     expiration_date: expirationValue,
     berserk_mode: berserkValue,
   };
-
-  console.log(
-    `data.patron_id: ${data.patron_id}, data.expiration_date: ${data.expiration_date}`,
-    `data.berserk_mode: ${data.berserk_mode}`
-  );
 
   // Setup our AJAX request
   var xhttp = new XMLHttpRequest();
@@ -48,6 +37,7 @@ addImplantForm.addEventListener("submit", function (e) {
       // Refresh page to requery updated table after successfull post
       location.reload();
     } else if (xhttp.status == 400) {
+      // Receives and displays error when non-unique foreign key is chosen by user:
       // Adapted from: https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/responseText
       let response = JSON.parse(xhttp.responseText);
       let errorMessage = response.error;

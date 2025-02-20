@@ -13,38 +13,39 @@
 
 {{! Create a table }}
 <div class="dataTable">
-<table id="patrons-table">
-  <thead>
-    <tr>
-      <th>Patron ID</th>
-      <th>Name</th>
-      <th>Date of Birth</th>
-      <th>Address</th>
-      <th>Edit</th>
-      <th>Delete?</th>
-    </tr>
-  </thead>
-  <tbody>
-    {{#each data}}
-      <tr data-value="{{this.patron_id}}">
-        <td>{{this.patron_id}}</td>
-        <td>{{this.name}}</td>
-        <td>{{this.date_of_birth}}</td>
-        <td>{{this.address}}</td>
-        <td><button
-            onclick="editPatron({{this.patron_id}}, '{{this.name}}', '{{this.date_of_birth}}', '{{this.address}}')"
-          >Edit</button></td>
-        <td><button
-            onclick="deletePatron({{this.patron_id}})"
-          >Delete</button></td>
+  <table id="patrons-table">
+    <thead>
+      <tr>
+        <th>Patron ID</th>
+        <th>Name</th>
+        <th>Date of Birth</th>
+        <th>Address</th>
+        <th>Edit</th>
+        <th>Delete?</th>
       </tr>
-    {{/each}}
-  </tbody>
-</table>
+    </thead>
+    <tbody>
+      {{#each data}}
+        <tr data-value="{{this.patron_id}}">
+          <td>{{this.patron_id}}</td>
+          <td>{{this.name}}</td>
+          <td>{{this.date_of_birth}}</td>
+          <td>{{this.address}}</td>
+          <td><button
+              onclick="editPatron({{this.patron_id}}, '{{this.name}}', '{{this.date_of_birth}}', '{{this.address}}')"
+            >Edit</button></td>
+          <td><button
+              onclick="deletePatron({{this.patron_id}})"
+            >Delete</button></td>
+        </tr>
+      {{/each}}
+    </tbody>
+  </table>
 </div>
 
 {{! Form to add a record to the table }}
-<p id="add-description">To add a new patron, please enter their information below and click 'Submit'!</p>
+<p id="add-description">To add a new patron, please enter their information
+  below and click 'Submit'!</p>
 <form id="add-patron-form">
   <label for="input-name">Name:* </label>
   <input type="text" name="input-name" id="input-name" />

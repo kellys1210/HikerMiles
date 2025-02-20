@@ -11,29 +11,29 @@
 
 {{! Create a table }}
 <div class="dataTable">
-<table id="patron-trails-table">
-  <thead>
-    <tr>
-      <th>Patron Name</th>
-      <th>Trail Name</th>
-      <th>Number of Times Hiked</th>
-      <th>Delete?</th>
-    </tr>
-  </thead>
-  <tbody>
-    {{#each patron_trails}}
+  <table id="patron-trails-table">
+    <thead>
       <tr>
-        <td>{{this.patron_name}}</td>
-        <td>{{this.trail_name}}</td>
-        <td>{{this.hike_count}}</td>
-        <td><button
-            onclick="deletePatronTrail('{{this.patron_name}}', '{{this.trail_name}}')"
-          >Delete</button></td>
-
+        <th>Patron Name</th>
+        <th>Trail Name</th>
+        <th>Number of Times Hiked</th>
+        <th>Delete?</th>
       </tr>
-    {{/each}}
-  </tbody>
-</table>
+    </thead>
+    <tbody>
+      {{#each patron_trails}}
+        <tr>
+          <td>{{this.patron_name}}</td>
+          <td>{{this.trail_name}}</td>
+          <td>{{this.hike_count}}</td>
+          <td><button
+              onclick="deletePatronTrail('{{this.patron_name}}', '{{this.trail_name}}')"
+            >Delete</button></td>
+
+        </tr>
+      {{/each}}
+    </tbody>
+  </table>
 </div>
 
 {{! Form to add a record to the table }}

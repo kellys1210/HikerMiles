@@ -1,4 +1,4 @@
-// Code for all CRUD data handling and HTTP requests adapted from: 
+// Code for all CRUD data handling and HTTP requests adapted from:
 // https://github.com/osu-cs340-ecampus/nodejs-starter-app
 
 // Get the objects we need to modify
@@ -40,7 +40,14 @@ addForm.addEventListener("submit", function (e) {
 });
 
 // User clicks edit button
-function editTrail(trailID, parkName, curName, curLatitude, curLongitude, curLength) {
+function editTrail(
+  trailID,
+  parkName,
+  curName,
+  curLatitude,
+  curLongitude,
+  curLength
+) {
   console.log("Editing trail:", trailID);
   let editForm = document.getElementById("add-trail-form");
   let editDescription = document.getElementById("add-description");
@@ -96,7 +103,7 @@ function saveTrailEdit(trailID) {
     length: newLength,
   };
 
-  console.log(data)
+  console.log(data);
 
   $.ajax({
     url: "/trails",

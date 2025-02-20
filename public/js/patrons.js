@@ -1,4 +1,4 @@
-// Code for all CRUD data handling and HTTP requests adapted from: 
+// Code for all CRUD data handling and HTTP requests adapted from:
 // https://github.com/osu-cs340-ecampus/nodejs-starter-app
 
 // Get the objects we need to modify
@@ -10,7 +10,7 @@ addPatronForm.addEventListener("submit", function (e) {
   e.preventDefault();
 
   // Get form fields we need to get data from
-  console.log("Grabing new patron information from SUBMIT form")
+  console.log("Grabing new patron information from SUBMIT form");
   let inputName = document.getElementById("input-name");
   let inputDateOfBirth = document.getElementById("input-dateofbirth");
   let inputAddress = document.getElementById("input-address");
@@ -43,7 +43,6 @@ addPatronForm.addEventListener("submit", function (e) {
 
       // Refresh page to requery updated table
       location.reload();
-
     } else if (xhttp.readyState == 4 && xhttp.status != 200) {
       console.log("There was an error with the input.");
     }
@@ -105,7 +104,7 @@ function cancelEdit() {
 
 // Save the edit and send data to server
 function savePatronEdit(patronID) {
-  console.log("Grabing new patron information from EDIT form")
+  console.log("Grabing new patron information from EDIT form");
   let newName = document.getElementById("edit-name").value;
   let newDateofBirth = document.getElementById("edit-dateofbirth").value;
   let newAddress = document.getElementById("edit-address").value;

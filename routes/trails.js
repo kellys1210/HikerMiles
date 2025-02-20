@@ -9,8 +9,7 @@ router.get("/", (req, res) => {
   let select_table_query =
     "SELECT trail_id, (SELECT name FROM Parks WHERE Parks.park_id = Trails.park_id) AS park_name, name, latitude, longitude, length FROM Trails;";
 
-  let select_parks_query =
-    "SELECT park_id, name AS park_name FROM Parks;";
+  let select_parks_query = "SELECT park_id, name AS park_name FROM Parks;";
 
   // Execute the query
   db.pool.query(select_table_query, function (error, rows, fields) {
@@ -63,8 +62,7 @@ router.post("/", function (req, res) {
 // UPDATE
 router.put("/", function (req, res) {
   let data = req.body;
-  let query = 
-    `UPDATE Trails
+  let query = `UPDATE Trails
       SET 
       park_id = (SELECT park_id FROM Parks WHERE name = ?), 
       name = ?, 
@@ -72,17 +70,27 @@ router.put("/", function (req, res) {
       longitude = ?,
       length = ?
     WHERE trail_id = ?`;
-  
-  db.pool.query(query, [data.park_name, data.name, data.latitude, data.longitude, data.length, data.trail_id], function (err, result) {
-    if (err) {
-      console.log(err);
-      res.status(500).send("error");
-    } else {
-      res.status(200).send("trail updated")
-    }
-  });
-});
 
+  db.pool.query(
+    query,
+    [
+      data.park_name,
+      data.name,
+      data.latitude,
+      data.longitude,
+      data.length,
+      data.trail_id,
+    ],
+    function (err, result) {
+      if (err) {
+        console.log(err);
+        res.status(500).send("error");
+      } else {
+        res.status(200).send("trail updated");
+      }
+    }
+  );
+});
 
 // DELETE
 router.delete("/", function (req, res, next) {
@@ -93,19 +101,14 @@ router.delete("/", function (req, res, next) {
   let delete_id_query = `DELETE FROM Trails WHERE trail_id = ${id}`;
 
   // Run the query
-  db.pool.query(
-    delete_id_query,
-    [id],
-    function (error, rows, fields) {
-      if (error) {
-        console.log(error);
-        res.sendStatus(400);
-      } else {
-        res.sendStatus(204);
-      }
+  db.pool.query(delete_id_query, [id], function (error, rows, fields) {
+    if (error) {
+      console.log(error);
+      res.sendStatus(400);
+    } else {
+      res.sendStatus(204);
     }
-  );
+  });
 });
-
 
 module.exports = router;

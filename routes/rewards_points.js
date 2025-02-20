@@ -12,16 +12,14 @@ router.get("/", (req, res) => {
     "SELECT reward_id, (SELECT name FROM Patrons WHERE Patrons.patron_id = RewardsPoints.patron_id) AS patron_name, reward FROM RewardsPoints;";
 
   let select_patrons_query =
-    "SELECT patron_id, name AS patron_name FROM Patrons"
+    "SELECT patron_id, name AS patron_name FROM Patrons";
   // Execute the query for table
   db.pool.query(select_table_query, function (error, rows, fields) {
-
     // Save table query
     let data_table = rows;
 
     // Execture  query  for patrons
     db.pool.query(select_patrons_query, function (error, rows, fields) {
-
       // Save patrons
       let data_patrons = rows;
 
@@ -29,7 +27,10 @@ router.get("/", (req, res) => {
       // an object where 'data' is equal to the 'rows' we
       // received back from the query
 
-      res.render("rewards_points", { rewards_points: data_table, patrons: data_patrons });
+      res.render("rewards_points", {
+        rewards_points: data_table,
+        patrons: data_patrons,
+      });
     });
   });
 });
@@ -42,7 +43,7 @@ router.post("/", function (req, res) {
   // Create the query and run it on the database
   insert_query = `INSERT INTO RewardsPoints (patron_id, reward) VALUES ('${data.patron_id}', '${data.reward}')`;
 
-  console.log(`Attempting to query: ${insert_query}`)
+  console.log(`Attempting to query: ${insert_query}`);
 
   db.pool.query(insert_query, function (error, rows, fields) {
     // Check to see if there was an error
@@ -78,19 +79,14 @@ router.delete("/", function (req, res, next) {
   let delete_id_query = `DELETE FROM RewardsPoints WHERE reward_id = ${rewardID}`;
 
   // Run query
-  db.pool.query(
-    delete_id_query,
-    [rewardID],
-    function (error, rows, fields) {
-      if (error) {
-        console.log(error);
-        res.sendStatus(400);
-      } else {
-        res.sendStatus(204);
-      }
+  db.pool.query(delete_id_query, [rewardID], function (error, rows, fields) {
+    if (error) {
+      console.log(error);
+      res.sendStatus(400);
+    } else {
+      res.sendStatus(204);
     }
-  );
+  });
 });
-
 
 module.exports = router;

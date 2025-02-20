@@ -11,28 +11,28 @@
 
 {{! Create a table }}
 <div class="dataTable">
-<table id="patron-parks-table">
-  <thead>
-    <tr>
-      <th>Patron Name</th>
-      <th>Park Name</th>
-      <th>Visit Count</th>
-      <th>Delete?</th>
-    </tr>
-  </thead>
-  <tbody>
-    {{#each patron_parks}}
+  <table id="patron-parks-table">
+    <thead>
       <tr>
-        <td>{{this.patron_name}}</td>
-        <td>{{this.park_name}}</td>
-        <td>{{this.visit_count}}</td>
-        <td><button
-            onclick="deletePatronPark('{{this.patron_name}}', '{{this.park_name}}')"
-          >Delete</button></td>
+        <th>Patron Name</th>
+        <th>Park Name</th>
+        <th>Visit Count</th>
+        <th>Delete?</th>
       </tr>
-    {{/each}}
-  </tbody>
-</table>
+    </thead>
+    <tbody>
+      {{#each patron_parks}}
+        <tr>
+          <td>{{this.patron_name}}</td>
+          <td>{{this.park_name}}</td>
+          <td>{{this.visit_count}}</td>
+          <td><button
+              onclick="deletePatronPark('{{this.patron_name}}', '{{this.park_name}}')"
+            >Delete</button></td>
+        </tr>
+      {{/each}}
+    </tbody>
+  </table>
 </div>
 
 {{! Form to add a record to the table }}

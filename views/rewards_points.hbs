@@ -3,32 +3,36 @@
 {{! Rewards Points - Handlebars Template }}
 
 {{! for delete function: }}
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script
+  src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"
+></script>
 
 <h1>Rewards Points</h1>
 
 {{! Create a table }}
 <div class="dataTable">
-<table id="rewards-points-table">
-  <thead>
-    <tr>
-      <th>Reward ID</th>
-      <th>Patron Name</th>
-      <th>Reward</th>
-      <th>Delete?</th>
-    </tr>
-  </thead>
-  <tbody>
-    {{#each rewards_points}}
+  <table id="rewards-points-table">
+    <thead>
       <tr>
-        <td>{{this.reward_id}}</td>
-        <td>{{this.patron_name}}</td>
-        <td>{{this.reward}}</td>
-        <td><button onclick="deleteReward({{this.reward_id}})">Delete</button></td>
+        <th>Reward ID</th>
+        <th>Patron Name</th>
+        <th>Reward</th>
+        <th>Delete?</th>
       </tr>
-    {{/each}}
-  </tbody>
-</table>
+    </thead>
+    <tbody>
+      {{#each rewards_points}}
+        <tr>
+          <td>{{this.reward_id}}</td>
+          <td>{{this.patron_name}}</td>
+          <td>{{this.reward}}</td>
+          <td><button
+              onclick="deleteReward({{this.reward_id}})"
+            >Delete</button></td>
+        </tr>
+      {{/each}}
+    </tbody>
+  </table>
 </div>
 
 {{! Form to add a record to the table }}
@@ -36,7 +40,7 @@
 <form id="add-reward-form">
   <label for="input-patron_id">Patron Name:* </label>
   <select name="input-patron_id" id="input-patron_id">
-    <option  value="">Select a patron</option>
+    <option value="">Select a patron</option>
     {{#each patrons}}
       <option value="{{this.patron_id}}">{{this.patron_name}}</option>
     {{/each}}

@@ -1,4 +1,4 @@
-// Code for all CRUD data handling and HTTP requests adapted from: 
+// Code for all CRUD data handling and HTTP requests adapted from:
 // https://github.com/osu-cs340-ecampus/nodejs-starter-app
 
 // Get the objects we need to modify
@@ -49,6 +49,7 @@ addPatronParkForm.addEventListener("submit", function (e) {
       // Refresh page to requery updated table after successfull post
       location.reload();
     } else if (xhttp.status == 400) {
+      // Receives and displays error when non-unique foreign key is chosen by user:
       // Adapted from: https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/responseText
       let response = JSON.parse(xhttp.responseText);
       let errorMessage = response.error;
@@ -69,22 +70,23 @@ function deletePatronPark(patronName, parkName) {
       "Do you really want to delete this record? This cannot be undone. Click 'OK' to continue with deleting this record."
     )
   ) {
-  let link = "/patron_parks";
-  let data = {
-    patron_name: patronName,
-    park_name: parkName,
-  };
+    let link = "/patron_parks";
+    let data = {
+      patron_name: patronName,
+      park_name: parkName,
+    };
 
-  console.log(`data before: ${JSON.stringify(data)}`);
+    console.log(`data before: ${JSON.stringify(data)}`);
 
-  $.ajax({
-    url: link,
-    type: "DELETE",
-    data: JSON.stringify(data),
-    contentType: "application/json; charset=utf-8",
-    success: function (result) {
-      // Refresh page to requery updated table
-      location.reload();
-    },
-  });
-}};
+    $.ajax({
+      url: link,
+      type: "DELETE",
+      data: JSON.stringify(data),
+      contentType: "application/json; charset=utf-8",
+      success: function (result) {
+        // Refresh page to requery updated table
+        location.reload();
+      },
+    });
+  }
+}

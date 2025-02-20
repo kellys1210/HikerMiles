@@ -62,21 +62,24 @@ router.post("/", function (req, res) {
 // UPDATE
 router.put("/", function (req, res) {
   let data = req.body;
-  let query = 
-    `UPDATE Patrons
+  let query = `UPDATE Patrons
       SET name = ?, 
       date_of_birth = ?, 
       address = ?
     WHERE patron_id = ?`;
-  
-  db.pool.query(query, [data.name, data.date_of_birth, data.address, data.patron_id], function (err, result) {
-    if (err) {
-      console.log(err);
-      res.status(500).send("error");
-    } else {
-      res.status(200).send("patron updated")
+
+  db.pool.query(
+    query,
+    [data.name, data.date_of_birth, data.address, data.patron_id],
+    function (err, result) {
+      if (err) {
+        console.log(err);
+        res.status(500).send("error");
+      } else {
+        res.status(200).send("patron updated");
+      }
     }
-  });
+  );
 });
 
 // DELETE
@@ -89,18 +92,14 @@ router.delete("/", function (req, res, next) {
   let delete_id_query = `DELETE FROM Patrons WHERE patron_id = ${patronID}`;
 
   // Run query
-  db.pool.query(
-    delete_id_query,
-    [patronID],
-    function (error, rows, fields) {
-      if (error) {
-        console.log(error);
-        res.sendStatus(400);
-      } else {
-        res.sendStatus(204);
-      }
+  db.pool.query(delete_id_query, [patronID], function (error, rows, fields) {
+    if (error) {
+      console.log(error);
+      res.sendStatus(400);
+    } else {
+      res.sendStatus(204);
     }
-  );
+  });
 });
 
 module.exports = router;
