@@ -56,7 +56,6 @@ router.post("/", function (req, res) {
 // UPDATE
 router.put("/", function (req, res) {
   let data = req.body;
-  console.log(data);
   let query = `UPDATE Parks
       SET name = ?, 
       state = ?, 

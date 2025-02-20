@@ -52,21 +52,6 @@ addPatronForm.addEventListener("submit", function (e) {
   xhttp.send(JSON.stringify(data));
 });
 
-// Edit Button
-let editButton = document.createElement("button");
-editButton.innerText = "Edit";
-editButton.onclick = function () {
-  editPatron(newRow.patron_id, newRow.name, formattedDate, newRow.address);
-};
-// editCell.appendChild(editButton);
-
-// Delete Button
-deleteCell = document.createElement("button");
-deleteCell.innerHTML = "Delete";
-deleteCell.onclick = function () {
-  deletePatron(newRow.patron_id);
-};
-
 // User clicks edit button
 function editPatron(patronID, curName, curDateOfBirth, curAddress) {
   console.log("Editing patron:", patronID);
@@ -75,7 +60,7 @@ function editPatron(patronID, curName, curDateOfBirth, curAddress) {
 
   // Change the bottom form to the edit form
   editDescription.innerHTML =
-    "To edit an patron, please enter the details below and click 'Submit'!";
+    "To edit an patron, please enter the details below and click 'Save Changes'!";
 
   editForm.innerHTML = `
     <label for="edit-name">Name:* </label>
@@ -87,14 +72,9 @@ function editPatron(patronID, curName, curDateOfBirth, curAddress) {
     <label for="edit-address">Address:* </label>
     <input type="text" id="edit-address" value="${curAddress}" required />
 
-    <button type="submit">Save Changes</button>
+    <button type="button" onclick="savePatronEdit(${patronID})">Save Changes</button>
     <button type="button" onclick="cancelEdit()">Cancel</button>
   `;
-
-  editForm.addEventListener("submit", function (e) {
-    e.preventDefault();
-    savePatronEdit(patronID);
-  });
 }
 
 // User clicks cancel to put back Insert Form
@@ -123,7 +103,7 @@ function savePatronEdit(patronID) {
     data: JSON.stringify(data),
     contentType: "application/json; charset=utf-8",
     success: function (response) {
-      console.log("patron edited");
+      alert("Patron Edited!");
       location.reload();
     },
     error: function (xhr, status, error) {
@@ -132,6 +112,7 @@ function savePatronEdit(patronID) {
   });
 }
 
+// Delete Patron
 function deletePatron(patronID) {
   if (
     window.confirm(

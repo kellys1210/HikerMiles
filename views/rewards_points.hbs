@@ -17,6 +17,7 @@
         <th>Reward ID</th>
         <th>Patron Name</th>
         <th>Reward</th>
+        <th>Edit</th>
         <th>Delete?</th>
       </tr>
     </thead>
@@ -26,8 +27,9 @@
           <td>{{this.reward_id}}</td>
           <td>{{this.patron_name}}</td>
           <td>{{this.reward}}</td>
-          <td><button
-              onclick="deleteReward({{this.reward_id}})"
+          <td><button onclick="editReward({{this.reward_id}},'{{this.patron_name}}', '{{this.reward}}')"
+            >Edit</button></td>
+          <td><button onclick="deleteReward({{this.reward_id}})"
             >Delete</button></td>
         </tr>
       {{/each}}
@@ -36,20 +38,20 @@
 </div>
 
 {{! Form to add a record to the table }}
-<p>To add a new reward, please enter the details below and click 'Submit'!</p>
+<p id="add-description">To add a new reward, please enter the details below and click 'Submit'!</p>
 <form id="add-reward-form">
   <label for="input-patron_id">Patron Name:* </label>
   <select name="input-patron_id" id="input-patron_id">
-    <option value="">Select a patron</option>
+    <option value="" disabled selected>Select a patron</option>
     {{#each patrons}}
       <option value="{{this.patron_id}}">{{this.patron_name}}</option>
     {{/each}}
   </select>
 
   <label for="input-reward">Reward:* </label>
-  <input type="text" name="input-reward" id="input-reward" />
+  <input type="number" name="input-reward" id="input-reward" />
 
   <input type="submit" />
 </form>
 
-<script src="/js/rewards_points.js"></script>
+<script src="/js/rewards_points.js"></script> 

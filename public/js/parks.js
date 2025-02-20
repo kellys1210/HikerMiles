@@ -73,14 +73,9 @@ function editParks(parkID, curName, curState, curCounty, curRangerStation) {
           curRangerStation == 1 ? "selected" : ""
         }>True</option>
       </select>
-      <button type="submit">Save Changes</button>
+      <button type="button" onclick="saveParkEdit(${parkID})">Save Changes</button>
       <button type="button" onclick="cancelEdit()">Cancel</button>
     `;
-
-  editForm.addEventListener("submit", function (e) {
-    e.preventDefault();
-    saveParkEdit(parkID);
-  });
 }
 
 // User clicks cancel to put back Insert Form
@@ -110,7 +105,7 @@ function saveParkEdit(parkID) {
     data: JSON.stringify(data),
     contentType: "application/json; charset=utf-8",
     success: function (response) {
-      console.log("park edited");
+      alert("Park Edited!");
       location.reload();
     },
     error: function (xhr, status, error) {

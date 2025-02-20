@@ -57,8 +57,8 @@ function editTrail(
     "To edit an trail, please enter the details below and click 'Submit'!";
 
   editForm.innerHTML = `
-    <label for="edit-park">Park Name:* </label>
-    <input type="text" id="edit-park" value="${parkName}" required />
+    <label for="edit-park-name">Park Name:* </label>
+    <input type="text" id="edit-park-name" value="${parkName}" disabled>
     
     <label for="edit-name">Trail Name:* </label>
     <input type="text" id="edit-name" value="${curName}" required />
@@ -72,14 +72,9 @@ function editTrail(
     <label for="edit-length">Length:* </label>
     <input type="text" id="edit-length" value="${curLength}" required />
     
-    <button type="submit">Save Changes</button>
+    <button type="button" onclick="saveTrailEdit(${trailID})">Save Changes</button>
     <button type="button" onclick="cancelEdit()">Cancel</button>
   `;
-
-  editForm.addEventListener("submit", function (e) {
-    e.preventDefault();
-    saveTrailEdit(trailID);
-  });
 }
 
 // User clicks cancel to put back Insert Form
@@ -111,7 +106,7 @@ function saveTrailEdit(trailID) {
     data: JSON.stringify(data),
     contentType: "application/json; charset=utf-8",
     success: function (response) {
-      console.log("Trail updated");
+      alert("Trail Edited!")
       location.reload();
     },
     error: function (xhr, status, error) {
