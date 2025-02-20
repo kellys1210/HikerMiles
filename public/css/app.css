@@ -24,7 +24,6 @@ main {
 }
 
 header {
-  /* background-color: black; */
   text-align: center;
   font-size: 30px;
   font-weight: bold;
@@ -113,7 +112,7 @@ li {
 
 /* TABLES */
 
-/* table div  */
+/* Table div  */
 .dataTable {
   width: 75%;
   padding: 12px 20px;
@@ -150,7 +149,7 @@ li {
 
 /* FORMS */
 
-/* form div  */
+/* Form div  */
 .formContainer {
   width: 75%;
   margin: 0 auto;
@@ -217,6 +216,7 @@ input[type="submit"]:hover {
   background-color: #1b4332;
 }
 
+ /* ERROR MESSAGE: */
 #errorMessage {
   display: block;
   color: red;

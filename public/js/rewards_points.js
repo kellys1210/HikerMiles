@@ -1,4 +1,5 @@
-// Code based on: https://github.com/osu-cs340-ecampus/nodejs-starter-app
+// Code for all CRUD data handling and HTTP requests adapted from: 
+// https://github.com/osu-cs340-ecampus/nodejs-starter-app
 
 // Get the objects we need to modify
 let addRewardForm = document.getElementById("add-reward-form");

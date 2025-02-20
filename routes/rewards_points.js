@@ -1,3 +1,6 @@
+// Code for setting up routes, SQL queries, and dynamic data display adapted from:
+// https://github.com/osu-cs340-ecampus/nodejs-starter-app
+
 const express = require("express");
 const router = express.Router();
 const db = require("../database/db-connector");

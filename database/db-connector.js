@@ -1,4 +1,5 @@
-// Code based on: https://github.com/osu-cs340-ecampus/nodejs-starter-app
+// Code adapted from:
+// https://github.com/osu-cs340-ecampus/nodejs-starter-app/tree/main/Step%201%20-%20Connecting%20to%20a%20MySQL%20Database
 
 const mysql = require("mysql");
 
