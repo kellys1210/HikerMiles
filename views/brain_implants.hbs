@@ -18,6 +18,7 @@
         <th>Patron Name</th>
         <th>Expiration Date</th>
         <th>Berserk Mode</th>
+        <th>Edit</th>
         <th>Delete?</th>
       </tr>
     </thead>
@@ -29,6 +30,9 @@
           <td>{{this.expiration_date}}</td>
           <td>{{this.berserk_mode}}</td>
           <td><button
+              onclick="editImplant({{this.implant_id}},'{{this.patron_name}}', '{{this.expiration_date}}','{{this.berserk_mode}}')"
+            >Edit</button></td>
+          <td><button
               onclick="deleteImplant({{this.implant_id}})"
             >Delete</button></td>
         </tr>
@@ -38,7 +42,8 @@
 </div>
 
 {{! Form to add a record to the table }}
-<p>To add a new implant, please enter the details below and click 'Submit'!</p>
+<p id="add-description">To add a new implant, please enter the details below and
+  click 'Submit'!</p>
 <div id="errorMessage"></div>
 <form id="add-implant-form">
   <label for="input-patron">Patron Name: (select N/A if not yet implanted into a

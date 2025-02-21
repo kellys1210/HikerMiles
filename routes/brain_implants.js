@@ -73,6 +73,27 @@ router.post("/", function (req, res) {
   });
 });
 
+// UPDATE
+router.put("/", function (req, res) {
+  let data = req.body;
+  let query = `UPDATE BrainImplants
+      SET expiration_date = ?, berserk_mode = ?
+    WHERE implant_id = ?`;
+
+  db.pool.query(
+    query,
+    [data.expiration_date, data.berserk_mode, data.implant_id],
+    function (err, result) {
+      if (err) {
+        console.log(err);
+        res.status(500).send("error");
+      } else {
+        res.status(200).send("implant updated");
+      }
+    }
+  );
+});
+
 // DELETE
 router.delete("/", function (req, res, next) {
   let data = req.body;
