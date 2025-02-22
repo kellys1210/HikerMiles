@@ -83,7 +83,7 @@ function cancelEdit() {
 }
 
 function saveTrailEdit(trailID) {
-  let newPark = document.getElementById("edit-park").value;
+  let newPark = document.getElementById("edit-park-name").value;
   let newName = document.getElementById("edit-name").value;
   let newLatitude = document.getElementById("edit-latitude").value;
   let newLongitude = document.getElementById("edit-longitude").value;

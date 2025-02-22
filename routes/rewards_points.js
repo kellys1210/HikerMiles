@@ -73,14 +73,16 @@ router.post("/", function (req, res) {
 // UPDATE
 router.put("/", function (req, res) {
   let data = req.body;
-  let query = `UPDATE RewardsPoints
-      SET patron_id = (SELECT patron_id FROM Patrons WHERE name = ?), 
-      reward = ? 
-    WHERE reward_id = ?`;
+  let query = `
+    UPDATE RewardsPoints
+    SET patron_id = (SELECT patron_id FROM Patrons WHERE name = ?), 
+      reward = ?
+    WHERE reward_id = ?
+  `;
 
   db.pool.query(
     query,
-    [data.reward, data.reward_id],
+    [data.name, data.reward, data.reward_id],
     function (err, result) {
       if (err) {
         console.log(err);
