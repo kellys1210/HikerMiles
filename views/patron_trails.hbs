@@ -17,6 +17,7 @@
         <th>Patron Name</th>
         <th>Trail Name</th>
         <th>Number of Times Hiked</th>
+        <th>Edit</th>
         <th>Delete?</th>
       </tr>
     </thead>
@@ -26,6 +27,8 @@
           <td>{{this.patron_name}}</td>
           <td>{{this.trail_name}}</td>
           <td>{{this.hike_count}}</td>
+          <td><button onclick="editPatronTrail('{{this.patron_name}}', '{{this.trail_name}}', '{{this.hike_count}}')"
+            >Edit</button></td>
           <td><button
               onclick="deletePatronTrail('{{this.patron_name}}', '{{this.trail_name}}')"
             >Delete</button></td>
@@ -37,7 +40,7 @@
 </div>
 
 {{! Form to add a record to the table }}
-<p>To add a new trail visit, please enter the details below and click 'Submit'!</p>
+<p id="add-description">To add a new trail visit, please enter the details below and click 'Submit'!</p>
 <form id="add-patron-trail-form">
   <label for="input-patron">Patron Name:* </label>
   <select name="input-patron" id="input-patron">

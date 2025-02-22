@@ -63,6 +63,67 @@ addPatronTrailForm.addEventListener("submit", function (e) {
   xhttp.send(JSON.stringify(data));
 });
 
+// User clicks edit button
+function editPatronTrail(curName, curTrail, curHike) {
+  console.log("editing: ", curName)
+  let editForm = document.getElementById("add-patron-trail-form");
+  let editDescription = document.getElementById("add-description");
+  
+  // Change insert form to edit form
+  editDescription.innerHTML =
+    "To edit a hike, please enter the details below and click 'Save Changes'!";
+
+  editForm.innerHTML = `
+    <label for="edit-patron-name">Patron Name:* </label>
+    <input type="text" id="edit-patron-name" value="${curName}" disabled> 
+
+    <label for="edit-trail-name">Trail Name:* </label>
+    <input type="text" id="edit-trail-name" value="${curTrail}" disabled> 
+
+    <label for="edit-hike">Hike Count:* </label>
+    <input type="number" id="edit-hike" value=${curHike}>
+
+    <button type="button" onclick="savePatronTrailEdit()">Save Changes</button>
+    <button type="button" onclick="cancelEdit()">Cancel</button>
+  `;  
+}
+
+// User clicks cancel to put back Insert Form
+function cancelEdit() {
+  location.reload();
+}
+
+// Save the edit and send data to server
+function savePatronTrailEdit() {
+  console.log("Grabing new reward information from EDIT form");
+  
+  let newHike = document.getElementById("edit-hike").value;
+  let newName = document.getElementById("edit-patron-name").value;
+  let newTrail = document.getElementById("edit-trail-name").value;
+
+  let data = {
+    hike: newHike,
+    name: newName,
+    trail: newTrail,
+  };
+  console.log(data);
+  let link = "/patron_trails";
+
+  $.ajax({
+    url: link,
+    type: "PUT",
+    data: JSON.stringify(data),
+    contentType: "application/json; charset=utf-8",
+    success: function (response) {
+      alert("PatronTrails Edited!");
+      location.reload();
+    },
+    error: function (xhr, status, error) {
+      console.log(error);
+    },
+  });
+}
+
 function deletePatronTrail(patronName, trailName) {
   if (
     window.confirm(

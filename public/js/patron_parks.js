@@ -84,7 +84,7 @@ function editPatronPark(curName, curPark, curVisit) {
     <label for="edit-visit">Visit Count:* </label>
     <input type="number" id="edit-visit" value=${curVisit}>
 
-    <button type="button" onclick="savePatronParkEdit(${rewardID})">Save Changes</button>
+    <button type="button" onclick="savePatronParkEdit()">Save Changes</button>
     <button type="button" onclick="cancelEdit()">Cancel</button>
   `;  
 }
@@ -95,19 +95,20 @@ function cancelEdit() {
 }
 
 // Save the edit and send data to server
-function savePatronParkEdit(rewardID) {
+function savePatronParkEdit() {
   console.log("Grabing new reward information from EDIT form");
   
-  let newReward = document.getElementById("edit-reward").value;
+  let newVisit = document.getElementById("edit-visit").value;
   let newName = document.getElementById("edit-patron-name").value;
+  let newPark = document.getElementById("edit-park-name").value;
 
   let data = {
-    reward_id: rewardID,
+    visit: newVisit,
     name: newName,
-    reward: newReward,
+    park: newPark,
   };
-  
-  let link = "/rewards_points";
+  console.log(data);
+  let link = "/patron_parks";
 
   $.ajax({
     url: link,
@@ -115,7 +116,7 @@ function savePatronParkEdit(rewardID) {
     data: JSON.stringify(data),
     contentType: "application/json; charset=utf-8",
     success: function (response) {
-      alert("Reward Edited!");
+      alert("PatronParks Edited!");
       location.reload();
     },
     error: function (xhr, status, error) {

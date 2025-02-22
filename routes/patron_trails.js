@@ -81,6 +81,31 @@ router.post("/", function (req, res) {
   });
 });
 
+// UPDATE
+router.put("/", function (req, res) {
+  let data = req.body;
+  let query = `
+    UPDATE PatronTrails
+    SET hike_count = ?
+    WHERE patron_id = (SELECT patron_id FROM Patrons WHERE name = ?)
+    AND trail_id = (SELECT trail_id FROM Trails WHERE name = ?);
+  `;
+
+  db.pool.query(
+    query,
+    [data.hike, data.name, data.trail],
+    function (err, result) {
+      if (err) {
+        console.log(err);
+        res.status(500).send("error");
+      } else {
+        res.status(200).send("patrontrail updated");
+      }
+    }
+  );
+});
+
+
 // DELETE
 router.delete("/", function (req, res, next) {
   let data = req.body;

@@ -86,6 +86,30 @@ router.post("/", function (req, res) {
   });
 });
 
+// UPDATE
+router.put("/", function (req, res) {
+  let data = req.body;
+  let query = `
+    UPDATE PatronParks
+    SET visit_count = ?
+    WHERE patron_id = (SELECT patron_id FROM Patrons WHERE name = ?)
+    AND park_id = (SELECT park_id FROM Parks WHERE name = ?);
+  `;
+
+  db.pool.query(
+    query,
+    [data.visit, data.name, data.park],
+    function (err, result) {
+      if (err) {
+        console.log(err);
+        res.status(500).send("error");
+      } else {
+        res.status(200).send("patronparks updated");
+      }
+    }
+  );
+});
+
 
 // DELETE
 router.delete("/", function (req, res, next) {
