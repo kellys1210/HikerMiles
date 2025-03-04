@@ -8,8 +8,10 @@ const db = require("../database/db-connector");
 // SELECT
 router.get("/", (req, res) => {
   // Define our query
-  let select_table_query =
-    "SELECT implant_id, COALESCE((SELECT name FROM Patrons WHERE Patrons.patron_id = BrainImplants.patron_id), 'N/A') AS patron_name, DATE_FORMAT(expiration_date, '%Y-%m-%d') as expiration_date, (CASE WHEN berserk_mode = 1 THEN 'True' ELSE 'False' END) AS berserk_mode FROM BrainImplants;";
+  let select_table_query =`
+    SELECT implant_id, 
+    COALESCE((SELECT name FROM Patrons WHERE Patrons.patron_id = BrainImplants.patron_id), 'N/A') AS patron_name, 
+    DATE_FORMAT(expiration_date, '%Y-%m-%d') as expiration_date, (CASE WHEN berserk_mode = 1 THEN 'True' ELSE 'False' END) AS berserk_mode FROM BrainImplants;`;
 
   let select_patrons_query =
     "SELECT patron_id, name AS patron_name FROM Patrons";
@@ -41,7 +43,10 @@ router.post("/", function (req, res) {
   let data = req.body;
 
   // Create the query and run it on the database
-  insert_query = `INSERT INTO BrainImplants (patron_id, expiration_date, berserk_mode) VALUES (${data.patron_id}, '${data.expiration_date}', ${data.berserk_mode})`;
+  insert_query = `
+    INSERT INTO BrainImplants (patron_id, expiration_date, berserk_mode) 
+    VALUES (${data.patron_id}, '${data.expiration_date}', ${data.berserk_mode})
+  `;
 
   console.log(`Attempting to query: ${insert_query}`);
 
@@ -76,8 +81,9 @@ router.post("/", function (req, res) {
 // UPDATE
 router.put("/", function (req, res) {
   let data = req.body;
-  let query = `UPDATE BrainImplants
-      SET expiration_date = ?, berserk_mode = ?
+  let query = `
+    UPDATE BrainImplants
+    SET expiration_date = ?, berserk_mode = ?
     WHERE implant_id = ?`;
 
   db.pool.query(

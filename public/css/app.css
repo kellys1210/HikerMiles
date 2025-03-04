@@ -216,7 +216,7 @@ input[type="submit"]:hover {
   background-color: #1b4332;
 }
 
- /* ERROR MESSAGE: */
+/* ERROR MESSAGE: */
 #errorMessage {
   display: block;
   color: red;

@@ -65,10 +65,10 @@ addPatronTrailForm.addEventListener("submit", function (e) {
 
 // User clicks edit button
 function editPatronTrail(curName, curTrail, curHike) {
-  console.log("editing: ", curName)
+  console.log("editing: ", curName);
   let editForm = document.getElementById("add-patron-trail-form");
   let editDescription = document.getElementById("add-description");
-  
+
   // Change insert form to edit form
   editDescription.innerHTML =
     "To edit a hike, please enter the details below and click 'Save Changes'!";
@@ -85,7 +85,7 @@ function editPatronTrail(curName, curTrail, curHike) {
 
     <button type="button" onclick="savePatronTrailEdit()">Save Changes</button>
     <button type="button" onclick="cancelEdit()">Cancel</button>
-  `;  
+  `;
 }
 
 // User clicks cancel to put back Insert Form
@@ -96,7 +96,7 @@ function cancelEdit() {
 // Save the edit and send data to server
 function savePatronTrailEdit() {
   console.log("Grabing new reward information from EDIT form");
-  
+
   let newHike = document.getElementById("edit-hike").value;
   let newName = document.getElementById("edit-patron-name").value;
   let newTrail = document.getElementById("edit-trail-name").value;

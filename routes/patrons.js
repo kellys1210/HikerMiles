@@ -62,7 +62,8 @@ router.post("/", function (req, res) {
 // UPDATE
 router.put("/", function (req, res) {
   let data = req.body;
-  let query = `UPDATE Patrons
+  let query = `
+    UPDATE Patrons
       SET name = ?, 
       date_of_birth = ?, 
       address = ?

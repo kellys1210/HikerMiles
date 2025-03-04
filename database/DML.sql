@@ -27,21 +27,22 @@ WHERE patron_id = :patron_id;
 --------------- Rewards Directory ---------------
 
 -- Read - view all reward accounts
-SELECT reward_id, patron_id, reward
-FROM RewardPoints;
+SELECT rp.reward_id, p.patron_id, rp.reward
+FROM RewardPoints rp
+JOIN Patrons p ON rp.patron_id = p.patron_id;
 
 -- Create a new rewards account for a patron
-INSERT INTO RewardPoints (name, distance, reward)
-VALUES (
-    (SELECT name FROM Patrons WHERE name = :name), 
-    :reward
-);
+INSERT INTO RewardPoints (patron_id, reward)
+SELECT p.patron_id, :reward
+FROM Patrons p
+WHERE p.name = :name;
 
 -- Update patron's reward value
-UPDATE RewardPoints
-SET name = (SELECT name FROM Patrons WHERE name = :name), 
-    reward = :reward
-WHERE reward_id = :reward_id;
+UPDATE RewardPoints rp
+JOIN Patrons p ON rp.patron_id = p.patron_id
+SET rp.reward = :reward
+WHERE p.name = :name
+AND rp.reward_id = :reward_id;
 
 -- Delete patron's reward account
 DELETE FROM RewardPoints
@@ -72,25 +73,27 @@ WHERE park_id = :park_id;
 --------------- Trail Directory ---------------
 
 -- Read - view all trails
-SELECT trail_id, park_id, name, latitude, longitude, length
-FROM Trails;
+SELECT t.trail_id, p.park_id, p.name AS park_name, t.latitude, t.longitude, t.length
+FROM Trails t
+JOIN Parks p ON t.park_id = p.park_id;
 
 -- Create a trail
-INSERT INTO Trails (name, latitude, longitude, length)
-VALUES (
-    (SELECT name FROM Parks WHERE name = :name), 
-    :latitude,
-    :longitude, 
-    :length
-);
+INSERT INTO Trails (park_id, name, latitude, longitude, length)
+SELECT p.park_id, :trail_name, :latitude, :longitude, :length
+FROM Parks p
+WHERE p.name = :park_name;
 
 -- Update trail info
-UPDATE Trails
-SET name = (SELECT name FROM Parks WHERE name = :name), 
-    latitude = :latitude, 
-    longitude = :longitude,
-    length = :length
-WHERE trail_id = :trail_id;
+UPDATE Trails t
+JOIN Parks p ON t.park_id = p.park_id
+SET
+    t.park_id = p.park_id, 
+    t.name = :trail_name, 
+    t.latitude = :latitude, 
+    t.longitude = :longitude,
+    t.length = :length
+WHERE p.name = :park_name 
+AND t.trail_id = :trail_id;
 
 -- Delete a trail
 DELETE FROM Trails
@@ -118,56 +121,60 @@ WHERE implant_id = :implant_id;
 
 --------------- Patron Park Directory ---------------
 
--- Read - view all parks a patron has visited
-SELECT 
-    (SELECT name FROM Patrons WHERE patron_id = PatronParks.patron_id) AS patron_name, 
-    (SELECT name FROM Parks WHERE park_id = PatronParks.park_id) AS park_name, 
-    visit_count
-FROM PatronParks;
+-- Read - View All Parks a Patron Has Visited
+SELECT p.name AS patron_name, park.name AS park_name, pp.visit_count
+FROM PatronParks pp
+JOIN Patrons p ON pp.patron_id = p.patron_id
+JOIN Parks park ON pp.park_id = park.park_id;
 
--- Create a new patron park visit
+-- Create a New Patron Park Visit
 INSERT INTO PatronParks (patron_id, park_id, visit_count)
-VALUES (
-    (SELECT patron_id FROM Patrons WHERE name = :patronName), 
-    (SELECT park_id FROM Parks WHERE name = :parkName), 
-    :visit_count
-);
+SELECT p.patron_id, park.park_id, :visit_count
+FROM Patrons p
+JOIN Parks park ON park.name = :parkName
+WHERE p.name = :patronName;
 
--- Update a patron park visit
-UPDATE PatronParks
-SET visit_count = :visit_count
-WHERE patron_id = (SELECT patron_id FROM Patrons WHERE name = :patronName)
-AND park_id = (SELECT park_id FROM Parks WHERE name = :parkName);
+-- Update a Patron Park Visit
+UPDATE PatronParks pp
+JOIN Patrons p ON pp.patron_id = p.patron_id
+JOIN Parks park ON pp.park_id = park.park_id
+SET pp.visit_count = :visit_count
+WHERE p.name = :patronName
+AND park.name = :parkName;
 
--- Delete a patron park visit
-DELETE FROM PatronParks
-WHERE patron_id = (SELECT patron_id FROM Patrons WHERE name = :patronName)
-AND park_id = (SELECT park_id FROM Parks WHERE name = :parkName);
+-- Delete a Patron Park Visit
+DELETE pp FROM PatronParks pp
+JOIN Patrons p ON pp.patron_id = p.patron_id
+JOIN Parks park ON pp.park_id = park.park_id
+WHERE p.name = :patronName
+AND park.name = :parkName;
 
 --------------- Patron Trail Directory ---------------
 
 -- Read - view all trails a patron has visited
-SELECT 
-    (SELECT name FROM Patrons WHERE patron_id = PatronTrails.patron_id) AS patron_name, 
-    (SELECT name FROM Trails WHERE trail_id = PatronTrails.trail_id) AS trail_name, 
-    hike_count
-FROM PatronTrails;
+SELECT p.name AS patron_name, t.name AS trail_name, pt.visit_count
+FROM PatronTrails pt
+JOIN Patrons p ON pt.patron_id = p.patron_id
+JOIN Trails t ON pt.trail_id = t.trail_id;
 
 -- Create a patron trail visit
 INSERT INTO PatronTrails (patron_id, trail_id, hike_count)
-VALUES (
-    (SELECT patron_id FROM Patrons WHERE name = :patronName), 
-    (SELECT trail_id FROM Trails WHERE name = :trailName), 
-    :hike_count
-);
+SELECT p.patron_id, t.trail_id, :hike_count
+FROM Patrons p
+JOIN Trails t ON t.name = :trailName
+WHERE p.name = :patronName;
 
 -- Update a patron trail visit
-UPDATE PatronTrails
-SET hike_count = :hike_count
-WHERE patron_id = (SELECT patron_id FROM Patrons WHERE name = :patronName)
-AND trail_id = (SELECT trail_id FROM Trails WHERE name = :trailName);
+UPDATE PatronTrails pt
+JOIN Patrons p ON pt.patron_id = p.patron_id
+JOIN Trails t ON pt.trail_id = t.trail_id
+SET pt.hike_count = :hike_count
+WHERE p.name = :patronName
+AND t.name = :trailName;
 
 -- Delete a patron trail visit
-DELETE FROM PatronTrails
-WHERE patron_id = (SELECT patron_id FROM Patrons WHERE name = :patronName)
-AND trail_id = (SELECT trail_id FROM Trails WHERE name = :trailName);
+DELETE pt FROM PatronTrails pt
+JOIN Patrons p ON pt.patron_id = p.patron_id
+JOIN Trails t ON pt.trail_id = t.trail_id
+WHERE p.name = :patronName
+AND t.name = :trailName;

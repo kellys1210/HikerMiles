@@ -48,10 +48,10 @@ addRewardForm.addEventListener("submit", function (e) {
 
 // User clicks edit button
 function editReward(rewardID, curName, curReward) {
-  console.log("editing: ", rewardID)
+  console.log("editing: ", rewardID);
   let editForm = document.getElementById("add-reward-form");
   let editDescription = document.getElementById("add-description");
-  
+
   // Change insert form to edit form
   editDescription.innerHTML =
     "To edit a reward, please enter the details below and click 'Save Changes'!";
@@ -65,7 +65,7 @@ function editReward(rewardID, curName, curReward) {
 
     <button type="button" onclick="saveRewardEdit(${rewardID})">Save Changes</button>
     <button type="button" onclick="cancelEdit()">Cancel</button>
-  `;  
+  `;
 }
 
 // User clicks cancel to put back Insert Form
@@ -76,7 +76,7 @@ function cancelEdit() {
 // Save the edit and send data to server
 function saveRewardEdit(rewardID) {
   console.log("Grabing new reward information from EDIT form");
-  
+
   let newReward = document.getElementById("edit-reward").value;
   let newName = document.getElementById("edit-patron-name").value;
 
@@ -85,7 +85,7 @@ function saveRewardEdit(rewardID) {
     name: newName,
     reward: newReward,
   };
-  
+
   let link = "/rewards_points";
 
   $.ajax({

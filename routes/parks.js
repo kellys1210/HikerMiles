@@ -8,8 +8,10 @@ const db = require("../database/db-connector");
 // SELECT
 router.get("/", (req, res) => {
   // Define our query
-  let select_table_query =
-    "SELECT park_id, name, state, county, (CASE WHEN has_ranger_station = 1 THEN 'True' ELSE 'False' END) AS has_ranger_station FROM Parks;";
+  let select_table_query =`
+    SELECT park_id, name, state, county, 
+    (CASE WHEN has_ranger_station = 1 THEN 'True' ELSE 'False' END) 
+    AS has_ranger_station FROM Parks;`;
 
   // Execute the query
   db.pool.query(select_table_query, function (error, rows, fields) {
@@ -29,8 +31,9 @@ router.post("/", function (req, res) {
   let data = req.body;
 
   // Create the query and run it on the database
-  let insert_query = `INSERT INTO Parks (name, state, county, has_ranger_station) 
-                      VALUES ('${data.name}', '${data.state}', '${data.county}', '${data.has_ranger_station}')`;
+  let insert_query = `
+    INSERT INTO Parks (name, state, county, has_ranger_station) 
+    VALUES ('${data.name}', '${data.state}', '${data.county}', '${data.has_ranger_station}')`;
 
   console.log(`Attempting to query: ${insert_query}`);
 
@@ -56,8 +59,9 @@ router.post("/", function (req, res) {
 // UPDATE
 router.put("/", function (req, res) {
   let data = req.body;
-  let query = `UPDATE Parks
-      SET name = ?, 
+  let query = `
+    UPDATE Parks
+    SET name = ?, 
       state = ?, 
       county = ?,
       has_ranger_station = ?

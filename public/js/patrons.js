@@ -60,7 +60,7 @@ function editPatron(patronID, curName, curDateOfBirth, curAddress) {
 
   // Change the bottom form to the edit form
   editDescription.innerHTML =
-    "To edit an patron, please enter the details below and click 'Save Changes'!";
+    "To edit a patron, please enter the details below and click 'Save Changes'!";
 
   editForm.innerHTML = `
     <label for="edit-name">Name:* </label>

@@ -66,10 +66,10 @@ addPatronParkForm.addEventListener("submit", function (e) {
 
 // User clicks edit button
 function editPatronPark(curName, curPark, curVisit) {
-  console.log("editing: ", curName)
+  console.log("editing: ", curName);
   let editForm = document.getElementById("add-patron-park-form");
   let editDescription = document.getElementById("add-description");
-  
+
   // Change insert form to edit form
   editDescription.innerHTML =
     "To edit a visit, please enter the details below and click 'Save Changes'!";
@@ -86,7 +86,7 @@ function editPatronPark(curName, curPark, curVisit) {
 
     <button type="button" onclick="savePatronParkEdit()">Save Changes</button>
     <button type="button" onclick="cancelEdit()">Cancel</button>
-  `;  
+  `;
 }
 
 // User clicks cancel to put back Insert Form
@@ -97,7 +97,7 @@ function cancelEdit() {
 // Save the edit and send data to server
 function savePatronParkEdit() {
   console.log("Grabing new reward information from EDIT form");
-  
+
   let newVisit = document.getElementById("edit-visit").value;
   let newName = document.getElementById("edit-patron-name").value;
   let newPark = document.getElementById("edit-park-name").value;

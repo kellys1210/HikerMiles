@@ -6,8 +6,11 @@ const router = express.Router();
 const db = require("../database/db-connector");
 
 router.get("/", (req, res) => {
-  let select_table_query =
-    "SELECT trail_id, (SELECT name FROM Parks WHERE Parks.park_id = Trails.park_id) AS park_name, name, latitude, longitude, length FROM Trails;";
+  let select_table_query =`
+    SELECT t.trail_id, p.name AS park_name, t.name, t.latitude, t.longitude, t.length
+    FROM Trails t
+    JOIN Parks p ON t.park_id = p.park_id;
+  `;
 
   let select_parks_query = "SELECT park_id, name AS park_name FROM Parks;";
 
@@ -35,8 +38,9 @@ router.post("/", function (req, res) {
   let data = req.body;
 
   // Create the query and run it on the database
-  let insert_query = `INSERT INTO Trails (park_id, name, latitude, longitude, length) 
-                VALUES ('${data.park_id}', '${data.name}', '${data.latitude}', '${data.longitude}', '${data.length}')`;
+  let insert_query = `
+    INSERT INTO Trails (park_id, name, latitude, longitude, length) 
+    VALUES ('${data.park_id}', '${data.name}', '${data.latitude}', '${data.longitude}', '${data.length}')`;
 
   console.log(`Attempting to query: ${insert_query}`);
 
@@ -62,24 +66,28 @@ router.post("/", function (req, res) {
 // UPDATE
 router.put("/", function (req, res) {
   let data = req.body;
-  let query = `UPDATE Trails
-      SET 
-      park_id = (SELECT park_id FROM Parks WHERE name = ?), 
-      name = ?, 
-      latitude = ?,
-      longitude = ?,
-      length = ?
-    WHERE trail_id = ?`;
+  let query = `
+    UPDATE Trails t
+    JOIN Parks p ON t.park_id = p.park_id
+    SET 
+      t.park_id = p.park_id,  
+      t.name = ?, 
+      t.latitude = ?, 
+      t.longitude = ?, 
+      t.length = ?
+    WHERE p.name = ?  
+    AND t.trail_id = ?;  
+  `;
 
   db.pool.query(
     query,
     [
-      data.park_name,
-      data.name,
-      data.latitude,
-      data.longitude,
-      data.length,
-      data.trail_id,
+      data.name, 
+      data.latitude, 
+      data.longitude, 
+      data.length, 
+      data.park_name, 
+      data.trail_id
     ],
     function (err, result) {
       if (err) {

@@ -8,8 +8,11 @@ const db = require("../database/db-connector");
 // SELECT
 router.get("/", (req, res) => {
   // Define our query
-  let select_table_query =
-    "SELECT reward_id, (SELECT name FROM Patrons WHERE Patrons.patron_id = RewardsPoints.patron_id) AS patron_name, reward FROM RewardsPoints;";
+  let select_table_query = `
+    SELECT rp.reward_id, p.name AS patron_name, rp.reward
+    FROM RewardsPoints rp
+    JOIN Patrons p ON rp.patron_id = p.patron_id;
+  `;
 
   let select_patrons_query =
     "SELECT patron_id, name AS patron_name FROM Patrons";
@@ -41,7 +44,9 @@ router.post("/", function (req, res) {
   let data = req.body;
 
   // Create the query and run it on the database
-  insert_query = `INSERT INTO RewardsPoints (patron_id, reward) VALUES ('${data.patron_id}', '${data.reward}')`;
+  insert_query = `
+    INSERT INTO RewardsPoints (patron_id, reward) 
+    VALUES ('${data.patron_id}', '${data.reward}')`;
 
   console.log(`Attempting to query: ${insert_query}`);
 
@@ -74,10 +79,11 @@ router.post("/", function (req, res) {
 router.put("/", function (req, res) {
   let data = req.body;
   let query = `
-    UPDATE RewardsPoints
-    SET patron_id = (SELECT patron_id FROM Patrons WHERE name = ?), 
-      reward = ?
-    WHERE reward_id = ?
+    UPDATE RewardsPoints rp
+    JOIN Patrons p ON p.name = ?
+    SET rp.patron_id = p.patron_id,
+        rp.reward = ?
+    WHERE rp.reward_id = ?;
   `;
 
   db.pool.query(
@@ -100,7 +106,9 @@ router.delete("/", function (req, res, next) {
   console.log(`data after: ${JSON.stringify(data)}`);
   let rewardID = parseInt(data.id);
   console.log(`rewardID: ${rewardID}`);
-  let delete_id_query = `DELETE FROM RewardsPoints WHERE reward_id = ${rewardID}`;
+  let delete_id_query = `
+    DELETE FROM RewardsPoints 
+    WHERE reward_id = ${rewardID}`;
 
   // Run query
   db.pool.query(delete_id_query, [rewardID], function (error, rows, fields) {

@@ -8,8 +8,12 @@ const db = require("../database/db-connector");
 // SELECT
 router.get("/", (req, res) => {
   // Define our query
-  let select_table_query =
-    "SELECT (SELECT name FROM  Patrons WHERE Patrons.patron_id = PatronParks.patron_id) AS patron_name, (SELECT name FROM Parks WHERE Parks.park_id = PatronParks.park_id) AS park_name,  visit_count  FROM PatronParks;";
+  let select_table_query = `
+    SELECT p.name AS patron_name, park.name AS park_name, pp.visit_count
+    FROM PatronParks pp
+    JOIN Patrons p ON pp.patron_id = p.patron_id
+    JOIN Parks park ON pp.park_id = park.park_id;
+  `;
 
   let select_patrons_query =
     "SELECT patron_id, name AS patron_name FROM Patrons";
@@ -54,7 +58,10 @@ router.post("/", function (req, res) {
   let data = req.body;
 
   // Create the query and run it on the database
-  insert_query = `INSERT INTO PatronParks (patron_id, park_id, visit_count) VALUES ('${data.patron_id}', '${data.park_id}', '${data.visit_count}')`;
+  insert_query = `
+    INSERT INTO PatronParks (patron_id, park_id, visit_count)
+    VALUES ('${data.patron_id}', '${data.park_id}', '${data.visit_count}')
+  `;
 
   console.log(`Attempting to query: ${insert_query}`);
 
@@ -90,10 +97,12 @@ router.post("/", function (req, res) {
 router.put("/", function (req, res) {
   let data = req.body;
   let query = `
-    UPDATE PatronParks
-    SET visit_count = ?
-    WHERE patron_id = (SELECT patron_id FROM Patrons WHERE name = ?)
-    AND park_id = (SELECT park_id FROM Parks WHERE name = ?);
+    UPDATE PatronParks pp
+    JOIN Patrons p ON pp.patron_id = p.patron_id
+    JOIN Parks park ON pp.park_id = park.park_id
+    SET pp.visit_count = ?
+    WHERE p.name = ?
+    AND park.name = ?;
   `;
 
   db.pool.query(
@@ -110,14 +119,19 @@ router.put("/", function (req, res) {
   );
 });
 
-
 // DELETE
 router.delete("/", function (req, res, next) {
   let data = req.body;
   let patronName = data.patron_name;
   let parkName = data.park_name;
   console.log(`patronID: ${patronName}, parkID: ${parkName}`);
-  let delete_id_query = `DELETE FROM PatronParks WHERE patron_id = (SELECT patron_id FROM Patrons where name = '${patronName}') AND park_id = (SELECT park_id FROM Parks WHERE name = '${parkName}')`;
+  let delete_id_query = `
+    DELETE pp FROM PatronParks pp
+    JOIN Patrons p ON pp.patron_id = p.patron_id
+    JOIN Parks park ON pp.park_id = park.park_id
+    WHERE p.name = ?
+    AND park.name = ?;
+  `;
 
   // Run query
   db.pool.query(

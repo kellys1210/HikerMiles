@@ -8,8 +8,12 @@ const db = require("../database/db-connector");
 // SELECT
 router.get("/", (req, res) => {
   // Define our query
-  let select_table_query =
-    "SELECT (SELECT name FROM  Patrons WHERE Patrons.patron_id = PatronTrails.patron_id) AS patron_name, (SELECT name FROM Trails WHERE Trails.trail_id = PatronTrails.trail_id) AS trail_name,  hike_count  FROM PatronTrails;";
+  let select_table_query =`
+    SELECT p.name AS patron_name, t.name AS trail_name, pt.hike_count
+    FROM PatronTrails pt
+    JOIN Patrons p ON pt.patron_id = p.patron_id
+    JOIN Trails t ON pt.trail_id = t.trail_id;
+  `;
 
   let select_patrons_query =
     "SELECT patron_id, name AS patron_name FROM Patrons";
@@ -49,7 +53,10 @@ router.post("/", function (req, res) {
   let data = req.body;
 
   // Create the query and run it on the database
-  insert_query = `INSERT INTO PatronTrails (patron_id, trail_id, hike_count) VALUES ('${data.patron_id}', '${data.trail_id}', '${data.hike_count}')`;
+  insert_query = `
+    INSERT INTO PatronTrails (patron_id, trail_id, hike_count)
+    VALUES ('${data.patron_id}', '${data.trail_id}', '${data.hike_count}')
+  `;
 
   console.log(`Attempting to query: ${insert_query}`);
 
@@ -85,10 +92,12 @@ router.post("/", function (req, res) {
 router.put("/", function (req, res) {
   let data = req.body;
   let query = `
-    UPDATE PatronTrails
-    SET hike_count = ?
-    WHERE patron_id = (SELECT patron_id FROM Patrons WHERE name = ?)
-    AND trail_id = (SELECT trail_id FROM Trails WHERE name = ?);
+    UPDATE PatronTrails pt
+    JOIN Patrons p ON pt.patron_id = p.patron_id
+    JOIN Trails t ON pt.trail_id = t.trail_id
+    SET pt.hike_count = ?
+    WHERE p.name = ?
+    AND t.name = ?;
   `;
 
   db.pool.query(
@@ -112,7 +121,13 @@ router.delete("/", function (req, res, next) {
   let patronName = data.patron_name;
   let trailName = data.trail_name;
   console.log(`patronID: ${patronName}, trailID: ${trailName}`);
-  let delete_id_query = `DELETE FROM PatronTrails WHERE patron_id = (SELECT patron_id FROM Patrons where name = '${patronName}') AND trail_id = (SELECT trail_id FROM Trails WHERE name = '${trailName}')`;
+  let delete_id_query = `
+    DELETE pt FROM PatronTrails pt
+    JOIN Patrons p ON pt.patron_id = p.patron_id
+    JOIN Trails t ON pt.trail_id = t.trail_id
+    WHERE p.name = ?
+    AND t.name = ?;
+  `;
 
   // Run query
   db.pool.query(
